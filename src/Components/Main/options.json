@@ -1,0 +1,23 @@
+{
+    "titleList": [
+        {"value": "Mr.", "label": "Mr."},
+        {"value": "Ms.", "label": "Ms."},
+        {"value": "Mrs.", "label": "Mrs."},
+        {"value": "Dr.", "label": "Dr."}
+      ],
+      "genderList": [
+        {"value": "male", "label": "Male"},
+        {"value": "female", "label": "Female"}
+      ],
+      "visaStatusList": [
+        {"value": "student", "label": "Student"},
+        {"value": "citizen", "label": "Citizen"},
+        {"value": "permanentResident", "label": "Permanent Resident"}
+      ],
+      "sourceList": [
+        {"value": "seek", "label": "Seek"},
+        {"value": "linkedIn", "label": "Linked in"},
+        {"value": "database", "label": "Database"}
+      ]
+
+    }

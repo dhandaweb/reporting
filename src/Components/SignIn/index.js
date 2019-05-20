@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import { Link } from "react-router-dom";
 
 export default class SignIn extends React.Component {
   render() {
@@ -31,7 +31,7 @@ export default class SignIn extends React.Component {
         />
       </CardContent>
       <CardActions>
-        <Button size="small">Sign in</Button>
+        <Button size="small" component={Link} to="/dashboard">Sign in</Button>
       </CardActions>
     </Card>
     );

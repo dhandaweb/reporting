@@ -11,13 +11,14 @@ import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 
 
+
 export default class VisualRoutes extends React.Component {
 
   render() {
     return (
       <Router>
         <Grid  style={{ padding: 20 }} container justify="space-evenly" >
-          <Grid  xs={12} lg={3} md={3} sm={12} style={{ padding: 20 }} item >
+          <Grid  xs={12} lg={2} md={2} sm={12} style={{ padding: 5 }} item >
             <Paper>
               <MenuList>
                 <MenuItem >
@@ -35,7 +36,7 @@ export default class VisualRoutes extends React.Component {
               </MenuList>
             </Paper>
           </Grid>
-          <Grid xs={12} lg={9} md={9} sm={12} style={{ padding: 20 }} item>
+          <Grid xs={12} lg={10} md={10} sm={12} style={{ padding: 5 }} item>
             <Paper>
             <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />

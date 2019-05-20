@@ -9,6 +9,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import SignIn from '../../SignIn';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
+import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
 // import Routes from './Routes';
 const styles = {
   avatar: {
@@ -28,6 +30,9 @@ export default class Header extends React.Component {
     return (
       <AppBar position="sticky">
         <Toolbar >
+        <IconButton  color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
           <Typography style={{ padding: 5 }} component="h1" variant="title" color="inherit" noWrap>
          Reporting
           </Typography>
