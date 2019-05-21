@@ -25,13 +25,7 @@ export default class Details extends React.Component {
 
    
     this.state = {
-      selectedDate: new Date('2014-08-18T21:11:54'),
-      expanded: 'personal',
-      gender:"male",
-      title:null,
-      city:"city1", 
-      state:"state1",
-      country:"country1",
+      expanded: 'Jobcycle',
     };
   }
  
@@ -46,9 +40,6 @@ export default class Details extends React.Component {
     this.setState({ selectedDate: date });
   };
  
- 
-
-
 
 
   render() {
@@ -67,11 +58,6 @@ export default class Details extends React.Component {
 </ExpansionPanel>
 
 
-
-
-
-
-
 <ExpansionPanel expanded={this.state.expanded === 'client'} onChange={this.handleChange('client')}>
 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
   <Typography >Client</Typography>
@@ -80,6 +66,7 @@ export default class Details extends React.Component {
       <Hiring/>
 </ExpansionPanelDetails>
 </ExpansionPanel>
+
 
 <ExpansionPanel expanded={this.state.expanded === 'Financial'} onChange={this.handleChange('Financial')}>
 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -90,9 +77,10 @@ export default class Details extends React.Component {
 </ExpansionPanelDetails>
 </ExpansionPanel>
 
+
 <ExpansionPanel expanded={this.state.expanded === 'Jobcycle'} onChange={this.handleChange('Jobcycle')}>
 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-  <Typography >Jobcycle</Typography>
+  <Typography >Job details</Typography>
 </ExpansionPanelSummary>
 <ExpansionPanelDetails>
   <Jobcycle/>

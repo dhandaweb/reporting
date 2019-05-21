@@ -18,6 +18,70 @@
         {"value": "seek", "label": "Seek"},
         {"value": "linkedIn", "label": "Linked in"},
         {"value": "database", "label": "Database"}
+      ],
+      "clientList": [
+        {"value": "accenture", "label": "Accenture"},
+        {"value": "MindTree", "label": "MindTree"},
+        {"value": "Deloitte", "label": "Deloitte"}
+      ],
+      "creList": [
+        {"value": "accenture", "label": "Accenture"},
+        {"value": "MindTree", "label": "MindTree"},
+        {"value": "Deloitte", "label": "Deloitte"}
+      ],
+      "recruiterList": [
+        {"value": "John", "label": "John"},
+        {"value": "David", "label": "David"},
+        {"value": "Nick", "label": "Nick"}
+      ],
+      "accountManagerList": [
+        {"value": "john", "label": "John"},
+        {"value": "David", "label": "David"},
+        {"value": "Nick", "label": "Nick"}
+      ],
+      "accountDirectorList": [
+        {"value": "John", "label": "John"},
+        {"value": "David", "label": "David"},
+        {"value": "Nick", "label": "Nick"}
+      ],
+      "countryManagerList": [
+        {"value": "John", "label": "John"},
+        {"value": "David", "label": "David"},
+        {"value": "Nick", "label": "Nick"}
+      ],
+      "teamList": [
+        {"value": "Alpha", "label": "Alpha"},
+        {"value": "Beta", "label": "Beta"},
+        {"value": "Gamma", "label": "Gamma"}
+      ],
+      "geoList": [
+        {"value": "APAC", "label": "APAC"},
+        {"value": "India", "label": "India"},
+        {"value": "ASEAN", "label": "ASEAN"}
+      ],
+      "jobTypeList": [
+        {"value": "permanent", "label": "Permanent"},
+        {"value": "contract", "label": "Contract"},
+        {"value": "partime", "label": "Part Time"}
+      ],
+      "jobCategoryList": [
+        {"value": "consulting", "label": "consulting"},
+        {"value": "technology", "label": "Technology"},
+        {"value": "sales", "label": "Sales"}
+      ], 
+      "cities": [
+        {"value": "city1", "label": "city1"},
+        {"value": "city2", "label": "city2"},
+        {"value": "city3", "label": "city3"}
+      ], 
+      "countries": [
+        {"value": "country1", "label": "country1"},
+        {"value": "country2", "label": "country2"},
+        {"value": "country3", "label": "country3"}
+      ], 
+      "states": [
+        {"value": "state1", "label": "state1"},
+        {"value": "state2", "label": "state2"},
+        {"value": "state3", "label": "state3"}
       ]
-
     }

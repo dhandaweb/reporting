@@ -106,13 +106,15 @@ export default class Personal extends React.Component {
         </Grid>
 
         <Grid item xs={12}>
-          <TextField id="standard-full-width" label="Address" style={{ margin: 8 }} placeholder="Placeholder" fullWidth margin="normal" />
+          
         </Grid>
 
         <Grid item xs={12}>
 
-
-          <TextField id="city" select label="Select" value={this.state.city} style={{ margin: 8 }} helperText="Please select your city" margin="normal" >
+        
+        <TextField id="standard-full-width" label="Address" style={{ margin: 8 }} placeholder="Placeholder" margin="normal" />
+       
+        <TextField id="city" select label="Select" value={this.state.city} style={{ margin: 8 }} helperText="Please select your city" margin="normal" >
             {cities.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
@@ -134,11 +136,13 @@ export default class Personal extends React.Component {
               </MenuItem>
             ))}
           </TextField>
+      
+     
+        
         </Grid>
 
 
         <Grid item xs={12}>
-
 
           <TextField id="primarySkill" label="Primary skill " margin="normal" style={{ margin: 8 }} />
           <TextField id="culturalBackground" label="Cultural Background " margin="normal" style={{ margin: 8 }} />
