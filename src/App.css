@@ -3,6 +3,19 @@
   margin:0 auto;
   margin-top:200px;
 }
+.signInCon .siginInHeadingIcon{
+  background-color: #f44336;
+}
+
+.RIcon{
+  background-color: #f44336!important;
+}
+
+
+.signInCon .siginSubmit{
+  margin: 10px auto;
+}
+
 
 .paddingH{
   padding:40px;
@@ -11,3 +24,4 @@
 .input-range__label{
   font-family: inherit!important;
 }
+

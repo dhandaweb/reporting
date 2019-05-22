@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Dashboard from './Dashboard';
 import Details from './Details';
+import Profile from './Profile';
+
 import Grid from '@material-ui/core/Grid';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -41,6 +43,7 @@ export default class VisualRoutes extends React.Component {
             <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/details" component={Details} />
+              <Route exact path="/profile" component={Profile} />
             </Paper>
           </Grid>
         </Grid>

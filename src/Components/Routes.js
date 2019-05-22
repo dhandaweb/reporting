@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 
 import Main from './Main';
@@ -20,7 +20,33 @@ const styles = {
 
 };
 
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    (localStorage.getItem('user') !== null && localStorage.getItem('user') !== undefined)
+      ? <Component {...props} />
+      : <Redirect to='/signin' />
+  )} />
+);
+
+
+
+
+
 export default class Routes extends React.Component {
+
+
+
+  constructor(props) {
+    super(props);
+  
+    this.user = localStorage.getItem('user');
+
+    console.log(this.user);
+
+  }
+
+
 
   render() {
     return (
@@ -29,9 +55,12 @@ export default class Routes extends React.Component {
 
           <Route exact path="/" component={Main} />
           <Route exact path="/signin" component={SignIn} />
-        
-          <Route exact path="/dashboard" component={Main} />
-          <Route exact path="/details" component={Main} />
+          
+          <PrivateRoute path='/dashboard' component={Main} />
+          <PrivateRoute path='/details' component={Main} />
+          <PrivateRoute path="/profile" component={Main} />
+          {/* <Route exact path="/dashboard" component={Main} />
+          <Route exact path="/details" component={Main} /> */}
         
         </div>
       </Router>
