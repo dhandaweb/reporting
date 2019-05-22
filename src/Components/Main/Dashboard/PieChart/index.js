@@ -1,7 +1,7 @@
 import React from 'react';
 import * as d3 from "d3";
 
-export default class Dashboard extends React.Component {
+export default class PieChart extends React.Component {
  
  
 constructor(props) {
@@ -10,6 +10,8 @@ constructor(props) {
     //     chartContainer:null
     //   };
 
+     this.drawChart = this.drawChart.bind(this);
+      this.chartId =  'pieChart' + Math.floor(Math.random() * 1000000000);
       this.chartContainer = null
     }
 
@@ -17,10 +19,10 @@ constructor(props) {
 drawChart(){
 
     var data = [10, 20, 100];
-
-    d3.select("#pieChart").selectAll("svg").remove();
-
-    var dimension = d3.select("#pieChart").node().getBoundingClientRect();
+    var chartId =  '#' + this.chartId;
+    d3.select(chartId).selectAll("svg").remove();
+console.log(chartId);
+    var dimension = d3.select(chartId).node().getBoundingClientRect();
 
     var width = dimension.width -40,
         height = dimension.width -40,
@@ -41,7 +43,7 @@ drawChart(){
         .sort(null)
         .value(function(d) { return d; });
 
-    var svg = this.chartContainer =  d3.select("#pieChart").append("svg")
+    var svg = this.chartContainer =  d3.select(chartId).append("svg")
         .attr("width", width)
         .attr("height", height)
       .append("g")
@@ -71,7 +73,7 @@ componentDidMount() {
 render() {
    
     return (
-      <div id="pieChart"></div>
+      <div id={this.chartId}></div>
     );
   }
 };
