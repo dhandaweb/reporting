@@ -1,0 +1,68 @@
+[
+    {
+        "title":"Mr.",
+        "firstName":"Sunny",
+        "middleName":"",
+        "lastName":"Dhanda",
+        "gender":"Male",
+        "ethnicity":"Indian",
+        "citizenship":"Indian",
+        "workStatus":"Permanent Resident",
+        "primarySkill":"Salesforce",
+        "source":"seek",
+        "currentEmployer":"Accenture",
+        "salaryMin":"0k",
+        "salaryMax":"50k",
+        "address":"57 taworri crescent",
+        "city":"Melbourne",
+        "state":"VIC",
+        "country":"Australia",
+        "workExpMin":2,
+        "workExpMax":5,
+        
+        "client":"Accenture",
+        "hiringManager":"Randy Jones",
+        "jobTitle":"Senior front end developer",
+        "jobType":"Contract",
+        "jobCategory":"Consulting",
+       
+        "jobAddress":"360 Collins St",
+        "jobCity":"Melbourne",
+        "jobState":"VIC",
+        "jobCountry":"Australia",
+        
+        "jobOpenedDate":"1 Jan 2011",
+        "cvSubmissionDate":"1 Jan 2011",
+        "offerStatus":"To Join",
+        "offerDate":"1 Jan 2011",
+        "joiningDate":"1 Jan 2011",
+        
+
+        "recruiter":"Roy",
+        "cre":"Susan",
+        "accountManager":"John",
+        "accountDirector":"Rambo",
+        "countryManager":"George",
+        "team":"Alpha",
+        "geo":"APAC",
+
+        "commissionAmount":200,
+        "commissionStatus":"Paid",
+        "commissionDate":"1 Jan 2011",
+        "netRevenue":4500,
+
+        "pipelineType":"pipeline B",
+        "invoiceType":"Prospective Select",
+        "invoiceNo":"INV-000017",
+        "billingAmount":5000,
+        "gst":500,
+        "invoiceAmount":5500,
+        "orderBookAmount":5500,
+        "orderBookDate":"1 Jan 2011",
+        "revenueRealizationDate":"1 Jan 2011", 
+        "revenueAmount":5500,
+        "financialYear":"FY18",
+        "month":"Jul"
+       
+    }
+]

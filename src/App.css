@@ -20,7 +20,11 @@
 .paddingH{
   padding:40px;
 }
-         
+ 
+.paddingT{
+  padding:40px 10px;
+}
+
 .input-range__label{
   font-family: inherit!important;
 }
