@@ -11,6 +11,7 @@
     "d3": "^5.9.2",
     "date-fns": "next",
     "html2canvas": "^1.0.0-rc.1",
+    "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
     "material-ui-pickers": "latest",
     "prop-types": "latest",

@@ -8,7 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import options from './../../options';
-
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import DateFnsUtils from '@date-io/date-fns';
 
 export default class Billing extends React.Component {
@@ -16,6 +17,9 @@ export default class Billing extends React.Component {
   constructor(props) {
     super(props);
    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+
     this.jobTypeList = options.jobTypeList;
     this.jobCategoryList = options.jobCategoryList;
 
@@ -26,23 +30,41 @@ export default class Billing extends React.Component {
     this.invoiceTypeList = options.invoiceTypeList;
     
     this.state = {
-      pipelineType:"",
-      invoiceType:"",
-      invoiceNo:"",
-      billingAmount:'',
-      gst:'',
-      invoiceAmount:'',
-      orderBookAmount:'',
-      orderBookDate:new Date(),
-      revenueRealizationDate:new Date(), 
-      revenueAmount:5500,
+      pipelineType:this.props.billingDetails.pipelineType,
+      invoiceType:this.props.billingDetails.invoiceType,
+      invoiceNo:this.props.billingDetails.invoiceNo,
+      billingAmount:this.props.billingDetails.billingAmount,
+      gst:this.props.billingDetails.gst,
+      invoiceAmount:this.props.billingDetails.invoiceAmount,
+      orderBookAmount:this.props.billingDetails.orderBookAmount,
+      orderBookDate:this.props.billingDetails.orderBookDate,
+      revenueRealizationDate:this.props.billingDetails.revenueRealizationDate, 
+      revenueAmount:this.props.billingDetails.revenueAmount,
     };
+  }
+  handleSubmit = () => {
+
+    this.props.billingDetails.pipelineType = this.state.pipelineType;
+    this.props.billingDetails.invoiceType = this.state.invoiceType;
+    this.props.billingDetails.invoiceNo = this.state.invoiceNo;
+    this.props.billingDetails.billingAmount = this.state.billingAmount;
+    this.props.billingDetails.gst = this.state.gst;
+    this.props.billingDetails.invoiceAmount = this.state.invoiceAmount;
+    this.props.billingDetails.orderBookAmount = this.state.orderBookAmount;
+    this.props.billingDetails.orderBookDate = this.state.orderBookDate;
+    this.props.billingDetails.revenueRealizationDate = this.state.revenueRealizationDate;
+    this.props.billingDetails.revenueAmount = this.state.revenueAmount;
+   
+    this.props.submitForm();
+
+  }
+  handleBack(){
+    this.props.nextHandle(2);
   }
 
 
-
   render() {
-
+   
 
     return (    <ValidatorForm
       ref="form"
@@ -51,7 +73,7 @@ export default class Billing extends React.Component {
     >
      <Grid container >
 
-<Grid item lg={4} className="paddingH">
+      <Grid item lg={4} className="paddingH">
       <Typography variant="h5" component="h3" > Invoice   </Typography>
       <TextValidator
           fullWidth 
@@ -158,7 +180,9 @@ export default class Billing extends React.Component {
       <Grid item lg={4} className="paddingH">
       <Typography variant="h5" component="h3" > Order   </Typography>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <DatePicker margin="normal" fullWidth label="Order book date" value={this.state.orderBookDate} />
+          <DatePicker margin="normal" fullWidth label="Order book date" 
+           onChange={(e) => this.setState({ orderBookDate: e })}
+          value={this.state.orderBookDate} />
 
           <TextValidator
             fullWidth 
@@ -171,11 +195,24 @@ export default class Billing extends React.Component {
             margin="normal">
            </TextValidator>
 
-          <DatePicker fullWidth  margin="normal" label="Revenue realization date" value={this.state.revenueRealizationDate} />
+          <DatePicker
+           fullWidth 
+            margin="normal"
+             label="Revenue realization date"
+              value={this.state.revenueRealizationDate}
+              onChange={(e) => this.setState({ revenueRealizationDate: e })}
+              />
         </MuiPickersUtilsProvider>
           
       </Grid>
-      
+     
+     <Grid container spacing={24} >
+      <Divider />
+          <Grid item xs={12}>
+              <Button onClick={this.handleBack}> Back  </Button>
+              <Button variant="contained" color="primary" type="submit"> Finish</Button>
+          </Grid>
+      </Grid>
       
       </Grid>
 

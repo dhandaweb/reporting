@@ -33,19 +33,87 @@ export default class Details extends React.Component {
  
   constructor(props) {
     super(props);
-
+    
+    this.getStepContent = this.getStepContent.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
+    this.submitForm = this.submitForm.bind(this);
 
     this.state = {
-      expanded: 'Jobcycle',
-      activeStep: 0,
+      activeStep:0,
     };
 
     this.steps =['Personal details', 'Job & Client details', 'Recruitment details',"Billing details"];
+
+    this.state.details = {
+      title: "",
+      firstName:"",
+      lastName:"",
+      gender:"",
+
+      ethnicity:"",
+      citizenship:"",
+      workStatus:"",
+      source:"",
+
+      currentEmployer:"",
+      primarySkill:"",
+      salaryMin:"",
+      salaryMax:"",
+      workExpMin:"",
+      workExpMax:"",
+
+      address:"",
+      city:"",
+      state:"",
+      country:"",
+    
+      client:"",
+      hiringManager:"",
+      jobTitle:"",
+      jobType:"",
+      jobCategory:"",
+     
+      
+      jobAddress:"",
+      jobCity:"",
+      jobState:"",
+      jobCountry:"",
+
+      offerStatus:"",
+      jobOpenedDate:new Date(),
+      cvSubmissionDate:new Date(),
+      offerDate:new Date(),
+      joiningDate:new Date(),
+    
+      recruiter: "",
+      cre: "",
+      accountManager: "",
+      accountDirector: "",
+
+      countryManager: "",
+      team: "",
+      geo: "",
+
+      commissionAmount: "",
+      commissionStatus: "",
+      commissionDate: new Date(),
+      netRevenue: '',
+    
+      pipelineType:"",
+      invoiceType:"",
+      invoiceNo:"",
+      billingAmount:'',
+      gst:'',
+      invoiceAmount:'',
+      orderBookAmount:'',
+      orderBookDate:new Date(),
+      revenueRealizationDate:new Date(), 
+      revenueAmount:0,
+    }
+
   }
  
  
@@ -55,19 +123,19 @@ export default class Details extends React.Component {
     });
   };
  
-  handleDateChange = date => {
-    this.setState({ selectedDate: date });
-  };
+  
+  handleNext = (activeStep) => {
  
-  handleNext = () => {
     this.setState(state => ({
-      activeStep: state.activeStep + 1,
+      activeStep: activeStep,
     }));
+ 
+    
   };
 
-  handleBack = () => {
+  handleBack = (activeStep) => {
     this.setState(state => ({
-      activeStep: state.activeStep - 1,
+      activeStep: activeStep,
     }));
   };
 
@@ -77,18 +145,22 @@ export default class Details extends React.Component {
     });
   };
 
+  submitForm(){
+    console.log("submitting form",this.state);
 
+
+  }
  
   getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <Personal/>;
+        return <Personal nextHandle = {this.handleNext} personalDetails = {this.state.details}/>;
       case 1:
-        return <JobDetails/>;
+        return <JobDetails  nextHandle = {this.handleNext} jobDetails = {this.state.details}/>;
       case 2:
-        return <Recruitment/>;
+        return <Recruitment nextHandle = {this.handleNext} recruitmentDetails = {this.state.details}/>;
       case 3:
-        return <Billing/>;
+        return <Billing  nextHandle = {this.handleNext} billingDetails = {this.state.details} submitForm={this.submitForm}/>;
         
       default:
         return 'Unknown stepIndex';
@@ -99,7 +171,7 @@ export default class Details extends React.Component {
   render() {
 
     return (
-<div style={{ padding: 20 }}>
+      <div style={{ padding: 20 }}>
         <Stepper activeStep={this.state.activeStep} alternativeLabel>
           {this.steps.map(label => (
             <Step key={label}>
@@ -112,13 +184,7 @@ export default class Details extends React.Component {
       
 
         
-      <Grid container spacing={24} >
-      <Divider />
-          <Grid item xs={12}>
-              <Button disabled={this.state.activeStep === 0} onClick={this.handleBack}> Back  </Button>
-              <Button variant="contained" color="primary" onClick={this.handleNext}> {this.state.activeStep === this.steps.length - 1 ? 'Finish' : 'Next'}</Button>
-          </Grid>
-      </Grid>
+      
          
         </div>
      

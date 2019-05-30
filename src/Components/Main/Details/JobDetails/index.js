@@ -8,14 +8,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import options from './../../options';
-
+import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
+import Divider from '@material-ui/core/Divider';
 
 export default class JobDetails extends React.Component {
  
   constructor(props) {
     super(props);
-   
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBack = this.handleBack.bind(this);
 
     this.cities = options.cities;
     this.states = options.states;
@@ -27,36 +29,51 @@ export default class JobDetails extends React.Component {
     
 
     this.state = {
-     
+      client:this.props.jobDetails.client,
+      jobTitle:this.props.jobDetails.jobTitle,
+      jobType:this.props.jobDetails.jobType,
+      jobCategory:this.props.jobDetails.jobCategory,
+      hiringManager:this.props.jobDetails.hiringManager,
       
-      client:"",
-      jobTitle:"",
-      jobType:"",
-      jobCategory:"",
-      hiringManager:"",
-      
-      jobAddress:"",
-      jobCity:"",
-      jobState:"",
-      jobCountry:"",
+      jobAddress:this.props.jobDetails.jobAddress,
+      jobCity:this.props.jobDetails.jobCity,
+      jobState:this.props.jobDetails.jobState,
+      jobCountry:this.props.jobDetails.jobCountry,
 
-      offerStatus:"",
-      jobOpenedDate:new Date(),
-      cvSubmissionDate:new Date(),
-      offerDate:new Date(),
-      joiningDate:new Date(),
+      offerStatus:this.props.jobDetails.offerStatus,
+      jobOpenedDate:this.props.jobDetails.jobOpenedDate,
+      cvSubmissionDate:this.props.jobDetails.cvSubmissionDate,
+      offerDate:this.props.jobDetails.offerDate,
+      joiningDate:this.props.jobDetails.joiningDate,
     };
   }
 
   handleSubmit = () => {
-   
+
+    this.props.jobDetails.client =this.state.client;
+    this.props.jobDetails.jobTitle=this.state.jobTitle;
+    this.props.jobDetails.jobType=this.state.jobType;
+    this.props.jobDetails.jobCategory=this.state.jobCategory;
+    this.props.jobDetails.hiringManager=this.state.hiringManager;
+    
+    this.props.jobDetails.jobAddress=this.state.jobAddress;
+    this.props.jobDetails.jobCity=this.state.jobCity;
+    this.props.jobDetails.jobState=this.state.jobState;
+    this.props.jobDetails.jobCountry=this.state.jobCountry;
+
+    this.props.jobDetails.offerStatus=this.state.offerStatus;
+    this.props.jobDetails.jobOpenedDate=this.state.jobOpenedDate;
+    this.props.jobDetails.cvSubmissionDate=this.state.cvSubmissionDate;
+    this.props.jobDetails.offerDate=this.state.offerDate;
+    this.props.jobDetails.joiningDate=this.state.joiningDate;
+
+    this.props.nextHandle(2);
+  }
+  handleBack(){
+    this.props.nextHandle(0);
   }
 
-
   render() {
-
-  
-
 
 
     return ( 
@@ -81,6 +98,18 @@ export default class JobDetails extends React.Component {
                 value={this.state.client}
                 validators={['required']}
                 errorMessages={['Client is required']}
+              />
+
+              <TextValidator
+                fullWidth
+                id="hiringManager"
+                label="Hiring Manager"
+                margin="normal"
+                name="hiringManager"
+                onChange={(e) => this.setState({ hiringManager: e.target.value })}
+                value={this.state.hiringManager}
+                validators={['required']}
+                errorMessages={['Hiring manager is required']}
               />
 
             <TextValidator
@@ -223,14 +252,20 @@ export default class JobDetails extends React.Component {
           </TextValidator>
 
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-             <DatePicker fullWidth margin="normal" label="Job opened date" value={this.state.jobOpenedDate} />
-             <DatePicker fullWidth margin="normal" label="Cv submission date" value={this.state.cvSubmissionDate} />
-             <DatePicker fullWidth margin="normal" label="Offer date" value={this.state.offerDate} />
-             <DatePicker fullWidth margin="normal" label="Joining date" value={this.state.joiningDate} />
+             <DatePicker fullWidth margin="normal" label="Job opened date" value={this.state.jobOpenedDate}    onChange={(e) => this.setState({ jobOpenedDate: e })}/>
+             <DatePicker fullWidth margin="normal" label="Cv submission date" value={this.state.cvSubmissionDate}    onChange={(e) => this.setState({ cvSubmissionDate: e })}/>
+             <DatePicker fullWidth margin="normal" label="Offer date" value={this.state.offerDate}    onChange={(e) => this.setState({ offerDate: e })}/>
+             <DatePicker fullWidth margin="normal" label="Joining date" value={this.state.joiningDate}    onChange={(e) => this.setState({ joiningDate: e })}/>
           </MuiPickersUtilsProvider>
         
           </Grid>
-
+          <Grid container spacing={24} >
+      <Divider />
+          <Grid item xs={12}>
+              <Button onClick={this.handleBack}> Back  </Button>
+              <Button variant="contained" color="primary" type="submit" > Next</Button>
+          </Grid>
+      </Grid>
     </Grid>
 
      </ValidatorForm> );

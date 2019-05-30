@@ -14,11 +14,16 @@ import Typography from '@material-ui/core/Typography';
 import options from './../../options';
 import Paper from '@material-ui/core/Paper';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+
 
 export default class Personal extends React.Component {
 
   constructor(props) {
     super(props);
+
+this.handleSubmit = this.handleSubmit.bind(this);
 
     this.titleList = options.titleList;
     this.genderList = options.genderList;
@@ -28,47 +33,67 @@ export default class Personal extends React.Component {
     this.workStatusList = options.visaStatusList;
     this.sourceList = options.sourceList;
    
-    
     this.cities = options.cities;
     this.states = options.states;
     this.countries = options.countries;
 
     this.state = {
-      title: "",
-      firstName:"",
-      lastName:"",
-      gender:"",
+      title: this.props.personalDetails.title,
+      firstName:this.props.personalDetails.firstName,
+      lastName:this.props.personalDetails.lastName,
+      gender:this.props.personalDetails.gender,
 
-      ethnicity:"",
-      citizenship:"",
-      workStatus:"",
-      source:"",
+      ethnicity:this.props.personalDetails.ethnicity,
+      citizenship:this.props.personalDetails.citizenship,
+      workStatus:this.props.personalDetails.workStatus,
+      source:this.props.personalDetails.source,
 
-      currentEmployer:"",
-      primarySkill:"",
-      salaryMin:"",
-      salaryMax:"",
-      workExpMin:"",
-      workExpMax:"",
+      currentEmployer:this.props.personalDetails.currentEmployer,
+      primarySkill:this.props.personalDetails.primarySkill,
+      salaryMin:this.props.personalDetails.salaryMin,
+      salaryMax:this.props.personalDetails.salaryMax,
+      workExpMin:this.props.personalDetails.workExpMin,
+      workExpMax:this.props.personalDetails.workExpMax,
 
-      address:"",
-      city:"",
-      state:"",
-      country:"",
-
-     
+      address:this.props.personalDetails.address,
+      city:this.props.personalDetails.city,
+      state:this.props.personalDetails.state,
+      country:this.props.personalDetails.country,
       
     };
 
     this.state.workExperienceRange = { min:this.state.workExpMin,  max:this.state.workExpMax };
     this.state.salaryRange = { min:this.state.salaryMin,  max:this.state.salaryMax }
 
+    
   }
 
   handleSubmit = () => {
-   
-  }
 
+    this.props.personalDetails.title = this.state.title;
+    this.props.personalDetails.firstName=this.state.firstName;
+    this.props.personalDetails.lastName = this.state.lastName;
+    this.props.personalDetails.gender =this.state.gender;
+
+    this.props.personalDetails.ethnicity =this.state.ethnicity;
+    this.props.personalDetails.citizenship=this.state.citizenship;
+    this.props.personalDetails.workStatus=this.state.workStatus;
+    this.props.personalDetails.source=this.state.source;
+
+    this.props.personalDetails.currentEmployer=this.state.currentEmployer;
+    this.props.personalDetails.primarySkill=this.state.primarySkill;
+    this.props.personalDetails.salaryMin=this.state.salaryRange.min;
+    this.props.personalDetails.salaryMax=this.state.salaryRange.max;
+    this.props.personalDetails.workExpMax=this.state.workExperienceRange.min;
+    this.props.personalDetails.workExpMax=this.state.workExperienceRange.max;
+
+    this.props.personalDetails.address=this.state.address;
+    this.props.personalDetails.city=this.state.city;
+    this.props.personalDetails.state=this.state.state;
+    this.props.personalDetails.country=this.state.country;
+
+    this.props.nextHandle(1);
+  }
 
   render() {
 
@@ -83,7 +108,7 @@ export default class Personal extends React.Component {
         <Grid item lg={3} className="paddingH">
          
             <Typography variant="h6"> Personal   </Typography>
-              
+           
             <TextValidator
             fullWidth 
             id="title"
@@ -336,7 +361,12 @@ export default class Personal extends React.Component {
         </TextValidator>
 
      </Grid>
-
+     <Grid container spacing={24} >
+      <Divider />
+          <Grid item xs={12}>
+              <Button variant="contained" color="primary" type="submit" > Next</Button>
+          </Grid>
+      </Grid>
         </Grid>
       </ValidatorForm>
     );

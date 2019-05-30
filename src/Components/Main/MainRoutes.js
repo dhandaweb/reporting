@@ -39,12 +39,10 @@ export default class VisualRoutes extends React.Component {
             </Paper>
           </Grid>
           <Grid xs={12} lg={10} md={10} sm={12} style={{ padding: 5 }} item>
-            <Paper>
-            <Route exact path="/" component={Dashboard} />
+              <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/details" component={Details} />
               <Route exact path="/profile" component={Profile} />
-            </Paper>
           </Grid>
         </Grid>
       </Router>

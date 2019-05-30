@@ -1,7 +1,7 @@
 import React from 'react';
 import * as d3 from "d3";
 
-export default class BarChart extends React.Component {
+export default class AreaChart extends React.Component {
  
  
 constructor(props) {
@@ -10,7 +10,7 @@ constructor(props) {
     //     chartContainer:null
     //   };
     this.drawChart = this.drawChart.bind(this);
-      this.chartId =  'barChart' + Math.floor(Math.random() * 1000000000);
+      this.chartId =  'LineChart' + Math.floor(Math.random() * 1000000000);
       this.chartContainer = null;
 
       this.rawData = [
@@ -29,7 +29,6 @@ constructor(props) {
                 .entries(this.rawData);
 
       this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
-
     }
 
 
@@ -52,14 +51,9 @@ drawChart(){
                 .domain(this.rawData.map(d=>d.Dimension.value))
                 .paddingInner(0.1);
       
-    var xScale1 = d3.scaleBand()
-              .rangeRound([0, xScale.bandwidth()])
-               .domain(this.chartData.map(d=>d.key))
-               .padding(0.05);
-    
     var yScale = d3.scaleLinear()
                    .domain([0, d3.max(valData)])
-                   .rangeRound([height,0]);
+                   .range([height,0]);
    
     this.chartContainer = d3.select(chartId)
                             .append("svg")
@@ -76,33 +70,45 @@ drawChart(){
                         .attr("transform", "translate(" + margin.left + "," + (margin.top) + ")")
                         .call(yAxis);
 
-
-    var barGroup = this.chartContainer
-                        .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
     this.chartContainer.append("g")
                         .attr("class", "axis")
                         .attr("transform", "translate(" + margin.left + "," + (height + margin.top) + ")")
                         .call(d3.axisBottom(xScale));
 
-    
+    var lineGroup = this.chartContainer
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var barsG = barGroup.selectAll(".barG")
+                        var area = d3.area()
+                     .x(d=> (xScale.bandwidth()/2 + xScale(d.Dimension.value))) 
+                     .y0(height)
+                     .y1(d=> yScale(d.Measure.value)) 
+                     .curve(d3.curveLinear) 
+    
+   
+    var line = d3.line()
+                        .x(d=> (xScale.bandwidth()/2 + xScale(d.Dimension.value))) 
+                        .y(d=> yScale(d.Measure.value)) 
+                        .curve(d3.curveLinear) 
+
+    var lineG = lineGroup.selectAll(".lineG")
                         .data(this.chartData)
                         .enter()
-                        .append("g")
-                        .style("fill", (d) => this.colorPallete(d.key))
-                        .attr("transform", function(d, i) { return "translate(" + xScale1(d.key) + ",0)"; })
+                        .append("g");
                   
-    var bars = barsG.selectAll(".bars")
-                       .data(d=>d.values)
-                     .enter()
-                     .append("rect")
-                       .attr("width", xScale1.bandwidth())
-                       .attr("height",  d=> height - yScale(d.Measure.value))
-                       .attr("x", d=> xScale(d.Dimension.value))
-                       .attr("y", d=> yScale(d.Measure.value));
+    
+     lineG
+                     .append("path")
+                     .attr("style","fill-opacity:.5;")
+                     .style("fill", (d) => this.colorPallete(d.key))
+                     .attr("d", d=> area(d.values))  
+                        lineG
+                     .append("path")
+                     .attr("style","fill:none;stroke-width:3px")
+                     .style("stroke", (d) => this.colorPallete(d.key))
+                     .attr("d", d=> line(d.values))
+     
+              
 }
 
 componentDidMount() {
