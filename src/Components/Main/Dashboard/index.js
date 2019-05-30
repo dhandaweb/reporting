@@ -17,6 +17,7 @@ import LineChart from './LineChart';
 import AreaChart from './AreaChart';
 import DotPlot from './DotPlot';
 import TableChart from './TableChart';
+import IconCard from './IconCard';
 
 export default class Dashboard extends React.Component {
   
@@ -24,6 +25,35 @@ export default class Dashboard extends React.Component {
     return (
       <div>
         <Grid container spacing={24}>
+
+        <Grid item xs={3}>
+                  <Card >
+                      <CardContent>
+                        <IconCard icon="send" color="primary" title="Total Roles" value="132"/>
+                      </CardContent>
+                  </Card>
+            </Grid>
+            <Grid item xs={3}>
+                  <Card >
+                      <CardContent>
+                        <IconCard icon="group" color="secondary" title="Open Positions" value="4"/>
+                      </CardContent>
+                  </Card>
+            </Grid>
+            <Grid item xs={3}>
+                  <Card >
+                      <CardContent>
+                        <IconCard icon="money" color="inherit" title="Total commision" value="$52340"/>
+                      </CardContent>
+                  </Card>
+            </Grid>
+            <Grid item xs={3}>
+                  <Card >
+                      <CardContent>
+                        <IconCard icon="mood" color="error" title="Active Candidates" value="230"/>
+                      </CardContent>
+                  </Card>
+            </Grid>
 
             <Grid item xs={4}>
                   <Card >
