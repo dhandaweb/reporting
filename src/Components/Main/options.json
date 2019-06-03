@@ -5,10 +5,12 @@
         {"value": "Mrs.", "label": "Mrs."},
         {"value": "Dr.", "label": "Dr."}
       ],
+      
       "genderList": [
         {"value": "male", "label": "Male"},
         {"value": "female", "label": "Female"}
       ],
+
       "visaStatusList": [
         {"value": "student", "label": "Student"},
         {"value": "citizen", "label": "Citizen"},
