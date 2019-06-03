@@ -7,6 +7,7 @@
       ],
       
       "genderList": [
+         {"value": "All", "label": "all"},
         {"value": "male", "label": "Male"},
         {"value": "female", "label": "Female"}
       ],
@@ -14,12 +15,24 @@
       "visaStatusList": [
         {"value": "student", "label": "Student"},
         {"value": "citizen", "label": "Citizen"},
-        {"value": "permanentResident", "label": "Permanent Resident"}
+        {"value": "permanent Resident", "label": "Permanent Resident"}
       ],
       "sourceList": [
+        {"value": "All", "label": "All"},
+        {"value": "Internal Database", "label": "Internal Database"}
         {"value": "seek", "label": "Seek"},
-        {"value": "linkedIn", "label": "Linked in"},
-        {"value": "database", "label": "Database"}
+        {"value": "linkedIn N", "label": "Linked in N"},
+        {"value": "linkedIn R", "label": "Linked in R"},
+        {"value": "Job Posting", "label": "Job posting"},
+        {"value": "Direct", "label": "Direct"},
+        {"value": "Candidate Reference", "label": "Candidate Reference"},
+        {"value": "Client Reference", "label": "Client Reference"},
+        {"value": "Naukari", "label": "Naukari"},
+        {"value": "Monster", "label": "Monster"},
+        {"value": "Job Portal others", "label": "job Portal others"},
+        {"value": "Zoho Recruit", "label": "Zoho Recruit"},
+        {"value": "DR Insights", "label": "DR insights"}
+        
       ],
       "clientList": [
         {"value": "accenture", "label": "Accenture"},
@@ -52,26 +65,47 @@
         {"value": "Nick", "label": "Nick"}
       ],
       "teamList": [
+        {"value": "All", "label": "All"},
         {"value": "Alpha", "label": "Alpha"},
         {"value": "Beta", "label": "Beta"},
         {"value": "Gamma", "label": "Gamma"}
+        {"value": "Delta", "label": "Delta"},
+        {"value": "Eplison", "label": "Eplison"},
+        {"value": "Zeta", "label": "Zeta"},
+        {"value": "Eta", "label": "Eta"},
+        {"value": "Theta", "label": "Theta"},
+        {"value": "Lota", "label": "Lota"},
+        {"value": "Kappa", "label": "Kappa"}
       ],
       "geoList": [
+        {"value": "All", "label": "All"},
+        {"value": "America", "label": "America"},
         {"value": "APAC", "label": "APAC"},
-        {"value": "India", "label": "India"},
         {"value": "ASEAN", "label": "ASEAN"}
+        {"value": "Europe", "label": "Europe"},
+        {"value": "India", "label": "India"},
+        {"value": "Latin", "label": "Latin"},
+        {"value": "Middle East", "label":"Middle East"},     
+        {"value": "UK", "label": "UK"}
       ],
 
 
       "jobTypeList": [
-        {"value": "permanent", "label": "Permanent"},
+        {"value": "All", "label": "All"},
         {"value": "contract", "label": "Contract"},
-        {"value": "partime", "label": "Part Time"}
+        {"value": "permanent", "label": "Permanent"},
+        {"value": "Fixed Term", "label": "Fixed"}
+        {"value": "C2H", "label": "C2H"},
+        {"value": "Payroll", "label": "Payroll"}
       ],
       "jobCategoryList": [
+        {"value": "All", "label": "All"},
         {"value": "consulting", "label": "consulting"},
         {"value": "technology", "label": "Technology"},
-        {"value": "sales", "label": "Sales"}
+        {"value": "sales", "label": "Sales"},
+        {"value": "Pre Sales", "label": "Pre Sales"},
+        {"value": "Functions", "label": "Functions"},
+        {"value": "Leadership", "label": "Leadership"}
       ], 
       "offerStatusList": [
             {"value": "toJoin", "label": "toJoin"},
@@ -79,15 +113,29 @@
        ], 
 
        "pipelineTypeList": [
-        {"value": "city1", "label": "city1"},
-        {"value": "city2", "label": "city2"},
-        {"value": "city3", "label": "city3"}
+        {"value": "All", "label": "All"},
+        {"value": "Prospective Select", "label": "Prospective Select"},
+        {"value": "Prospective Reject", "label": "Prospective Reject"},
+        {"value": "Prospective Offer", "label": "Prospective Offer"},
+        {"value": "Prospective Abort", "label": "Prospective Abort"},
+        {"value": "To Raise", "label": "To Raise"},
+        {"value": "Sent", "label": "Sent"},
+        {"value": "Due", "label": "Due"},
+        {"value": "Overdue", "label": "Overdue"},
+        {"value": "Discarded", "label": "Discarded"},
+        {"value": "Paid", "label": "Paid"},
+        {"value": "Refunded", "label": "Refunded"}
       ], 
 
       "invoiceTypeList": [
-        {"value": "city1", "label": "city1"},
-        {"value": "city2", "label": "city2"},
-        {"value": "city3", "label": "city3"}
+        {"value": "All", "label": "All"},
+        {"value": "Pipeline B", "label": "Pipeline B"},
+        {"value": "Pipeline B Leaked", "label": "Pipeline B leaked"},
+        {"value": "Pipeline A", "label": "Pipeline A"},
+        {"value": "Pipeline A Leaked", "label": "Pipeline A Leaked"},
+        {"value": "Order Book", "label": "order book"},
+        {"value": "Revenue Realised", "label": "Revenue Realised"},
+        {"value": "Revenue Leaked", "label": "Revenue Leaked"}
       ], 
 
 
