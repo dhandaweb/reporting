@@ -19,7 +19,7 @@
       ],
       "sourceList": [
         {"value": "All", "label": "All"},
-        {"value": "Internal Database", "label": "Internal Database"}
+        {"value": "Internal Database", "label": "Internal Database"},
         {"value": "seek", "label": "Seek"},
         {"value": "linkedIn N", "label": "Linked in N"},
         {"value": "linkedIn R", "label": "Linked in R"},
@@ -68,7 +68,7 @@
         {"value": "All", "label": "All"},
         {"value": "Alpha", "label": "Alpha"},
         {"value": "Beta", "label": "Beta"},
-        {"value": "Gamma", "label": "Gamma"}
+        {"value": "Gamma", "label": "Gamma"},
         {"value": "Delta", "label": "Delta"},
         {"value": "Eplison", "label": "Eplison"},
         {"value": "Zeta", "label": "Zeta"},
@@ -81,7 +81,7 @@
         {"value": "All", "label": "All"},
         {"value": "America", "label": "America"},
         {"value": "APAC", "label": "APAC"},
-        {"value": "ASEAN", "label": "ASEAN"}
+        {"value": "ASEAN", "label": "ASEAN"},
         {"value": "Europe", "label": "Europe"},
         {"value": "India", "label": "India"},
         {"value": "Latin", "label": "Latin"},
@@ -94,7 +94,7 @@
         {"value": "All", "label": "All"},
         {"value": "contract", "label": "Contract"},
         {"value": "permanent", "label": "Permanent"},
-        {"value": "Fixed Term", "label": "Fixed"}
+        {"value": "Fixed Term", "label": "Fixed"},
         {"value": "C2H", "label": "C2H"},
         {"value": "Payroll", "label": "Payroll"}
       ],
