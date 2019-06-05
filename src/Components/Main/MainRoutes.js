@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Dashboard from './Dashboard';
 import Details from './Details';
 import Profile from './Profile';
-
+import List from './List';
 import Grid from '@material-ui/core/Grid';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -35,6 +35,12 @@ export default class VisualRoutes extends React.Component {
                   </ListItemIcon>
                   <Button component={Link} to="/details">Details</Button>
                 </MenuItem>
+                <MenuItem >
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <Button component={Link} to="/List">List</Button>
+                </MenuItem>
               </MenuList>
             </Paper>
           </Grid>
@@ -42,6 +48,7 @@ export default class VisualRoutes extends React.Component {
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/details" component={Details} />
+              <Route exact path="/List" component={List} />
               <Route exact path="/profile" component={Profile} />
           </Grid>
         </Grid>
