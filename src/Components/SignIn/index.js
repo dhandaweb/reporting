@@ -11,7 +11,8 @@ import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import axios from 'axios';
+import $ from 'jquery'; 
 export default class SignIn extends React.Component {
 
   constructor(props) {
@@ -35,8 +36,132 @@ export default class SignIn extends React.Component {
   }
 
   handleSubmit = () => {
+
     localStorage.setItem('user', "Dharminder dhanda");
     this.props.history.push('/dashboard');
+
+
+
+    // var url = 'http://localhost:57315/UserDetail.svc/GetUserDetail';
+
+    // var data = {
+    //   username: this.state.email,
+    //   password: this.state.password
+    //     };
+
+    //   var header = {
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Credentials': 'true',
+    //     "Access-Control-Allow-Headers":"Content-Type, Authorization, Accept, Accept-Language",
+    //     'Access-Control-Allow-Methods':"GET,POST,DELETE,PUT,OPTIONS",
+    //     'Content-Type': 'application/json',
+    //   };
+
+    // axios({
+    //   method:'post',
+    //   headers:header, 
+    //   crossDomain: true,
+    //   url:'https://jsonplaceholder.typicode.com/posts/1',
+    //   data: JSON.stringify({
+    //     id: 1,
+    //     title: 'foo',
+    //     body: 'bar',
+    //     userId: 1
+    //   }),
+    //   async:true,
+    // })
+    // .then(response => {
+
+    //  console.log(response);
+    //  localStorage.setItem('user', "Dharminder dhanda");
+    //  this.props.history.push('/dashboard');
+
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+
+
+// axios('http://localhost:57315/UserDetail.svc/GetUserDetail', {
+//       method: 'POST',
+//       data: JSON.stringify({
+//         username: "dhanda@gmail.com",
+//         password: 'foo'
+//       }),
+//       headers: {
+//         "Content-type": "application/json; charset=UTF-8"
+//       }
+//     })
+//     .then(response => {
+//      console.log(response);
+//     })
+//     .then(json => console.log(json))
+
+
+
+
+
+
+// console.log("Featching");
+//     fetch(url, {
+//       method: 'POST',
+//       body: JSON.stringify({
+//         username: this.state.email,
+//         password: this.state.password
+//       }),
+//       headers: {
+//         "Content-type": "application/json; charset=UTF-8"
+//       }
+//     })
+//     .then(response => {
+//      console.log(response);
+//     })
+//     .then(json => console.log(json))
+
+    // axios(url, {
+    //   method: 'POST',
+    //   data: JSON.stringify(data),
+    //   headers: {
+    //     "Content-type": "application/json; charset=UTF-8"
+    //   }
+    // })
+    // .then(response => {
+    //  console.log(response);
+    // })
+    // .then(json => console.log(json))
+
+
+    // $.ajax({
+    //   type: "POST",
+    //   url: url,
+    //   data: JSON.stringify(data),
+    //   dataType: 'json',
+    //   async:true,
+    //   crossDomain:true,
+    //   success: function(data) {
+    //    console.log(data);
+    //   }.bind(this),
+    //   error: function(xhr, status, err) {
+    //     console.error(url, status, err.toString());
+    //   }.bind(this)
+    // });
+
+    
+    // axios.post(url, data, {headers: header})
+    // .then(response => {
+
+    //  console.log(response);
+    //  localStorage.setItem('user', "Dharminder dhanda");
+    //  this.props.history.push('/dashboard');
+
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // })
+
+
+
+    
   }
 
 
