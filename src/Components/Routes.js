@@ -8,7 +8,7 @@ import SignIn from './SignIn';
 import Dashboard from './Main/Dashboard';
 import Details from './Main/Details';
 
-
+import list from './Main/list';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
@@ -57,6 +57,7 @@ export default class Routes extends React.Component {
           
           <PrivateRoute path='/dashboard' component={Main} />
           <PrivateRoute path='/details' component={Main} />
+          <PrivateRoute path='/list' component={Main} />
           <PrivateRoute path="/profile" component={Main} />
           {/* <Route exact path="/dashboard" component={Main} />
           <Route exact path="/details" component={Main} /> */}

@@ -47,7 +47,7 @@ export default class VisualRoutes extends React.Component {
                   <ListItemIcon>
                     <SendIcon />
                   </ListItemIcon>
-                  <Button component={Link} to="/List">List</Button>
+                  <Button component={Link} to="/list">List</Button>
                 </MenuItem>
               </MenuList>
             </Paper>
@@ -57,13 +57,13 @@ export default class VisualRoutes extends React.Component {
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/details" component={Details} />
-              <Route exact path="/List" component={List} />
+              <Route exact path="/list" component={List} />
               <Route exact path="/profile" component={Profile} />
 =======
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/details" component={Details} />
-              <PrivateRoute exact path="/List" component={List} />
+              <PrivateRoute exact path="/list" component={List} />
               <PrivateRoute exact path="/profile" component={Profile} />
 >>>>>>> f1bd9278d9620c671c95bdce3fa64c75dbf21839
           </Grid>
