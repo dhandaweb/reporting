@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route,Link, Redirect, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Dashboard from './Dashboard';
 import Details from './Details';
 import Profile from './Profile';
@@ -12,16 +12,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    (localStorage.getItem('user') !== null && localStorage.getItem('user') !== undefined)
-      ? <Component {...props} />
-      : <Redirect to='/signin' />
-  )} />
-);
+
 
 export default class VisualRoutes extends React.Component {
-
 
 
   render() {
@@ -47,25 +40,17 @@ export default class VisualRoutes extends React.Component {
                   <ListItemIcon>
                     <SendIcon />
                   </ListItemIcon>
-                  <Button component={Link} to="/list">List</Button>
+                  <Button component={Link} to="/List">List</Button>
                 </MenuItem>
               </MenuList>
             </Paper>
           </Grid>
           <Grid xs={12} lg={10} md={10} sm={12} style={{ padding: 5 }} item>
-//<<<<<<< HEAD
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/details" component={Details} />
-              <Route exact path="/list" component={List} />
+              <Route exact path="/List" component={List} />
               <Route exact path="/profile" component={Profile} />
-//=======
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/details" component={Details} />
-              <PrivateRoute exact path="/list" component={List} />
-              <PrivateRoute exact path="/profile" component={Profile} />
-//>>>>>>> f1bd9278d9620c671c95bdce3fa64c75dbf21839
           </Grid>
         </Grid>
       </Router>

@@ -8,7 +8,8 @@ import SignIn from './SignIn';
 import Dashboard from './Main/Dashboard';
 import Details from './Main/Details';
 
-import list from './Main/list';
+
+import List from './Main/List';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 

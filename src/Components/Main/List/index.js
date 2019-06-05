@@ -12,12 +12,12 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 
-import Personal from './Personal';
-import Recruitment from './Recruitment';
-import JobDetails from './JobDetails';
-import Billing from './Billing';
-
-
+import data from '../Dashboard/data.json';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -34,161 +34,92 @@ export default class Details extends React.Component {
   constructor(props) {
     super(props);
     
-    this.getStepContent = this.getStepContent.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.handleBack = this.handleBack.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.submitForm = this.submitForm.bind(this);
-
+   
     this.state = {
       activeStep:0,
     };
 
-    this.steps =['Personal details', 'Job & Client details', 'Recruitment details',"Billing details"];
-
-    this.state.details = {
-      title: "",
-      firstName:"",
-      lastName:"",
-      gender:"",
-
-      ethnicity:"",
-      citizenship:"",
-      workStatus:"",
-      source:"",
-
-      currentEmployer:"",
-      primarySkill:"",
-      salaryMin:"",
-      salaryMax:"",
-      workExpMin:"",
-      workExpMax:"",
-
-      address:"",
-      city:"",
-      state:"",
-      country:"",
-    
-      client:"",
-      hiringManager:"",
-      jobTitle:"",
-      jobType:"",
-      jobCategory:"",
-     
-      
-      jobAddress:"",
-      jobCity:"",
-      jobState:"",
-      jobCountry:"",
-
-      offerStatus:"",
-      jobOpenedDate:new Date(),
-      cvSubmissionDate:new Date(),
-      offerDate:new Date(),
-      joiningDate:new Date(),
-    
-      recruiter: "",
-      cre: "",
-      accountManager: "",
-      accountDirector: "",
-
-      countryManager: "",
-      team: "",
-      geo: "",
-
-      commissionAmount: "",
-      commissionStatus: "",
-      commissionDate: new Date(),
-      netRevenue: '',
-    
-      pipelineType:"",
-      invoiceType:"",
-      invoiceNo:"",
-      billingAmount:'',
-      gst:'',
-      invoiceAmount:'',
-      orderBookAmount:'',
-      orderBookDate:new Date(),
-      revenueRealizationDate:new Date(), 
-      revenueAmount:0,
     }
 
-  }
- 
- 
-  handleChange = panel => (event, expanded) => {
-    this.setState({
-      expanded: expanded ? panel : false,
-    });
-  };
- 
-  
-  handleNext = (activeStep) => {
- 
-    this.setState(state => ({
-      activeStep: activeStep,
-    }));
- 
-    
-  };
+   
 
-  handleBack = (activeStep) => {
-    this.setState(state => ({
-      activeStep: activeStep,
-    }));
-  };
-
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-    });
-  };
-
-  submitForm(){
-    console.log("submitting form",this.state);
-
-
-  }
- 
-  getStepContent(stepIndex) {
-    switch (stepIndex) {
-      case 0:
-        return <Personal nextHandle = {this.handleNext} personalDetails = {this.state.details}/>;
-      case 1:
-        return <JobDetails  nextHandle = {this.handleNext} jobDetails = {this.state.details}/>;
-      case 2:
-        return <Recruitment nextHandle = {this.handleNext} recruitmentDetails = {this.state.details}/>;
-      case 3:
-        return <Billing  nextHandle = {this.handleNext} billingDetails = {this.state.details} submitForm={this.submitForm}/>;
-        
-      default:
-        return 'Unknown stepIndex';
-    }
-  }
-
-
-  render() {
+ render() {
 
     return (
-      <div style={{ padding: 20 }}>
-        <Stepper activeStep={this.state.activeStep} alternativeLabel>
-          {this.steps.map(label => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        <Divider />
-        {this.getStepContent(this.state.activeStep)}
-      
+      <div>
+      		<h1></h1>
+      		{data.map((detail,index)=>
+      			{
+      				return<div>
 
-        
-      
-         
-        </div>
-     
+      				 
+      							<h1>{detail.title}-
+      							{detail.firstName}
+							     {detail.lastName}</h1>
+							       {detail.gender}
+							        {detail.ethnicity}
+							        {detail.citizenship}
+							        {detail.workStatus}
+							        {detail.primarySkill}
+							        {detail.source}
+							        {detail.currentEmployer}
+							        {detail.salaryMin}
+							        {detail.salaryMax}
+							        {detail.address}
+							        {detail.city}
+							        {detail.state}
+							        {detail.country}
+							        {detail.workExpMin}
+							        {detail.workExpMax}
+							        
+							        {detail.client}
+							       {detail.hiringManager}
+							        {detail.jobTitle}
+							        {detail.jobType}
+							        {detail.jobCategory}
+							       
+							        {detail.jobAddress}
+							        {detail.jobCity}
+							        {detail.jobState}
+							        {detail.jobCountry}
+							        
+							        {detail.jobOpenedDate}
+							        {detail.cvSubmissionDate}
+							        {detail.offerStatus}
+							        {detail.offerDate}
+							        {detail.joiningDate}
+							        
+
+							        {detail.recruiter}
+							        {detail.cre}
+							        {detail.accountManager}
+							        {detail.accountDirector}
+							        {detail.countryManager}
+							        {detail.team}
+							        {detail.geo}
+
+							        {detail.commissionAmount}
+							        {detail.commissionStatus}
+							        {detail.commissionDate}
+							        {detail.netRevenue}
+
+							        {detail.pipelineType}
+							        {detail.invoiceType}
+							        {detail.invoiceNo}
+							        {detail.billingAmount}
+							        {detail.gst}
+							        {detail.invoiceAmount}
+							        {detail.orderBookAmount}
+							        {detail.orderBookDate}
+							        {detail.revenueRealizationDate}
+							        {detail.revenueAmount}
+							        {detail.financialYear}
+							        {detail.month}
+      						</div>
+      			})}
+
+
+      </div>
     );
-
   }
 };
