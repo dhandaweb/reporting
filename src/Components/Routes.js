@@ -32,7 +32,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 
 
-
 export default class Routes extends React.Component {
 
 
