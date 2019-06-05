@@ -1,5 +1,4 @@
 import React from 'react';
-import * as d3 from "d3";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
