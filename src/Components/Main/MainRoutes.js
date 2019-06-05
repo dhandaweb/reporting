@@ -63,6 +63,7 @@ export default class VisualRoutes extends React.Component {
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/details" component={Details} />
+              <PrivateRoute exact path="/List" component={List} />
               <PrivateRoute exact path="/profile" component={Profile} />
 >>>>>>> f1bd9278d9620c671c95bdce3fa64c75dbf21839
           </Grid>
