@@ -26,7 +26,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-
+import axios from 'axios';
 
 
 export default class Details extends React.Component {
@@ -112,7 +112,14 @@ export default class Details extends React.Component {
       orderBookDate:new Date(),
       revenueRealizationDate:new Date(), 
       revenueAmount:0,
+
+      createdDate:new Date(),
+      updatedDate:new Date(), 
+      UserId:localStorage.getItem('UserId'),
+      UserGroup:localStorage.getItem('UserGroup')
     }
+
+
 
   }
  
@@ -146,7 +153,18 @@ export default class Details extends React.Component {
   };
 
   submitForm(){
-    console.log("submitting form",this.state);
+
+    axios({
+      method:'post',
+      url:'http://localhost:8080/api/addDetails',
+      data: this.state.details
+    })
+    .then(response => {
+        //this.props.history.push('/list');
+    })
+    .catch(function (error) {
+    console.log(error);
+    });
 
 
   }

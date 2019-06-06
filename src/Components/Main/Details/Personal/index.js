@@ -84,7 +84,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
     this.props.personalDetails.primarySkill=this.state.primarySkill;
     this.props.personalDetails.salaryMin=this.state.salaryRange.min;
     this.props.personalDetails.salaryMax=this.state.salaryRange.max;
-    this.props.personalDetails.workExpMax=this.state.workExperienceRange.min;
+    this.props.personalDetails.workExpMin=this.state.workExperienceRange.min;
     this.props.personalDetails.workExpMax=this.state.workExperienceRange.max;
 
     this.props.personalDetails.address=this.state.address;

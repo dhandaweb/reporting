@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import TextField from '@material-ui/core/TextField';
@@ -34,8 +35,27 @@ export default class Details extends React.Component {
     
    
     this.state = {
-      activeStep:0,
+	  activeStep:0,
+	  detailData:[]
     };
+
+	axios({
+        method:'post',
+        url:'http://localhost:8080/api/getDetails',
+        data: {
+			UserId:localStorage.getItem('UserId'),
+			UserGroup:localStorage.getItem('UserGroup')
+        }
+      })
+      .then(response => {
+          console.log(response);
+          this.setState({ detailData:response.data });
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+
+	  
 
     }
 
@@ -48,7 +68,7 @@ export default class Details extends React.Component {
     return (
       <div>
       		<h1></h1>
-      		{data.map((detail,index)=>
+      		{this.state.detailData.map((detail,index)=>
       			{
       				return<div>
       						<Card>

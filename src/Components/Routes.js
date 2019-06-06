@@ -24,7 +24,7 @@ const styles = {
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    (localStorage.getItem('user') !== null && localStorage.getItem('user') !== undefined)
+    (localStorage.getItem('username') !== null && localStorage.getItem('username') !== undefined)
       ? <Component {...props} />
       : <Redirect to='/signin' />
   )} />
@@ -40,7 +40,7 @@ export default class Routes extends React.Component {
   constructor(props) {
     super(props);
   
-    this.user = localStorage.getItem('user');
+    this.user = localStorage.getItem('username');
 
     console.log(this.user);
 
@@ -60,6 +60,7 @@ export default class Routes extends React.Component {
           <PrivateRoute path='/details' component={Main} />
           <PrivateRoute path='/list' component={Main} />
           <PrivateRoute path="/profile" component={Main} />
+          <PrivateRoute path="/users" component={Main} />
           {/* <Route exact path="/dashboard" component={Main} />
           <Route exact path="/details" component={Main} /> */}
         

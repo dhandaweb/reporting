@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { connect } from "react-redux";
+import {setUser} from "../../Redux/Actions";
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
@@ -12,17 +13,25 @@ import Avatar from '@material-ui/core/Avatar';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
-import $ from 'jquery'; 
-export default class SignIn extends React.Component {
+import Snackbar from '@material-ui/core/Snackbar';
+
+
+export class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      showError:false
     }
 
+    this.handleErrorClose = this.handleErrorClose.bind(this);
+  }
+
+  handleErrorClose(){
+    this.setState({ showError:false });
   }
 
   handleEmail = (event) => {
@@ -37,12 +46,45 @@ export default class SignIn extends React.Component {
 
   handleSubmit = () => {
 
-    localStorage.setItem('user', "Dharminder dhanda");
-    this.props.history.push('/dashboard');
+    var url = 'http://localhost:57315/UserDetail.svc/GetUserDetail';
+
+    // axios.post(url, JSON.stringify({
+    //   username: this.state.email,
+    //   password: this.state.password
+    // }))
+    // .then((response)=> {
+     
+      axios({
+          method:'post',
+          url:'http://localhost:8080/api/finduser',
+          data: {
+            username: this.state.email,
+            password: this.state.password
+          }
+        })
+        .then(response => {
+            console.log(response);
+            if(response.data.length > 0){
+
+                 // this.props.setUser(response.data[0]);
+                  localStorage.setItem('username', response.data[0].UserName);
+                  localStorage.setItem('UserId', response.data[0].UserId);
+                  localStorage.setItem('UserGroup', response.data[0].UserGroup);
+                  console.log("signning in ");
+                  this.props.history.push('/dashboard');
+
+            }
+            else{
+              console.log("Reaching here");
+              this.setState({ showError:true });
+              console.log(this.state.showError)
+            }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
 
-
-    // var url = 'http://localhost:57315/UserDetail.svc/GetUserDetail';
 
     // var data = {
     //   username: this.state.email,
@@ -167,6 +209,11 @@ export default class SignIn extends React.Component {
 
 
   render() {
+
+
+
+    
+
     return (
       <Card className="signInCon">
         <CardHeader
@@ -187,7 +234,18 @@ export default class SignIn extends React.Component {
 
 
           <CardContent>
-
+          <Snackbar
+              message="Invalid username or password" 
+              open={this.state.showError}
+              anchorOrigin={{
+                horizontal:'center',
+                vertical:'top'
+              }}
+              autoHideDuration={3000}
+              onClose={this.handleErrorClose}
+              >
+            </Snackbar>
+             
 
             <TextValidator
               id="userName"
@@ -226,3 +284,17 @@ export default class SignIn extends React.Component {
     );
   }
 };
+
+
+
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: (obj)=> dispatch(setUser(obj))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -4,6 +4,7 @@ import Dashboard from './Dashboard';
 import Details from './Details';
 import Profile from './Profile';
 import List from './List';
+import Users from './Users';
 import Grid from '@material-ui/core/Grid';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -40,16 +41,24 @@ export default class VisualRoutes extends React.Component {
                   <ListItemIcon>
                     <SendIcon />
                   </ListItemIcon>
-                  <Button component={Link} to="/List">List</Button>
+                  <Button component={Link} to="/list">List</Button>
+                </MenuItem>
+                <MenuItem >
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <Button component={Link} to="/users">Users</Button>
                 </MenuItem>
               </MenuList>
+              
             </Paper>
           </Grid>
           <Grid xs={12} lg={10} md={10} sm={12} style={{ padding: 5 }} item>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/details" component={Details} />
-              <Route exact path="/List" component={List} />
+              <Route exact path="/list" component={List} />
+              <Route exact path="/users" component={Users} />
               <Route exact path="/profile" component={Profile} />
           </Grid>
         </Grid>
