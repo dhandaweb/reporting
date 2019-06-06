@@ -58,65 +58,257 @@ export default class Details extends React.Component {
       							{detail.firstName}
 							     {detail.lastName}</h1></Typography><br />
 							       <Typography variant="body2" component="p">
-							        {detail.gender}<br />
-							        {detail.ethnicity}<br />
-							        {detail.citizenship}<br />
-							        {detail.workStatus}<br />
-							        {detail.primarySkill}<br />
-							        {detail.source}<br />
-							        {detail.currentEmployer}<br />
-							        {detail.salaryMin}<br />
-							        {detail.salaryMax}<br />
-							        {detail.address}<br />
-							        {detail.city}<br />
-							        {detail.state}<br />
-							        {detail.country}<br />
-							        {detail.workExpMin}<br />
-							        {detail.workExpMax}<br />
+							        <table>
+									<tr>
+										<th scope="row">Gender : </th>
+										<td>{detail.gender}<br /></td>
+									</tr>
+									<tr>
+										<th scope="row">Ethnicity : </th>
+										<td>{detail.ethnicity}<br /></td>
+									</tr>
+							         <tr>
+							         	<th scope="row">Citizenship : </th>
+										<td>{detail.citizenship}<br /></td>
+							         </tr>
 							        
-							        {detail.client}<br />
-							       {detail.hiringManager}<br />
-							        {detail.jobTitle}<br />
-							        {detail.jobType}<br />
-							        {detail.jobCategory}<br />
+							        <tr>
+							         	<th scope="row">Work Status : </th>
+										<td>{detail.workStatus}<br /></td>
+							         </tr>
+							       <tr>
+							         	<th scope="row">Primary Skill : </th>
+										<td>{detail.primarySkill}<br /></td>
+							         </tr> 
+							        <tr>
+							         	<th scope="row">Source : </th>
+										<td>{detail.source}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">Current Employer : </th>
+										<td>{detail.currentEmployer}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">Minimum Salary: </th>
+										<td>{detail.salaryMin}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">Maximum Salary: </th>
+										<td>{detail.salaryMax}<br /></td>
+							         </tr>
+							       <tr>
+							         	<th scope="row">Address : </th>
+										<td>{detail.address}<br /></td>
+							         </tr> 
+							        <tr>
+							         	<th scope="row">City : </th>
+										<td>{detail.city}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">State : </th>
+										<td>{detail.state}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">Country : </th>
+										<td>{detail.country}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">Work Experience Minimum: </th>
+										<td>{detail.workExpMin}<br /></td>
+							         </tr>
+							        <tr>
+							         	<th scope="row">Work Experience Maximum : </th>
+										<td>{detail.workExpMax}<br /></td>
+							         </tr>
+							        <tr>
+							       	<th scope="row"> Client : </th>
+										<td>{detail.client}<br /> </td>
+									</tr> 
+							        <tr>
+							       		<th scope="row">Hiring Manager : </th>
+										<td> {detail.hiringManager}<br /></td>
+									</tr> 
+							         <tr>
+							       		<th scope="row">Job Title : </th>
+										<td> {detail.jobTitle}<br /></td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Job Type : </th>
+										<td>{detail.jobType}<br /></td>
+									</tr>
+							        <tr>
+
+							       		<th scope="row"> Job Category: </th>
+										<td> {detail.jobCategory}<br /> </td>
+									</tr>
 							       
-							        {detail.jobAddress}<br />
-							        {detail.jobCity}<br />
-							        {detail.jobState}<br />
-							        {detail.jobCountry}<br />
+							        <tr>
+
+							       		<th scope="row"> Job Address: </th>
+										<td>{detail.jobAddress}<br /> </td>
+									</tr> 
+							         <tr>
+
+							       		<th scope="row">Job City : </th>
+										<td>{detail.jobCity}<br /> </td>
+									</tr>
+							        <tr>
+
+							       		<th scope="row">Job State : </th>
+										<td>{detail.jobState}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Job Country : </th>
+										<td>{detail.jobCountry}<br /> </td>
+									</tr>
 							        
-							        {detail.jobOpenedDate}<br />
-							        {detail.cvSubmissionDate}<br />
-							        {detail.offerStatus}<br />
-							        {detail.offerDate}<br />
-							        {detail.joiningDate}<br />
+							        <tr>
+
+							       		<th scope="row">Job Opened Date : </th>
+										<td> {detail.jobOpenedDate}<br /></td>
+									</tr> 
+							        <tr>
+
+							       		<th scope="row">CV Submission Status: </th>
+										<td>{detail.cvSubmissionDate}<br /> </td>
+									</tr> 
+							         <tr>
+
+							       		<th scope="row">Offer Status : </th>
+										<td> {detail.offerStatus}<br /></td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Offer Date : </th>
+										<td> {detail.offerDate}<br /></td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Joining Date : </th>
+										<td>{detail.joiningDate}<br /> </td>
+									</tr>
 							        
 
-							        {detail.recruiter}<br />
-							        {detail.cre}<br />
-							        {detail.accountManager}<br />
-							        {detail.accountDirector}<br />
-							        {detail.countryManager}<br />
-							        {detail.team}<br />
-							        {detail.geo}<br />
+							         <tr>
 
-							        {detail.commissionAmount}<br />
-							        {detail.commissionStatus}<br />
-							        {detail.commissionDate}<br />
-							        {detail.netRevenue}<br />
+							       		<th scope="row">Recruiter : </th>
+										<td> {detail.recruiter}<br /></td>
+									</tr>
+							         <tr>
 
-							        {detail.pipelineType}<br />
-							        {detail.invoiceType}<br />
-							        {detail.invoiceNo}<br />
-							        {detail.billingAmount}<br />
-							        {detail.gst}<br />
-							        {detail.invoiceAmount}<br />
-							        {detail.orderBookAmount}<br />
-							        {detail.orderBookDate}<br />
-							        {detail.revenueRealizationDate}<br />
-							        {detail.revenueAmount}<br />
-							        {detail.financialYear}<br />
-							        {detail.month}<br />
+							       		<th scope="row"> CRE : </th>
+										<td>{detail.cre}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Account Manager: </th>
+										<td>{detail.accountManager}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Account Director: </th>
+										<td>{detail.accountDirector}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Country Manager : </th>
+										<td>{detail.countryManager}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Team : </th>
+										<td>{detail.team}<br /> </td>
+									</tr>
+							        <tr>
+
+							       		<th scope="row">GEO : </th>
+										<td> {detail.geo}<br /> </td>
+									</tr>
+
+							         <tr>
+
+							       		<th scope="row"> Commision Amount : </th>
+										<td>{detail.commissionAmount}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Commision Status : </th>
+										<td>{detail.commissionStatus}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Commision Date : </th>
+										<td>{detail.commissionDate}<br /> </td>
+									</tr>
+							        <tr>
+
+							       		<th scope="row"> Net Revenue : </th>
+										<td> {detail.netRevenue}<br /> </td>
+									</tr>
+
+							         <tr>
+
+							       		<th scope="row">Pipeline Type : </th>
+										<td>{detail.pipelineType}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Invoice Type : </th>
+										<td>{detail.invoiceType}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Invoice Number : </th>
+										<td>{detail.invoiceNo}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Billing Amount : </th>
+										<td>{detail.billingAmount}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">GST : </th>
+										<td>{detail.gst}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Detail Invoice Amount : </th>
+										<td>{detail.invoiceAmount}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row"> Order Book Amount : </th>
+										<td>{detail.orderBookAmount}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Order Book Date : </th>
+										<td>{detail.orderBookDate}<br /> </td>
+									</tr>
+							        <tr>
+
+							       		<th scope="row">Revenue Realization Date : </th>
+										<td>{detail.revenueRealizationDate}<br /> </td>
+									</tr> 
+							         <tr>
+
+							       		<th scope="row">Revenue Amount : </th>
+										<td>{detail.revenueAmount}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Financial Year : </th>
+										<td>{detail.financialYear}<br /> </td>
+									</tr>
+							         <tr>
+
+							       		<th scope="row">Month : </th>
+										<td>{detail.month}<br /></td>
+									</tr>
+							        </table>
 							        </Typography>
 							        </CardContent>
       								<CardActions>
