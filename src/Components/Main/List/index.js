@@ -11,13 +11,13 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
-
+import card from './card.css';
 import data from '../Dashboard/data.json';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent'; 
 
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -25,8 +25,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-
-
 
 
 export default class Details extends React.Component {
@@ -41,7 +39,9 @@ export default class Details extends React.Component {
 
     }
 
-   
+  // export default function SimpleCard() {
+  //const classes = useStyles();
+  //const bull = <span className={classes.bullet}>•</span>;
 
  render() {
 
@@ -51,70 +51,78 @@ export default class Details extends React.Component {
       		{data.map((detail,index)=>
       			{
       				return<div>
-
-      				 
+      						<Card>
+      						<CardContent>
+        						<Typography class="card-title" color="textSecondary" gutterBottom> 				 
       							<h1>{detail.title}-
       							{detail.firstName}
-							     {detail.lastName}</h1>
-							       {detail.gender}
-							        {detail.ethnicity}
-							        {detail.citizenship}
-							        {detail.workStatus}
-							        {detail.primarySkill}
-							        {detail.source}
-							        {detail.currentEmployer}
-							        {detail.salaryMin}
-							        {detail.salaryMax}
-							        {detail.address}
-							        {detail.city}
-							        {detail.state}
-							        {detail.country}
-							        {detail.workExpMin}
-							        {detail.workExpMax}
+							     {detail.lastName}</h1></Typography><br />
+							       <Typography variant="body2" component="p">
+							        {detail.gender}<br />
+							        {detail.ethnicity}<br />
+							        {detail.citizenship}<br />
+							        {detail.workStatus}<br />
+							        {detail.primarySkill}<br />
+							        {detail.source}<br />
+							        {detail.currentEmployer}<br />
+							        {detail.salaryMin}<br />
+							        {detail.salaryMax}<br />
+							        {detail.address}<br />
+							        {detail.city}<br />
+							        {detail.state}<br />
+							        {detail.country}<br />
+							        {detail.workExpMin}<br />
+							        {detail.workExpMax}<br />
 							        
-							        {detail.client}
-							       {detail.hiringManager}
-							        {detail.jobTitle}
-							        {detail.jobType}
-							        {detail.jobCategory}
+							        {detail.client}<br />
+							       {detail.hiringManager}<br />
+							        {detail.jobTitle}<br />
+							        {detail.jobType}<br />
+							        {detail.jobCategory}<br />
 							       
-							        {detail.jobAddress}
-							        {detail.jobCity}
-							        {detail.jobState}
-							        {detail.jobCountry}
+							        {detail.jobAddress}<br />
+							        {detail.jobCity}<br />
+							        {detail.jobState}<br />
+							        {detail.jobCountry}<br />
 							        
-							        {detail.jobOpenedDate}
-							        {detail.cvSubmissionDate}
-							        {detail.offerStatus}
-							        {detail.offerDate}
-							        {detail.joiningDate}
+							        {detail.jobOpenedDate}<br />
+							        {detail.cvSubmissionDate}<br />
+							        {detail.offerStatus}<br />
+							        {detail.offerDate}<br />
+							        {detail.joiningDate}<br />
 							        
 
-							        {detail.recruiter}
-							        {detail.cre}
-							        {detail.accountManager}
-							        {detail.accountDirector}
-							        {detail.countryManager}
-							        {detail.team}
-							        {detail.geo}
+							        {detail.recruiter}<br />
+							        {detail.cre}<br />
+							        {detail.accountManager}<br />
+							        {detail.accountDirector}<br />
+							        {detail.countryManager}<br />
+							        {detail.team}<br />
+							        {detail.geo}<br />
 
-							        {detail.commissionAmount}
-							        {detail.commissionStatus}
-							        {detail.commissionDate}
-							        {detail.netRevenue}
+							        {detail.commissionAmount}<br />
+							        {detail.commissionStatus}<br />
+							        {detail.commissionDate}<br />
+							        {detail.netRevenue}<br />
 
-							        {detail.pipelineType}
-							        {detail.invoiceType}
-							        {detail.invoiceNo}
-							        {detail.billingAmount}
-							        {detail.gst}
-							        {detail.invoiceAmount}
-							        {detail.orderBookAmount}
-							        {detail.orderBookDate}
-							        {detail.revenueRealizationDate}
-							        {detail.revenueAmount}
-							        {detail.financialYear}
-							        {detail.month}
+							        {detail.pipelineType}<br />
+							        {detail.invoiceType}<br />
+							        {detail.invoiceNo}<br />
+							        {detail.billingAmount}<br />
+							        {detail.gst}<br />
+							        {detail.invoiceAmount}<br />
+							        {detail.orderBookAmount}<br />
+							        {detail.orderBookDate}<br />
+							        {detail.revenueRealizationDate}<br />
+							        {detail.revenueAmount}<br />
+							        {detail.financialYear}<br />
+							        {detail.month}<br />
+							        </Typography>
+							        </CardContent>
+      								<CardActions>
+        							<Button size="small">Edit</Button>
+     								 </CardActions>
+    								</Card>
       						</div>
       			})}
 

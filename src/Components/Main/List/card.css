@@ -1,0 +1,15 @@
+.card {
+	.card-action {
+		a {
+			color: rgb(0, 129, 183);
+			
+			&:hover {
+				color: rgb(0, 129, 183);
+			}
+			
+			&.action-delete {
+				color:red;
+			}
+		}
+	}
+}
