@@ -18,7 +18,7 @@ export default class VerticalBar extends React.Component {
       { Measure: { value: 30000, formattedVal: "$30k" }, Dimension: { value: "Three", formattedVal: "Three" }, Group: "" },
       { Measure: { value: 50000, formattedVal: "$5k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: "" }
     ];
-
+    this.chartData = this.props.data;
     this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
 
   }

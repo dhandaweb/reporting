@@ -14,13 +14,13 @@ export default class PieChart extends React.Component {
         this.chartId = 'pieChart' + Math.floor(Math.random() * 1000000000);
         this.chartContainer = null;
 
-        this.chartData = [
-            { Measure: { value: 10000, formattedVal: "$10k" }, Dimension: { value: "One", formattedVal: "One" }, Group: "" },
-            { Measure: { value: 20000, formattedVal: "$20k" }, Dimension: { value: "Two", formattedVal: "Two" }, Group: "" },
-            { Measure: { value: 30000, formattedVal: "$30k" }, Dimension: { value: "Three", formattedVal: "Three" }, Group: "" },
-            { Measure: { value: 5000, formattedVal: "$5k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: "" }
-        ];
-
+        // this.chartData = [
+        //     { Measure: { value: 10000, formattedVal: "$10k" }, Dimension: { value: "One", formattedVal: "One" }, Group: "" },
+        //     { Measure: { value: 20000, formattedVal: "$20k" }, Dimension: { value: "Two", formattedVal: "Two" }, Group: "" },
+        //     { Measure: { value: 30000, formattedVal: "$30k" }, Dimension: { value: "Three", formattedVal: "Three" }, Group: "" },
+        //     { Measure: { value: 5000, formattedVal: "$5k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: "" }
+        // ];
+        this.chartData = this.props.data;
         this.colorPallete = d3.scaleOrdinal()
             .range(["#01B8AA", "#374649", "#FD625E", "F2C80F", "5F6B6D", "#8AD4EB"]);
     }

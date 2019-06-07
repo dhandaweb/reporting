@@ -38,6 +38,9 @@ constructor(props) {
         { Measure: { value: 60000, formattedVal: "$50k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: { value: "Group2", formattedVal: "Group2" }},
       ];
 
+
+      this.rawData = this.props.data;
+
     }
 
 

@@ -42,17 +42,17 @@ componentDidMount() {
 }
 
 getIcon() {
-  switch (this.props.icon) {
+  switch (this.props.data.icon) {
     case "send":
-      return <SendIcon color={this.props.color} fontSize="large"/>;
+      return <SendIcon color={this.props.data.color} fontSize="large"/>;
     case "group":
-        return <GroupIcon color={this.props.color} fontSize="large"/>;
+        return <GroupIcon color={this.props.data.color} fontSize="large"/>;
     case "money":
-        return <AttachMoney color={this.props.color} fontSize="large"/>;
+        return <AttachMoney color={this.props.data.color} fontSize="large"/>;
     case "mood":
-          return <Mood color={this.props.color} fontSize="large"/>;        
+          return <Mood color={this.props.data.color} fontSize="large"/>;        
     default:
-      return <SendIcon color={this.props.color} fontSize="large"/>;
+      return <SendIcon color={this.props.data.color} fontSize="large"/>;
   }
 }
 
@@ -67,8 +67,8 @@ render() {
                 {this.getIcon()}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  <h3>{this.props.title}</h3>
-                  <h1>{this.props.value}</h1>
+                  {/* <h3>{this.props.title}</h3> */}
+                  <h1>{this.props.data.value}</h1>
                 </TableCell>
               </TableRow>
           </TableBody>

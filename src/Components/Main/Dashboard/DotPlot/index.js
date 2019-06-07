@@ -26,10 +26,13 @@ constructor(props) {
         { Measure: { value: 30000, formattedVal: "$30k" }, Dimension: { value: "Three", formattedVal: "Three" }, Group: { value: "Group2", formattedVal: "Group2" } },
         { Measure: { value: 60000, formattedVal: "$50k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: { value: "Group2", formattedVal: "Group2" }},
       ];
-  
+      
+      this.rawData = this.props.data;
       this.chartData = d3.nest()
                 .key(d=> d.Group.value)
                 .entries(this.rawData);
+
+console.log(this.chartData);
 
       this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
     }
