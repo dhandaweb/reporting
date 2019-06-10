@@ -40,7 +40,7 @@ export default class Details extends React.Component {
     this.handleNext = this.handleNext.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
-
+this.isEditing = false;
     this.state = {
       activeStep:0,
     };
@@ -119,7 +119,12 @@ export default class Details extends React.Component {
       UserGroup:localStorage.getItem('UserGroup')
     }
 
-
+    if(this.props.location !== undefined){
+      if(this.props.location.state){
+        this.state.details = this.props.location.state.details;
+        this.isEditing = true;
+      }
+    };
 
   }
  
@@ -153,7 +158,7 @@ export default class Details extends React.Component {
   };
 
   submitForm(){
-
+if(this.isEditing === false){
     axios({
       method:'post',
       url:'http://localhost:8080/api/addDetails',
@@ -165,7 +170,10 @@ export default class Details extends React.Component {
     .catch(function (error) {
     console.log(error);
     });
-
+  }
+else{
+  console.log("calling updated query");
+}
 
   }
  

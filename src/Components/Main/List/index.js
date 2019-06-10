@@ -55,9 +55,10 @@ export default class Details extends React.Component {
 
 	}
 
-	// export default function SimpleCard() {
-	//const classes = useStyles();
-	//const bull = <span className={classes.bullet}>•</span>;
+	editDetails(details){
+		console.log(details);
+		this.props.history.push('/details', { details:details });
+	}
 
 	render() {
 
@@ -157,7 +158,7 @@ export default class Details extends React.Component {
 								</Typography>
 							</CardContent>
 							<CardActions>
-								{/* <Button size="small" variant="contained" color="secondary">Edit</Button> */}
+								<Button  onClick={()=>{this.editDetails(detail)}} size="small" variant="contained" color="secondary">Edit</Button>
 								<Chip label={detail.source} variant="outlined" />
 								<Chip label={detail.workStatus} color="primary" variant="outlined" />
 								<Chip label={detail.pipelineType} color="primary" variant="outlined" />

@@ -63,12 +63,12 @@ render() {
         <Table>
           <TableBody>
               <TableRow>
-                <TableCell component="th" scope="row">
+                <TableCell>
                 {this.getIcon()}
                 </TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell>
                   {/* <h3>{this.props.title}</h3> */}
-                  <h1>{this.props.data.value}</h1>
+                  <h2>{this.props.data.value}</h2>
                 </TableCell>
               </TableRow>
           </TableBody>
