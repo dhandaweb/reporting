@@ -41,7 +41,7 @@ export default class Header extends React.Component {
 
     this.state = {
       anchorEl: false,
-      username:localStorage.getItem('user')
+      username:localStorage.getItem('username')
       }
 
   }

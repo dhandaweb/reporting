@@ -143,7 +143,7 @@ export default class Dashboard extends React.Component {
     });
 
     dashboardData.push({
-      title: "Top sources",
+      title: "Top Job category",
       data: this.getFormattedData(this.getGroupedData("jobCategory", data)),
       chart: "VerticalBar",
       gridSize: 3
@@ -165,7 +165,7 @@ export default class Dashboard extends React.Component {
 
     dashboardData.push({
       title: "Job Types",
-      data: this.getFormattedData(this.getGroupedData("jobType", data)),
+      data: this.getFormattedData(this.getGroupedData("jobCategory", data)),
       chart: "LineChart",
       gridSize: 3
     });
@@ -178,7 +178,7 @@ export default class Dashboard extends React.Component {
     });
 
     dashboardData.push({
-      title: "Job Types",
+      title: "City by Job category",
       data: data.map(d => {
         return {
           Measure: { value: d.revenueAmount, formattedVal: d.revenueAmount},
