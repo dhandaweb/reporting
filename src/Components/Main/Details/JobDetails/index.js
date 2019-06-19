@@ -1,16 +1,17 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import options from './../../options';
 import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import Divider from '@material-ui/core/Divider';
+
+
+import axios from 'axios';
+import env from '../../../../environment.json';
+import options from './../../options';
 
 export default class JobDetails extends React.Component {
  
@@ -25,8 +26,6 @@ export default class JobDetails extends React.Component {
 
     this.jobTypeList = options.jobTypeList;
     this.jobCategoryList = options.jobCategoryList;
-    this.offerStatusList = options.offerStatusList;
-    
 
     this.state = {
       client:this.props.jobDetails.client,
@@ -45,7 +44,33 @@ export default class JobDetails extends React.Component {
       cvSubmissionDate:this.props.jobDetails.cvSubmissionDate,
       offerDate:this.props.jobDetails.offerDate,
       joiningDate:this.props.jobDetails.joiningDate,
+      offerStatusList:[{id:0,label:"list not loaded"}],
+      list:["offerStatusList"]
     };
+
+    this.getOption(0);
+
+  }
+
+getOption(i) {
+      
+    if(this.state.list[i] !== undefined){
+    axios({
+      method: 'post',
+      url: env.endPointUrl + 'getOption',
+      data: { tableName: this.state.list[i] }
+    })
+      .then(response => {
+        var obj = {};
+        obj[this.state.list[i]] = response.data;
+          this.setState(obj);
+          if(i < this.state.list.length-1) this.getOption(i+1);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
   }
 
   handleSubmit = () => {
@@ -244,8 +269,8 @@ export default class JobDetails extends React.Component {
           errorMessages={['Offer status is required']}
           onChange={(e) => this.setState({ offerStatus: e.target.value })}
           margin="normal">
-                {this.offerStatusList.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
+                {this.state.offerStatusList.map(option => (
+                  <MenuItem key={option.id} value={option.label}>
                     {option.label}
                   </MenuItem>
                 ))}

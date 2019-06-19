@@ -1,3 +1,4 @@
 {
-    "timeFormat":"DD/MM/YYYY"
+    "timeFormat":"DD/MM/YYYY",
+    "endPointUrl":"http://localhost:8080/api/"
 }

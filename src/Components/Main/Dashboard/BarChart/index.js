@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from "d3";
+import $ from 'jquery'; 
 
 export default class BarChart extends React.Component {
  
@@ -104,6 +105,25 @@ drawChart(){
                        .attr("height",  d=> height - yScale(d.Measure.value))
                        .attr("x", d=> xScale(d.Dimension.value))
                        .attr("y", d=> yScale(d.Measure.value));
+
+    bars.on("mouseenter", function(d){
+ 
+                        var content = d.Dimension.value + ": " +  d.Measure.formattedVal
+                        
+                            $(this).popover({
+                              placement: 'right',
+                              content:content,
+                              title: d.Dimension.value,
+                              trigger:"hover",
+                              container:'body'
+                            });
+                            
+                            $(this).popover('show');
+                        })
+                        .on("mouseleave", function(d){
+                              $(this).popover('hide');
+                        })
+                             
 }
 
 componentDidMount() {

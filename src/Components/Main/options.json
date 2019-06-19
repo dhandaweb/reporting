@@ -7,7 +7,6 @@
       ],
       
       "genderList": [
-         {"value": "All", "label": "all"},
         {"value": "male", "label": "Male"},
         {"value": "female", "label": "Female"}
       ],
@@ -34,36 +33,43 @@
         {"value": "DR Insights", "label": "DR insights"}
         
       ],
+      
       "clientList": [
         {"value": "accenture", "label": "Accenture"},
         {"value": "MindTree", "label": "MindTree"},
         {"value": "Deloitte", "label": "Deloitte"}
       ],
+
       "creList": [
         {"value": "accenture", "label": "Accenture"},
         {"value": "MindTree", "label": "MindTree"},
         {"value": "Deloitte", "label": "Deloitte"}
       ],
+
       "recruiterList": [
         {"value": "John", "label": "John"},
         {"value": "David", "label": "David"},
         {"value": "Nick", "label": "Nick"}
       ],
+
       "accountManagerList": [
         {"value": "john", "label": "John"},
         {"value": "David", "label": "David"},
         {"value": "Nick", "label": "Nick"}
       ],
+
       "accountDirectorList": [
         {"value": "John", "label": "John"},
         {"value": "David", "label": "David"},
         {"value": "Nick", "label": "Nick"}
       ],
+
       "countryManagerList": [
         {"value": "John", "label": "John"},
         {"value": "David", "label": "David"},
         {"value": "Nick", "label": "Nick"}
       ],
+
       "teamList": [
         {"value": "All", "label": "All"},
         {"value": "Alpha", "label": "Alpha"},
@@ -77,6 +83,7 @@
         {"value": "Lota", "label": "Lota"},
         {"value": "Kappa", "label": "Kappa"}
       ],
+
       "geoList": [
         {"value": "All", "label": "All"},
         {"value": "America", "label": "America"},
@@ -98,6 +105,7 @@
         {"value": "C2H", "label": "C2H"},
         {"value": "Payroll", "label": "Payroll"}
       ],
+
       "jobCategoryList": [
         {"value": "All", "label": "All"},
         {"value": "consulting", "label": "consulting"},
@@ -107,6 +115,7 @@
         {"value": "Functions", "label": "Functions"},
         {"value": "Leadership", "label": "Leadership"}
       ], 
+
       "offerStatusList": [
             {"value": "toJoin", "label": "toJoin"},
             {"value": "declined", "label": "Declined"} 

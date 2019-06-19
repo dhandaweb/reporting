@@ -1,31 +1,14 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grid from '@material-ui/core/Grid';
-
 import Personal from './Personal';
 import Recruitment from './Recruitment';
 import JobDetails from './JobDetails';
 import Billing from './Billing';
 
-
-
-import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 
+import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
 
 
@@ -40,7 +23,7 @@ export default class Details extends React.Component {
     this.handleNext = this.handleNext.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
-this.isEditing = false;
+    this.isEditing = false;
     this.state = {
       activeStep:0,
     };
@@ -60,10 +43,10 @@ this.isEditing = false;
 
       currentEmployer:"",
       primarySkill:"",
-      salaryMin:"",
-      salaryMax:"",
-      workExpMin:"",
-      workExpMax:"",
+      salaryMin:0,
+      salaryMax:60000,
+      workExpMin:0,
+      workExpMax:1,
 
       address:"",
       city:"",
@@ -158,22 +141,22 @@ this.isEditing = false;
   };
 
   submitForm(){
-if(this.isEditing === false){
-    axios({
-      method:'post',
-      url:'http://localhost:8080/api/addDetails',
-      data: this.state.details
-    })
-    .then(response => {
-        //this.props.history.push('/list');
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
-  }
-else{
-  console.log("calling updated query");
-}
+    if(this.isEditing === false){
+        axios({
+          method:'post',
+          url:'http://localhost:8080/api/addDetails',
+          data: this.state.details
+        })
+        .then(response => {
+            //this.props.history.push('/list');
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+      }
+    else{
+      console.log("calling updated query");
+    }
 
   }
  

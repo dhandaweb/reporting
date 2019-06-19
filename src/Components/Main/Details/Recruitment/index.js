@@ -1,17 +1,19 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
+
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 
 import MenuItem from '@material-ui/core/MenuItem';
-import options from './../../options';
+
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+
+import axios from 'axios';
+import env from '../../../../environment.json';
+import options from './../../options';
 
 export default class Recruitment extends React.Component {
 
@@ -20,19 +22,10 @@ export default class Recruitment extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBack = this.handleBack.bind(this);
-
-    this.clientList = options.clientList;
-    this.creList = options.creList;
-    this.recruiterList = options.recruiterList;
-    this.accountManagerList = options.accountManagerList;
-    this.countryManagerList = options.countryManagerList;
-    this.accountDirectorList = options.accountDirectorList;
-
+    this.getOption = this.getOption.bind(this);
 
     this.teamList = options.teamList;
     this.geoList = options.geoList;
-
-
 
     this.state = {
 
@@ -49,7 +42,40 @@ export default class Recruitment extends React.Component {
       commissionStatus: this.props.recruitmentDetails.commissionStatus,
       commissionDate: this.props.recruitmentDetails.commissionDate,
       netRevenue: this.props.recruitmentDetails.netRevenue,
+
+     
+      recruiterList:[{id:0,label:"list not loaded"}],
+      creList:[{id:0,label:"list not loaded"}],
+      accountManagerList:[{id:0,label:"list not loaded"}],
+      countryManagerList:[{id:0,label:"list not loaded"}],
+      accountDirectorList:[{id:0,label:"list not loaded"}],
+
+      list:["recruiterList","creList","accountManagerList","countryManagerList","accountDirectorList"]
+     
     };
+
+    this.getOption(0);
+  }
+
+  getOption(i) {
+      
+    if(this.state.list[i] !== undefined){
+    axios({
+      method: 'post',
+      url: env.endPointUrl + 'getOption',
+      data: { tableName: this.state.list[i] }
+    })
+      .then(response => {
+        var obj = {};
+        obj[this.state.list[i]] = response.data;
+          this.setState(obj);
+          if(i < this.state.list.length-1) this.getOption(i+1);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
   }
 
   handleSubmit = () => {
@@ -95,8 +121,8 @@ export default class Recruitment extends React.Component {
             margin="normal"
             onChange={(e) => this.setState({ recruiter: e.target.value })}
             >
-            {this.recruiterList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.recruiterList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -110,8 +136,8 @@ export default class Recruitment extends React.Component {
             margin="normal"
             onChange={(e) => this.setState({ cre: e.target.value })}
             >
-            {this.creList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.creList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -125,8 +151,8 @@ export default class Recruitment extends React.Component {
             margin="normal" 
             onChange={(e) => this.setState({ accountManager: e.target.value })}
             >
-            {this.accountManagerList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.accountManagerList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -140,8 +166,8 @@ export default class Recruitment extends React.Component {
             margin="normal"
             onChange={(e) => this.setState({ countryManager: e.target.value })}
             >
-            {this.countryManagerList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.countryManagerList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -159,8 +185,8 @@ export default class Recruitment extends React.Component {
             margin="normal"
             onChange={(e) => this.setState({ accountDirector: e.target.value })}
             >
-            {this.accountDirectorList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.accountDirectorList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -171,7 +197,6 @@ export default class Recruitment extends React.Component {
             id="team"
             select fullWidth
             label="Team"
-            helperText="Please select your team"
             margin="normal"
             value={this.state.team}
             onChange={(e) => this.setState({ team: e.target.value })}

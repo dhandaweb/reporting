@@ -32,8 +32,6 @@ constructor(props) {
                 .key(d=> d.Group.value)
                 .entries(this.rawData);
 
-console.log(this.chartData);
-
       this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
     }
 

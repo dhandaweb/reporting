@@ -1,9 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
 import TextField from '@material-ui/core/TextField';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import InputRange from 'react-input-range';
@@ -11,12 +8,12 @@ import 'react-input-range/lib/css/index.css';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import options from './../../options';
-import Paper from '@material-ui/core/Paper';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 
+import axios from 'axios';
+import env from '../../../../environment.json';
+import options from './../../options';
 
 export default class Personal extends React.Component {
 
@@ -28,9 +25,11 @@ this.handleSubmit = this.handleSubmit.bind(this);
     this.titleList = options.titleList;
     this.genderList = options.genderList;
    
-    this.ethnicityList = options.visaStatusList;
-    this.citizenshipList = options.visaStatusList;
-    this.workStatusList = options.visaStatusList;
+    this.getOption = this.getOption.bind(this);
+
+   // this.ethnicityList = options.visaStatusList;
+    // this.citizenshipList = options.visaStatusList;
+    // this.workStatusList = options.visaStatusList;
     this.sourceList = options.sourceList;
    
     this.cities = options.cities;
@@ -60,13 +59,44 @@ this.handleSubmit = this.handleSubmit.bind(this);
       state:this.props.personalDetails.state,
       country:this.props.personalDetails.country,
       
+
+      ethnicityList:[{id:0,label:"list not loaded"}],
+      citizenshipList:[{id:0,label:"list not loaded"}],
+      workStatusList:[{id:0,label:"list not loaded"}],
+      list:["ethnicityList","citizenshipList","workStatusList"]
+
     };
 
     this.state.workExperienceRange = { min:this.state.workExpMin,  max:this.state.workExpMax };
     this.state.salaryRange = { min:this.state.salaryMin,  max:this.state.salaryMax }
 
-    
+    this.getOption(0);
   }
+
+
+  getOption(i) {
+      
+    if(this.state.list[i] !== undefined){
+    axios({
+      method: 'post',
+      url: env.endPointUrl + 'getOption',
+      data: { tableName: this.state.list[i] }
+    })
+      .then(response => {
+        var obj = {};
+        obj[this.state.list[i]] = response.data;
+          this.setState(obj);
+          if(i < this.state.list.length-1) this.getOption(i+1);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
+
+
+
 
   handleSubmit = () => {
 
@@ -94,7 +124,10 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
     this.props.nextHandle(1);
   }
+  componentDidMount(){
+   
 
+}
   render() {
 
     return (
@@ -298,8 +331,9 @@ this.handleSubmit = this.handleSubmit.bind(this);
         
          onChange={(e) => this.setState({ ethnicity: e.target.value })}
          margin="normal">
-               {this.ethnicityList.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
+               {this.state.ethnicityList.length > 0 &&
+               this.state.ethnicityList.map(option => (
+                 <MenuItem key={option.id} value={option.label}>
                    {option.label}
                  </MenuItem>
                ))}
@@ -316,8 +350,9 @@ this.handleSubmit = this.handleSubmit.bind(this);
        
          onChange={(e) => this.setState({ citizenship: e.target.value })}
          margin="normal">
-               {this.citizenshipList.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
+               {this.state.citizenshipList.length > 0 &&
+                 this.state.citizenshipList.map(option => (
+                 <MenuItem key={option.id} value={option.label}>
                    {option.label}
                  </MenuItem>
                ))}
@@ -335,8 +370,9 @@ this.handleSubmit = this.handleSubmit.bind(this);
        
          onChange={(e) => this.setState({ workStatus: e.target.value })}
          margin="normal">
-               {this.workStatusList.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
+               {this.state.workStatusList.length > 0 &&
+                 this.state.workStatusList.map(option => (
+                 <MenuItem key={option.id} value={option.label}>
                    {option.label}
                  </MenuItem>
                ))}

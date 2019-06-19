@@ -1,6 +1,6 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import * as d3 from "d3";
 import Grid from '@material-ui/core/Grid';
 
@@ -49,7 +49,6 @@ export default class Dashboard extends React.Component {
       }
     })
       .then(response => {
-        console.log(response);
         this.setState({ detailData: response.data });
         this.getDashboardData(response.data);
 
@@ -236,17 +235,21 @@ export default class Dashboard extends React.Component {
       <div>
         <Grid container spacing={24}>
 
-          {this.state.dashboardData.map(item => {
+        {this.state.dashboardData.length === 0 &&
+            <div className="progress"> <LinearProgress color="secondary"/> </div>
+        }
+
+        {this.state.dashboardData.map(item => {
 
             return <Grid item xs={item.gridSize}>
-              <Card >
-                <CardContent>
-                  <Typography color="textSecondary" gutterBottom> {item.title}</Typography>
-                  {this.getChart(item)}
-                </CardContent>
-              </Card>
-            </Grid>
-          })
+                <Card >
+                  <CardContent>
+                    <Typography color="textSecondary" gutterBottom> {item.title}</Typography>
+                    {this.getChart(item)}
+                  </CardContent>
+                </Card>
+             </Grid>
+           })
           }
          
         </Grid>

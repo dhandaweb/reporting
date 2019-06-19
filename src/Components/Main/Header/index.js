@@ -94,7 +94,7 @@ export default class Header extends React.Component {
       
           <Menu
                   id="menu-appbar"
-                  anchorEl={this.state.anchorEl}
+                  // anchorEl={this.state.anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',

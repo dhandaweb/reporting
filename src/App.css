@@ -67,3 +67,22 @@
   margin:0px;
   
 }
+
+.trashIcon{
+  position: absolute;
+  right:0;
+  color:#b3b3b3;
+  cursor: pointer;
+}
+.trashIcon:hover, .editIcon:hover{
+  color:#000;
+}
+.editIcon{
+  position: absolute;
+  right:30px;
+  color:#b3b3b3;
+  cursor: pointer;
+}
+.formFullWidth{
+  width:100%
+}
