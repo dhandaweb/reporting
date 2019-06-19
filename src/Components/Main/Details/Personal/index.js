@@ -293,22 +293,22 @@ this.handleSubmit = this.handleSubmit.bind(this);
               value={this.state.primarySkill}
             />
 
-          <div  className="paddingT"><InputRange
+          <div className="paddingT"><InputRange
               maxValue={20}
               step={1}
               minValue={0}
-              formatLabel={value => `${value} Years`}
+              formatLabel={value => `${value}yrs`}
               value={this.state.workExperienceRange}
               onChange={value => this.setState({ workExperienceRange: value })}
               onChangeComplete={value => console.log(value)} />
             </div>
         
       
-            <div  className="paddingT"><InputRange
+            <div className="paddingT"><InputRange
               maxValue={120000}
               step={5000}
               minValue={40000}
-              formatLabel={value => `${value} AUD`}
+              formatLabel={value => `$${value}`}
               value={this.state.salaryRange}
               onChange={value => this.setState({ salaryRange: value })}
               onChangeComplete={value => console.log(value)} />

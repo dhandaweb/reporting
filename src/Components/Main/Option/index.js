@@ -13,7 +13,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import env from '../../../environment.json';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
-import Done from '@material-ui/icons/Done';
+import SettingIcon from '@material-ui/icons/Settings';
 
 export default class Options extends React.Component {
 
@@ -253,7 +253,13 @@ export default class Options extends React.Component {
       </Grid>
     })
 
-    return (<Grid container spacing={24}>{items}</Grid>);
+    return (<Grid container spacing={24} className="mainContent">
+      <div className="subHeading">
+          <SettingIcon className="dashboard"/>
+          <Typography className="title" variant="subtitle1" noWrap> Candidate List</Typography>
+        </div>
+      {items}
+      </Grid>);
   }
 
 }

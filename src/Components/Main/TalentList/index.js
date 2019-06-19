@@ -1,34 +1,35 @@
 import React from 'react';
 import axios from 'axios';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 
-
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grid from '@material-ui/core/Grid';
+import { connect } from "react-redux";
+import {setSnackBar} from "../../../Redux/Actions";
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
+
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
+
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+
 import Chip from '@material-ui/core/Chip';
 import Moment from 'react-moment';
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import ListIcon from '@material-ui/icons/ViewList';
+import Edit from '@material-ui/icons/Edit';
+
 import env from '../../../environment.json';
 
-export default class Details extends React.Component {
+export class TalentList extends React.Component {
 
 	constructor(props) {
 		super(props);
-
+		
+		this.handleSnakBarClose= this.handleSnakBarClose.bind(this);
 
 		this.state = {
 			activeStep: 0,
@@ -37,7 +38,7 @@ export default class Details extends React.Component {
 
 		axios({
 			method: 'post',
-			url: 'http://localhost:8080/api/getDetails',
+			url: env.endPointUrl + 'getDetails',
 			data: {
 				UserId: localStorage.getItem('UserId'),
 				UserGroup: localStorage.getItem('UserGroup')
@@ -51,22 +52,51 @@ export default class Details extends React.Component {
 				console.log(error);
 			});
 
-	  
-
 	}
 
+
+	handleSnakBarClose(){
+		this.setState({ showSnackBar:false,snackBarMessage:"" });
+	  }
+
 	editDetails(details){
-		console.log(details);
 		this.props.history.push('/details', { details:details });
+	}
+
+	deleteRecord(details){
+
+		axios({
+			method: 'post',
+			url: env.endPointUrl + 'deleteDetails',
+			data: {
+				UserId: localStorage.getItem('UserId'),
+				UserGroup: localStorage.getItem('UserGroup'),
+				id:details.ID
+			}
+		})
+			.then(response => {
+				this.state.detailData = this.state.detailData.filter(d=>d.ID !== details.ID);
+				this.setState({ detailData: this.state.detailData});
+				this.props.setSnackBar({show:true,message:"Record deleted sucessfully."});
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+			
 	}
 
 	render() {
 
 		return (
 			<div>
-				{this.state.detailData.map((detail, index) => {
-					return <div>
-						<Card className="talentRecord">
+				 <div className="subHeading">
+          <ListIcon className="dashboard"/>
+          <Typography className="title" variant="subtitle1" noWrap> Candidate List</Typography>
+        </div>
+				{this.state.detailData.map(detail => {
+					return <div key={detail.ID}>
+						
+						<Card className="talentRecord" style={{ margin: 10 }}>
 							<CardHeader
 								avatar={
 									<Avatar>
@@ -74,9 +104,10 @@ export default class Details extends React.Component {
 									</Avatar>
 								}
 								action={
-									<IconButton aria-label="Settings">
-										<MoreVertIcon />
-									</IconButton>
+									<div>
+											<IconButton onClick={()=>{this.editDetails(detail)}}><Edit /></IconButton>
+											<IconButton onClick={()=>{this.deleteRecord(detail)}}> <DeleteIcon/></IconButton>
+									</div>
 								}
 								title={detail.firstName + " " + detail.lastName + " - " + detail.jobTitle}
 								subheader={detail.client + " - " + detail.workExpMax + "yrs of experience"}
@@ -96,7 +127,7 @@ export default class Details extends React.Component {
 
 								</Typography>
 
-								<Typography class="card-title" color="textSecondary" gutterBottom>
+								<Typography className="card-title" color="textSecondary" gutterBottom>
 
 									{/* {detail.gender}<br />
 							        {detail.ethnicity}<br />
@@ -158,7 +189,6 @@ export default class Details extends React.Component {
 								</Typography>
 							</CardContent>
 							<CardActions>
-								<Button  onClick={()=>{this.editDetails(detail)}} size="small" variant="contained" color="secondary">Edit</Button>
 								<Chip label={detail.source} variant="outlined" />
 								<Chip label={detail.workStatus} color="primary" variant="outlined" />
 								<Chip label={detail.pipelineType} color="primary" variant="outlined" />
@@ -174,3 +204,17 @@ export default class Details extends React.Component {
 		);
 	}
 };
+
+const mapStateToProps = state => {
+	return { snackBar: state.snackBar };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+	return {
+	  setSnackBar: (obj)=> dispatch(setSnackBar(obj))
+	};
+  };
+  
+  
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(TalentList);

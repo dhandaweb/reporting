@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { connect } from "react-redux";
+import {setSnackBar} from "../../../Redux/Actions";
+
 import Personal from './Personal';
 import Recruitment from './Recruitment';
 import JobDetails from './JobDetails';
@@ -9,10 +13,13 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 
 import Divider from '@material-ui/core/Divider';
+
+import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
-
-
-export default class Details extends React.Component {
+import env from '../../../environment.json';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+export class Details extends React.Component {
  
   constructor(props) {
     super(props);
@@ -144,10 +151,11 @@ export default class Details extends React.Component {
     if(this.isEditing === false){
         axios({
           method:'post',
-          url:'http://localhost:8080/api/addDetails',
+          url: env.endPointUrl +'addDetails',
           data: this.state.details
         })
         .then(response => {
+          this.props.setSnackBar({show:true,message:"New record added sucessfully."});
             //this.props.history.push('/list');
         })
         .catch(function (error) {
@@ -155,7 +163,18 @@ export default class Details extends React.Component {
         });
       }
     else{
-      console.log("calling updated query");
+      axios({
+        method:'post',
+        url: env.endPointUrl +'updateDetails',
+        data: this.state.details
+      })
+      .then(response => {
+        this.props.setSnackBar({show:true,message:"Record updated sucessfully."});
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+   
     }
 
   }
@@ -180,8 +199,14 @@ export default class Details extends React.Component {
   render() {
 
     return (
-      <div style={{ padding: 20 }}>
-        <Stepper activeStep={this.state.activeStep} alternativeLabel>
+      
+        <div >
+        <div className="subHeading">
+          <AddIcon className="dashboard"/>
+          <Typography className="title" variant="subtitle1" noWrap> Add candidate</Typography>
+        </div>
+        <div style={{ padding: 10}}>
+        <Stepper activeStep={this.state.activeStep} alternativeLabel >
           {this.steps.map(label => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -189,8 +214,10 @@ export default class Details extends React.Component {
           ))}
         </Stepper>
         <Divider />
+        <div style={{ padding: 10 , background:"#fff"}}>
         {this.getStepContent(this.state.activeStep)}
-      
+        </div>
+        </div>
 
         
       
@@ -201,3 +228,17 @@ export default class Details extends React.Component {
 
   }
 };
+
+const mapStateToProps = state => {
+	return { snackBar: state.snackBar };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+	return {
+	  setSnackBar: (obj)=> dispatch(setSnackBar(obj))
+	};
+  };
+  
+  
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Details);

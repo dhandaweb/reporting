@@ -19,7 +19,8 @@ import DotPlot from './DotPlot';
 import TableChart from './TableChart';
 import IconCard from './IconCard';
 import axios from 'axios';
-
+import AppBar from '@material-ui/core/AppBar';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 export default class Dashboard extends React.Component {
 
@@ -233,7 +234,12 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <Grid container spacing={24}>
+        <Grid container spacing={24} className="mainContent">
+
+        <div className="subHeading">
+        <DashboardIcon className="dashboard"/>
+        <Typography className="title" variant="subtitle1" noWrap> Dashboard</Typography>
+        </div>
 
         {this.state.dashboardData.length === 0 &&
             <div className="progress"> <LinearProgress color="secondary"/> </div>
