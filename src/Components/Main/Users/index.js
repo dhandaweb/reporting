@@ -12,62 +12,61 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import env from '../../../environment.json';
 
 export default class Users extends React.Component {
-  
+
   constructor(props) {
     super(props);
-      this.state = {
-          userlist:[]
-      };
-    
-      axios({
-        method:'post',
-        url: env.endPointUrl + 'getuserList',
-        data: {
-          usergroup: 'DDVisual',
-        }
-      })
+    this.state = {
+      userlist: []
+    };
+
+    axios({
+      method: 'post',
+      url: env.endPointUrl + 'getuserList',
+      data: {
+        usergroup: localStorage.getItem('UserGroup'),
+      }
+    })
       .then(response => {
-          console.log(response);
-          this.setState({ userlist:response.data });
+        this.setState({ userlist: response.data });
       })
       .catch(function (error) {
-      console.log(error);
+        console.log(error);
       });
 
-    }
+  }
 
   render() {
-    return ( <Grid container spacing={24} className="mainContent">
-       <div className="subHeading">
-            <AccountCircle className="dashboard" />
-            <Typography className="title" variant="subtitle1" noWrap> User list</Typography>
-          </div>
+    return (<Grid container spacing={24} className="mainContent">
+      <div className="subHeading">
+        <AccountCircle className="dashboard" />
+        <Typography className="title" variant="subtitle1" noWrap> User list</Typography>
+      </div>
       <Paper style={{ margin: 10, width: "100%" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>User ID</TableCell>
-                <TableCell>First Name</TableCell>
-                <TableCell>Last Name</TableCell>
-                <TableCell>User Group</TableCell>
-                <TableCell>User Name</TableCell>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>User ID</TableCell>
+              <TableCell>First Name</TableCell>
+              <TableCell>Last Name</TableCell>
+              <TableCell>User Group</TableCell>
+              <TableCell>User Name</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.state.userlist.map((row, i) => {
+              return <TableRow key={i}>
+                <TableCell component="th" scope="row">
+                  {row.UserId}
+                </TableCell>
+                <TableCell >{row.FirstName}</TableCell>
+                <TableCell>{row.LastName}</TableCell>
+                <TableCell>{row.UserGroup}</TableCell>
+                <TableCell>{row.UserName}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-            {this.state.userlist.map((row,i)=>	{
-               return <TableRow key={i}>
-                  <TableCell component="th" scope="row">
-                    {row.UserId}
-                  </TableCell>
-                  <TableCell >{row.FirstName}</TableCell>
-                  <TableCell>{row.LastName}</TableCell>
-                  <TableCell>{row.UserGroup}</TableCell>
-                  <TableCell>{row.UserName}</TableCell>
-                </TableRow>
-              })}
-            </TableBody>
-          </Table>
-        </Paper></Grid>
+            })}
+          </TableBody>
+        </Table>
+      </Paper></Grid>
     );
   }
 };
