@@ -1,5 +1,9 @@
 import React from 'react';
 import * as d3 from "d3";
+import Typography from '@material-ui/core/Typography';
+import $ from 'jquery'; 
+import Options from './../chartOptions';
+
 
 export default class PieChart extends React.Component {
 
@@ -14,15 +18,10 @@ export default class PieChart extends React.Component {
         this.chartId = 'pieChart' + Math.floor(Math.random() * 1000000000);
         this.chartContainer = null;
 
-        // this.chartData = [
-        //     { Measure: { value: 10000, formattedVal: "$10k" }, Dimension: { value: "One", formattedVal: "One" }, Group: "" },
-        //     { Measure: { value: 20000, formattedVal: "$20k" }, Dimension: { value: "Two", formattedVal: "Two" }, Group: "" },
-        //     { Measure: { value: 30000, formattedVal: "$30k" }, Dimension: { value: "Three", formattedVal: "Three" }, Group: "" },
-        //     { Measure: { value: 5000, formattedVal: "$5k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: "" }
-        // ];
+        this.colorRange = Options.colorRange;
         this.chartData = this.props.data;
         this.colorPallete = d3.scaleOrdinal()
-            .range(["#01B8AA", "#374649", "#FD625E", "F2C80F", "5F6B6D", "#8AD4EB"]);
+            .range(this.colorRange);
     }
 
 
@@ -35,9 +34,9 @@ export default class PieChart extends React.Component {
 
         var dimension = d3.select(chartId).node().getBoundingClientRect();
 
-        var width = dimension.width - 40,
-            height = dimension.width - 40,
-            radius = (Math.min(width, height) / 2) * .7;
+        var width = dimension.width,
+            height = dimension.width,
+            radius = (Math.min(width, height) / 2);
 
         var arc = d3.arc()
             .outerRadius(radius * 0.8)
@@ -64,64 +63,28 @@ export default class PieChart extends React.Component {
             .append("g")
             .attr("class", "arc");
 
-        g.append("path")
-            .attr("d", arc)
-            .style("fill", (d) => this.colorPallete(d.data.Dimension.value));
+        var path = g.append("path")
+                    .attr("d", arc)
+                    .style("fill", (d) => this.colorPallete(d.data.Dimension.value))
+                    .style("cursor","pointer");
 
-
-        var text = g
-            .append("text")
-            .attr("dy", ".35em")
-            .attr("style", "fill:#000;font-size:12px")
-            .text((d) => (d.data.Dimension.value.length < 8 ? d.data.Dimension.value : d.data.Dimension.value.substring(0, 7) + ".."));
-
-            text.append("title").text((d) => d.data.Dimension.value);
-
-        function midAngle(d) {
-            return d.startAngle + (d.endAngle - d.startAngle) / 2;
-        }
-
-        text.transition().duration(1000)
-            .attrTween("transform", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    var d2 = interpolate(t);
-                    var pos = outerArc.centroid(d2);
-                    pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-                    return "translate(" + pos + ")";
-                };
-            })
-            .styleTween("text-anchor", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    var d2 = interpolate(t);
-                    return midAngle(d2) < Math.PI ? "start" : "end";
-                };
-            });
-
-        var polyline = g
-            .append("polyline")
-            .attr("style", "fill:none;stroke:#8c8c8c;");
-
-        polyline.transition().duration(1000)
-            .attrTween("points", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    var d2 = interpolate(t);
-                    var pos = outerArc.centroid(d2);
-                    pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-                    return [arc.centroid(d2), outerArc.centroid(d2), pos];
-                };
-            });
-
-        polyline.exit()
-            .remove();
+        path.on("mouseenter", function(d){
+                    var d= d.data;
+                        var content = d.Dimension.value + ": " +  d.Measure.formattedVal
+                        
+                            $(this).popover({
+                              placement: 'right',
+                              content:content,
+                              title: d.Dimension.value,
+                              trigger:"hover",
+                              container:'body'
+                            });
+                            
+                            $(this).popover('show');
+                        })
+                        .on("mouseleave", function(d){
+                              $(this).popover('hide');
+                        });
 
 
     }
@@ -132,8 +95,17 @@ export default class PieChart extends React.Component {
 
     render() {
 
-        return (
-            <div id={this.chartId}></div>
+        var legend = this.chartData.map((item,i)=>{
+            return  <div key={i} className="legendItem">
+            <div className="legendIcon" style={{background:this.colorRange[i]}}></div>
+            <div className="legendText"><Typography color="textSecondary" gutterBottom> {item.Dimension.value}</Typography></div>
+        </div>
+        });
+
+        return (<div>
+                    <div id={this.chartId}></div>
+                    <div className="legend"> {legend} </div>
+            </div>
         );
     }
 };

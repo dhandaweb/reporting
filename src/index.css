@@ -18,3 +18,22 @@ code {
 .progress{
   width:100%;
 }
+
+.legend{
+  border-top:1px soild #b3b3b3;
+}
+
+.legend .legendItem{
+  display:inline-block;
+}
+.legend .legendItem .legendIcon{
+  width:15px;
+  height:15px;
+  float: left;
+  margin:5px;
+  border-radius: 10px;
+}
+.legend .legendItem .legendText{
+  float: left;
+  margin-top:3px;
+}
