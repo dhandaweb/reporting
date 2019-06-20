@@ -107,7 +107,7 @@ getOption(i) {
       onSubmit={this.handleSubmit}
       onError={errors => console.log(errors)}
     >
-   <Grid container >
+    <Grid container >
 
         <Grid item lg={4} className="paddingH">
           
@@ -255,7 +255,7 @@ getOption(i) {
         
           </Grid>
         
-          <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} className="paddingH">
           
           <Typography variant="h5" component="h3" > Job dates   </Typography>
             
@@ -284,13 +284,13 @@ getOption(i) {
           </MuiPickersUtilsProvider>
         
           </Grid>
-          <Grid container spacing={24} >
-      <Divider />
-          <Grid item xs={12}>
-              <Button onClick={this.handleBack}> Back  </Button>
-              <Button variant="contained" color="primary" type="submit" > Next</Button>
-          </Grid>
-      </Grid>
+
+        <Grid item lg={12} style={{textAlign:"center", padding:10}} >
+                <Divider style={{margin:10}}/>
+                <Button onClick={this.handleBack}> Back  </Button>
+                <Button variant="contained" color="primary" type="submit" > Next</Button>
+        </Grid>
+    
     </Grid>
 
      </ValidatorForm> );

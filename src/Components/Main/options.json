@@ -7,21 +7,16 @@
       ],
       
       "genderList": [
-        {"value": "male", "label": "Male"},
-        {"value": "female", "label": "Female"}
+        {"value": "Male", "label": "Male"},
+        {"value": "Female", "label": "Female"}
       ],
 
-      "visaStatusList": [
-        {"value": "student", "label": "Student"},
-        {"value": "citizen", "label": "Citizen"},
-        {"value": "permanent Resident", "label": "Permanent Resident"}
-      ],
       "sourceList": [
         {"value": "All", "label": "All"},
         {"value": "Internal Database", "label": "Internal Database"},
-        {"value": "seek", "label": "Seek"},
-        {"value": "linkedIn N", "label": "Linked in N"},
-        {"value": "linkedIn R", "label": "Linked in R"},
+        {"value": "Seek", "label": "Seek"},
+        {"value": "LinkedIn N", "label": "Linked in N"},
+        {"value": "LinkedIn R", "label": "Linked in R"},
         {"value": "Job Posting", "label": "Job posting"},
         {"value": "Direct", "label": "Direct"},
         {"value": "Candidate Reference", "label": "Candidate Reference"},
@@ -34,42 +29,6 @@
         
       ],
       
-      "clientList": [
-        {"value": "accenture", "label": "Accenture"},
-        {"value": "MindTree", "label": "MindTree"},
-        {"value": "Deloitte", "label": "Deloitte"}
-      ],
-
-      "creList": [
-        {"value": "accenture", "label": "Accenture"},
-        {"value": "MindTree", "label": "MindTree"},
-        {"value": "Deloitte", "label": "Deloitte"}
-      ],
-
-      "recruiterList": [
-        {"value": "John", "label": "John"},
-        {"value": "David", "label": "David"},
-        {"value": "Nick", "label": "Nick"}
-      ],
-
-      "accountManagerList": [
-        {"value": "john", "label": "John"},
-        {"value": "David", "label": "David"},
-        {"value": "Nick", "label": "Nick"}
-      ],
-
-      "accountDirectorList": [
-        {"value": "John", "label": "John"},
-        {"value": "David", "label": "David"},
-        {"value": "Nick", "label": "Nick"}
-      ],
-
-      "countryManagerList": [
-        {"value": "John", "label": "John"},
-        {"value": "David", "label": "David"},
-        {"value": "Nick", "label": "Nick"}
-      ],
-
       "teamList": [
         {"value": "All", "label": "All"},
         {"value": "Alpha", "label": "Alpha"},
@@ -99,8 +58,8 @@
 
       "jobTypeList": [
         {"value": "All", "label": "All"},
-        {"value": "contract", "label": "Contract"},
-        {"value": "permanent", "label": "Permanent"},
+        {"value": "Contract", "label": "Contract"},
+        {"value": "Permanent", "label": "Permanent"},
         {"value": "Fixed Term", "label": "Fixed"},
         {"value": "C2H", "label": "C2H"},
         {"value": "Payroll", "label": "Payroll"}
@@ -108,9 +67,9 @@
 
       "jobCategoryList": [
         {"value": "All", "label": "All"},
-        {"value": "consulting", "label": "consulting"},
-        {"value": "technology", "label": "Technology"},
-        {"value": "sales", "label": "Sales"},
+        {"value": "Consulting", "label": "consulting"},
+        {"value": "Technology", "label": "Technology"},
+        {"value": "Sales", "label": "Sales"},
         {"value": "Pre Sales", "label": "Pre Sales"},
         {"value": "Functions", "label": "Functions"},
         {"value": "Leadership", "label": "Leadership"}
@@ -147,21 +106,31 @@
         {"value": "Revenue Leaked", "label": "Revenue Leaked"}
       ], 
 
-
       "cities": [
-        {"value": "Melbourne", "label": "Melbourne"},
+        {"value": "Canberra", "label": "Canberra"},
         {"value": "Sydney", "label": "Sydney"},
-        {"value": "Perth", "label": "Perth"},
-        {"value": "Brisbane", "label": "Brisbane"}
+        {"value": "Griffith", "label": "Griffith"},
+        {"value": "Alice Springs", "label": "Alice Springs"},
+        {"value": "Darwin", "label": "Darwin"},
+        {"value": "Adelaide", "label": "Adelaide"},
+        {"value": "Brisbane", "label": "Brisbane"},
+        {"value": "Gold Coast", "label": "Gold Coast"},
+        {"value": "Hobart", "label": "Hobart"},
+        {"value": "Melbourne", "label": "Melbourne"},
+        {"value": "Geelong", "label": "Geelong"},
+        {"value": "Perth", "label": "Perth"}
       ], 
       "countries": [
         {"value": "Australia", "label": "Australia"}
       ], 
       "states": [
+        {"value": "Australian Capital Territory", "label": "Australian Capital Territory"},
         {"value": "New South Wales", "label": "New South Wales"},
+        {"value": "Northern Territory", "label": "Northern Territory"},
         {"value": "Queensland", "label": "Queensland"},
         {"value": "South Australia", "label": "South Australia"},
         {"value": "Tasmania", "label": "Tasmania"},
-        {"value": "Victoria", "label": "Victoria"}
+        {"value": "Victoria", "label": "Victoria"},
+        {"value": "Western Australia", "label": "Western Australia"}
       ]
     }

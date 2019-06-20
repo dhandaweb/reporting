@@ -27,9 +27,6 @@ this.handleSubmit = this.handleSubmit.bind(this);
    
     this.getOption = this.getOption.bind(this);
 
-   // this.ethnicityList = options.visaStatusList;
-    // this.citizenshipList = options.visaStatusList;
-    // this.workStatusList = options.visaStatusList;
     this.sourceList = options.sourceList;
    
     this.cities = options.cities;
@@ -138,272 +135,274 @@ this.handleSubmit = this.handleSubmit.bind(this);
         >
         <Grid container >
 
-        <Grid item lg={3} className="paddingH">
-         
-            <Typography variant="h6"> Personal   </Typography>
-           
+          <Grid item lg={3} className="paddingH">
+          
+              <Typography variant="h6"> Personal   </Typography>
+            
+              <TextValidator
+              fullWidth 
+              id="title"
+              select
+              label="Title"
+              value={this.state.title}
+              validators={['required']}
+              errorMessages={['title is required']}
+          
+              onChange={(e) => this.setState({ title: e.target.value })}
+              margin="normal">
+                    {this.titleList.map(option => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+            </TextValidator>
+
+              <TextValidator
+                fullWidth
+                id="firstName"
+                label="First name"
+                margin="normal"
+                name="firstName"
+                onChange={(e) => this.setState({ firstName: e.target.value })}
+                value={this.state.firstName}
+                validators={['required']}
+                errorMessages={['First name is required']}
+              />
+
             <TextValidator
-            fullWidth 
-            id="title"
-            select
-            label="Title"
-            value={this.state.title}
-            validators={['required']}
-            errorMessages={['title is required']}
-         
-            onChange={(e) => this.setState({ title: e.target.value })}
-            margin="normal">
-                  {this.titleList.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-           </TextValidator>
+            fullWidth
+                id="lastName"
+                label="Last name"
+                margin="normal"
+                name="lastName"
+                onChange={(e) => this.setState({ lastName: e.target.value })}
+                value={this.state.lastName}
+                validators={['required']}
+                errorMessages={['Last name is required']}
+              />
+              
+              <TextField 
+              fullWidth 
+              id="gender"
+              onChange={(e) => this.setState({ gender: e.target.value })}
+              select label="Gender"
+              value={this.state.gender} 
+              margin="normal">
+                {this.genderList.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+          
+          </Grid>
+        
+          <Grid item lg={3} className="paddingH">
+          
+          <Typography variant="h6"> Address   </Typography>
+            
+          <TextValidator
+              fullWidth 
+              id="address"
+              label="Address"
+              value={this.state.address}
+              validators={['required']}
+              errorMessages={['Address is required']}
+              onChange={(e) => this.setState({ address: e.target.value })}
+              margin="normal">
+            </TextValidator>
+          
+          <TextValidator
+          fullWidth 
+          id="city"
+          select
+          label="City"
+          value={this.state.city}
+          validators={['required']}
+          errorMessages={['citizenship is required']}
+          onChange={(e) => this.setState({ city: e.target.value })}
+          margin="normal">
+                {this.cities.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+
+          <TextValidator
+          fullWidth 
+          id="state"
+          select
+          label="State"
+          value={this.state.state}
+          validators={['required']}
+          errorMessages={['State is required']}
+        
+          onChange={(e) => this.setState({ state: e.target.value })}
+          margin="normal">
+                {this.states.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+
+          <TextValidator
+          fullWidth 
+          id="country"
+          select
+          label="Country"
+          value={this.state.country}
+          validators={['required']}
+          errorMessages={['country is required']}
+          onChange={(e) => this.setState({ country: e.target.value })}
+          margin="normal">
+                {this.countries.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+        
+          </Grid>
+
+          <Grid item lg={3} className="paddingH">
+          
+          <Typography variant="h6"> Current suitation   </Typography>
+            
+          <TextValidator
+              fullWidth
+                id="currentEmployer"
+                label="Current employer"
+                margin="normal"
+                name="currentEmployer"
+                onChange={(e) => this.setState({ currentEmployer: e.target.value })}
+                value={this.state.currentEmployer}
+              />
 
             <TextValidator
               fullWidth
-              id="firstName"
-              label="First name"
-              margin="normal"
-              name="firstName"
-              onChange={(e) => this.setState({ firstName: e.target.value })}
-              value={this.state.firstName}
-              validators={['required']}
-              errorMessages={['First name is required']}
-            />
+                id="primarySkill"
+                label="Primary skill"
+                margin="normal"
+                name="primarySkill"
+                onChange={(e) => this.setState({ primarySkill: e.target.value })}
+                value={this.state.primarySkill}
+              />
 
-          <TextValidator
-           fullWidth
-              id="lastName"
-              label="Last name"
-              margin="normal"
-              name="lastName"
-              onChange={(e) => this.setState({ lastName: e.target.value })}
-              value={this.state.lastName}
-              validators={['required']}
-              errorMessages={['Last name is required']}
-            />
-            
-            <TextField 
-            fullWidth 
-            id="gender"
-            onChange={(e) => this.setState({ gender: e.target.value })}
-            select label="Gender"
-            value={this.state.gender} 
-            margin="normal">
-              {this.genderList.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-         
-        </Grid>
-       
-        <Grid item lg={3} className="paddingH">
-         
-         <Typography variant="h6"> Address   </Typography>
-           
-         <TextValidator
-            fullWidth 
-            id="address"
-            label="Address"
-            value={this.state.address}
-            validators={['required']}
-            errorMessages={['Address is required']}
-            onChange={(e) => this.setState({ address: e.target.value })}
-            margin="normal">
-           </TextValidator>
-        
-        <TextValidator
-         fullWidth 
-         id="city"
-         select
-         label="City"
-         value={this.state.city}
-         validators={['required']}
-         errorMessages={['citizenship is required']}
-         onChange={(e) => this.setState({ city: e.target.value })}
-         margin="normal">
-               {this.cities.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-
-        <TextValidator
-         fullWidth 
-         id="state"
-         select
-         label="State"
-         value={this.state.state}
-         validators={['required']}
-         errorMessages={['State is required']}
-       
-         onChange={(e) => this.setState({ state: e.target.value })}
-         margin="normal">
-               {this.states.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-
-        <TextValidator
-         fullWidth 
-         id="country"
-         select
-         label="Country"
-         value={this.state.country}
-         validators={['required']}
-         errorMessages={['country is required']}
-         onChange={(e) => this.setState({ country: e.target.value })}
-         margin="normal">
-               {this.countries.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-       
-        </Grid>
-
-        <Grid item lg={3} className="paddingH">
-         
-         <Typography variant="h6"> Current suitation   </Typography>
-           
-         <TextValidator
-            fullWidth
-              id="currentEmployer"
-              label="Current employer"
-              margin="normal"
-              name="currentEmployer"
-              onChange={(e) => this.setState({ currentEmployer: e.target.value })}
-              value={this.state.currentEmployer}
-            />
-
-          <TextValidator
-            fullWidth
-              id="primarySkill"
-              label="Primary skill"
-              margin="normal"
-              name="primarySkill"
-              onChange={(e) => this.setState({ primarySkill: e.target.value })}
-              value={this.state.primarySkill}
-            />
-
-          <div className="paddingT"><InputRange
-              maxValue={20}
-              step={1}
-              minValue={0}
-              formatLabel={value => `${value}yrs`}
-              value={this.state.workExperienceRange}
-              onChange={value => this.setState({ workExperienceRange: value })}
-              onChangeComplete={value => console.log(value)} />
-            </div>
-        
-      
             <div className="paddingT"><InputRange
-              maxValue={120000}
-              step={5000}
-              minValue={40000}
-              formatLabel={value => `$${value}`}
-              value={this.state.salaryRange}
-              onChange={value => this.setState({ salaryRange: value })}
-              onChangeComplete={value => console.log(value)} />
-            </div>
-
-     </Grid>
-
-        <Grid item lg={3} className="paddingH">
-         
-         <Typography variant="h6"> Background   </Typography>
-           
-        <TextValidator
-         fullWidth 
-         id="ethnicity"
-         select
-         label="Ethnicity"
-         value={this.state.ethnicity}
-         validators={['required']}
-         errorMessages={['ethnicity is required']}
+                maxValue={20}
+                step={1}
+                minValue={0}
+                formatLabel={value => `${value}yrs`}
+                value={this.state.workExperienceRange}
+                onChange={value => this.setState({ workExperienceRange: value })}
+                onChangeComplete={value => console.log(value)} />
+              </div>
+          
         
-         onChange={(e) => this.setState({ ethnicity: e.target.value })}
-         margin="normal">
-               {this.state.ethnicityList.length > 0 &&
-               this.state.ethnicityList.map(option => (
-                 <MenuItem key={option.id} value={option.label}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-        
-        <TextValidator
-         fullWidth 
-         id="citizenship"
-         select
-         label="Citizenship"
-         value={this.state.citizenship}
-         validators={['required']}
-         errorMessages={['citizenship is required']}
-       
-         onChange={(e) => this.setState({ citizenship: e.target.value })}
-         margin="normal">
-               {this.state.citizenshipList.length > 0 &&
-                 this.state.citizenshipList.map(option => (
-                 <MenuItem key={option.id} value={option.label}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-      
+              <div className="paddingT"><InputRange
+                maxValue={120000}
+                step={500}
+                minValue={10000}
+                formatLabel={value => `$${value}`}
+                value={this.state.salaryRange}
+                onChange={value => this.setState({ salaryRange: value })}
+                onChangeComplete={value => console.log(value)} />
+              </div>
 
-        <TextValidator
-         fullWidth 
-         id="workStatus"
-         select
-         label="Work status"
-         value={this.state.workStatus}
-         validators={['required']}
-         errorMessages={['Work status is required']}
-       
-         onChange={(e) => this.setState({ workStatus: e.target.value })}
-         margin="normal">
-               {this.state.workStatusList.length > 0 &&
-                 this.state.workStatusList.map(option => (
-                 <MenuItem key={option.id} value={option.label}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-
-        <TextValidator
-         fullWidth 
-         id="source"
-         select
-         label="Source"
-         value={this.state.source}
-         validators={['required']}
-         errorMessages={['sources is required']}
-        
-         onChange={(e) => this.setState({ source: e.target.value })}
-         margin="normal">
-               {this.sourceList.map(option => (
-                 <MenuItem key={option.value} value={option.value}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-        </TextValidator>
-
-     </Grid>
-     <Grid container spacing={24} >
-      <Divider />
-          <Grid item xs={12}>
-              <Button variant="contained" color="primary" type="submit" > Next</Button>
-          </Grid>
       </Grid>
+
+          <Grid item lg={3} className="paddingH">
+          
+          <Typography variant="h6"> Background   </Typography>
+            
+          <TextValidator
+          fullWidth 
+          id="ethnicity"
+          select
+          label="Ethnicity"
+          value={this.state.ethnicity}
+          validators={['required']}
+          errorMessages={['ethnicity is required']}
+          
+          onChange={(e) => this.setState({ ethnicity: e.target.value })}
+          margin="normal">
+                {this.state.ethnicityList.length > 0 &&
+                this.state.ethnicityList.map(option => (
+                  <MenuItem key={option.id} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+          
+          <TextValidator
+          fullWidth 
+          id="citizenship"
+          select
+          label="Citizenship"
+          value={this.state.citizenship}
+          validators={['required']}
+          errorMessages={['citizenship is required']}
+        
+          onChange={(e) => this.setState({ citizenship: e.target.value })}
+          margin="normal">
+                {this.state.citizenshipList.length > 0 &&
+                  this.state.citizenshipList.map(option => (
+                  <MenuItem key={option.id} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+        
+
+          <TextValidator
+          fullWidth 
+          id="workStatus"
+          select
+          label="Work status"
+          value={this.state.workStatus}
+          validators={['required']}
+          errorMessages={['Work status is required']}
+        
+          onChange={(e) => this.setState({ workStatus: e.target.value })}
+          margin="normal">
+                {this.state.workStatusList.length > 0 &&
+                  this.state.workStatusList.map(option => (
+                  <MenuItem key={option.id} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+
+          <TextValidator
+          fullWidth 
+          id="source"
+          select
+          label="Source"
+          value={this.state.source}
+          validators={['required']}
+          errorMessages={['sources is required']}
+          
+          onChange={(e) => this.setState({ source: e.target.value })}
+          margin="normal">
+                {this.sourceList.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+
+      </Grid>
+          
+          <Grid item lg={12} style={{textAlign:"center", padding:10}}>
+                    <Divider style={{margin:10}}/>
+                    <Button variant="contained" color="primary" type="submit"> Next</Button>
+          </Grid>
+           
+        
         </Grid>
+
       </ValidatorForm>
     );
   }

@@ -103,8 +103,8 @@ export default class Recruitment extends React.Component {
 
   render() {
 
-
-    return (<ValidatorForm
+    return (
+    <ValidatorForm
       ref="form"
       onSubmit={this.handleSubmit}
       onError={errors => console.log(errors)}
@@ -115,7 +115,10 @@ export default class Recruitment extends React.Component {
           <Typography variant="h5" component="h3" > Recruitment   </Typography>
           <TextValidator
             id="recruiter"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['Recruiter is required']}
             label="CV Recruiter"
             value={this.state.recruiter}
             margin="normal"
@@ -126,11 +129,15 @@ export default class Recruitment extends React.Component {
                 {option.label}
               </MenuItem>
             ))}
+           
           </TextValidator>
 
           <TextValidator
             id="cre"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['CRE is required']}
             label="CRE"
             value={this.state.cre}
             margin="normal"
@@ -145,7 +152,10 @@ export default class Recruitment extends React.Component {
 
           <TextValidator
             id="manager"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['Account manager is required']}
             label="Account manager"
             value={this.state.accountManager}
             margin="normal" 
@@ -160,7 +170,10 @@ export default class Recruitment extends React.Component {
 
           <TextValidator
             id="countryManager"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['Country manager is required']}
             label="Country manager"
             value={this.state.countryManager}
             margin="normal"
@@ -175,11 +188,14 @@ export default class Recruitment extends React.Component {
 
         </Grid>
 
-        <Grid item xs={4} className="paddingH">
+        <Grid item lg={4} className="paddingH">
           <Typography variant="h5" component="h3" > Team details   </Typography>
           <TextValidator
             id="accountDirector"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['Account director is required']}
             label="Account director"
             value={this.state.accountDirector}
             margin="normal"
@@ -195,7 +211,10 @@ export default class Recruitment extends React.Component {
 
           <TextValidator
             id="team"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['Team is required']}
             label="Team"
             margin="normal"
             value={this.state.team}
@@ -210,7 +229,10 @@ export default class Recruitment extends React.Component {
 
           <TextValidator
             id="geo"
-            select fullWidth
+            select 
+            fullWidth
+            validators={['required']}
+            errorMessages={['Geo is required']}
             label="Geo"
             value={this.state.geo}
             onChange={(e) => this.setState({ geo: e.target.value })}
@@ -224,13 +246,15 @@ export default class Recruitment extends React.Component {
 
         </Grid>
 
-        <Grid item xs={4} className="paddingH">
+        <Grid item lg={4} className="paddingH">
 
           <Typography variant="h5" component="h3" >Commision details   </Typography>
 
           <TextValidator
             id="commissionAmount"
             fullWidth
+            validators={['required','isNumber']}
+            errorMessages={['Commission amount is required','Should be number']}
             label="Commission amount"
             value={this.state.commissionAmount}
             onChange={(e) => this.setState({ commissionAmount: e.target.value })}
@@ -241,6 +265,8 @@ export default class Recruitment extends React.Component {
             id="commissionStatus"
             fullWidth
             label="Commission status"
+            validators={['required']}
+            errorMessages={['Commission amount is required']}
             value={this.state.commissionStatus}
             onChange={(e) => this.setState({ commissionStatus: e.target.value })}
             margin="normal" >
@@ -260,6 +286,8 @@ export default class Recruitment extends React.Component {
             id="netRevenue"
             fullWidth
             label="Net revenue"
+            validators={['required','isNumber']}
+            errorMessages={['Net revenue is required','Should be number']}
             onChange={(e) => this.setState({ netRevenue: e.target.value })}
             value={this.state.netRevenue}
             margin="normal" >
@@ -267,19 +295,20 @@ export default class Recruitment extends React.Component {
 
         </Grid>
 
-
-        <Grid container spacing={24} >
-          <Divider />
-          <Grid item xs={12}>
-            <Button onClick={this.handleBack}> Back  </Button>
-            <Button variant="contained" color="primary" type="submit" > Next</Button>
-          </Grid>
+        <Grid item lg={12} style={{textAlign:"center", padding:10}}>
+            
+                <Divider style={{margin:10}}/>
+                <Button onClick={this.handleBack}> Back  </Button>
+                <Button variant="contained" color="primary" type="submit" > Next</Button>
+           
         </Grid>
-
+     
       </Grid>
 
 
     </ValidatorForm>);
   }
 };
+
+
 

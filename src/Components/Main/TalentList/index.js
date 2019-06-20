@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { connect } from "react-redux";
-import {setSnackBar} from "../../../Redux/Actions";
+import { setSnackBar } from "../../../Redux/Actions";
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -23,13 +23,14 @@ import ListIcon from '@material-ui/icons/ViewList';
 import Edit from '@material-ui/icons/Edit';
 
 import env from '../../../environment.json';
+import Grid from '@material-ui/core/Grid';
 
 export class TalentList extends React.Component {
 
 	constructor(props) {
 		super(props);
-		
-		this.handleSnakBarClose= this.handleSnakBarClose.bind(this);
+
+		this.handleSnakBarClose = this.handleSnakBarClose.bind(this);
 
 		this.state = {
 			activeStep: 0,
@@ -55,15 +56,15 @@ export class TalentList extends React.Component {
 	}
 
 
-	handleSnakBarClose(){
-		this.setState({ showSnackBar:false,snackBarMessage:"" });
-	  }
-
-	editDetails(details){
-		this.props.history.push('/details', { details:details });
+	handleSnakBarClose() {
+		this.setState({ showSnackBar: false, snackBarMessage: "" });
 	}
 
-	deleteRecord(details){
+	editDetails(details) {
+		this.props.history.push('/details', { details: details });
+	}
+
+	deleteRecord(details) {
 
 		axios({
 			method: 'post',
@@ -71,32 +72,31 @@ export class TalentList extends React.Component {
 			data: {
 				UserId: localStorage.getItem('UserId'),
 				UserGroup: localStorage.getItem('UserGroup'),
-				id:details.ID
+				id: details.ID
 			}
 		})
 			.then(response => {
-				this.state.detailData = this.state.detailData.filter(d=>d.ID !== details.ID);
-				this.setState({ detailData: this.state.detailData});
-				this.props.setSnackBar({show:true,message:"Record deleted sucessfully."});
+				this.state.detailData = this.state.detailData.filter(d => d.ID !== details.ID);
+				this.setState({ detailData: this.state.detailData });
+				this.props.setSnackBar({ show: true, message: "Record deleted sucessfully." });
 			})
 			.catch(function (error) {
 				console.log(error);
 			});
-			
+
 	}
 
 	render() {
 
 		return (
 			<div>
-				 <div className="subHeading">
-          <ListIcon className="dashboard"/>
-          <Typography className="title" variant="subtitle1" noWrap> Candidate List</Typography>
-        </div>
-				{this.state.detailData.map(detail => {
-					return <div key={detail.ID}>
-						
-						<Card className="talentRecord" style={{ margin: 10 }}>
+				<Grid container spacing={24} className="mainContent">
+					<div className="subHeading">
+						<ListIcon className="dashboard" />
+						<Typography className="title" variant="subtitle1" noWrap> Candidate List</Typography>
+					</div>
+					{this.state.detailData.map(detail => {
+						return <Card key={detail.ID} className="talentRecord" style={{ margin: 10, width: "100%" }}>
 							<CardHeader
 								avatar={
 									<Avatar>
@@ -105,8 +105,8 @@ export class TalentList extends React.Component {
 								}
 								action={
 									<div>
-											<IconButton onClick={()=>{this.editDetails(detail)}}><Edit /></IconButton>
-											<IconButton onClick={()=>{this.deleteRecord(detail)}}> <DeleteIcon/></IconButton>
+										<IconButton onClick={() => { this.editDetails(detail) }}><Edit /></IconButton>
+										<IconButton onClick={() => { this.deleteRecord(detail) }}> <DeleteIcon /></IconButton>
 									</div>
 								}
 								title={detail.firstName + " " + detail.lastName + " - " + detail.jobTitle}
@@ -196,10 +196,10 @@ export class TalentList extends React.Component {
 								<Chip label={detail.team} color="primary" variant="outlined" />
 							</CardActions>
 						</Card>
-					</div>
-				})}
 
+					})}
 
+				</Grid>
 			</div>
 		);
 	}
@@ -207,14 +207,14 @@ export class TalentList extends React.Component {
 
 const mapStateToProps = state => {
 	return { snackBar: state.snackBar };
-  };
-  
-  const mapDispatchToProps = dispatch => {
+};
+
+const mapDispatchToProps = dispatch => {
 	return {
-	  setSnackBar: (obj)=> dispatch(setSnackBar(obj))
+		setSnackBar: (obj) => dispatch(setSnackBar(obj))
 	};
-  };
-  
-  
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(TalentList);
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TalentList);

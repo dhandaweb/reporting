@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import MainRoutes from './MainRoutes';
 import Grid from '@material-ui/core/Grid';
 import Header from './Header';
-import Footer from './Footer';
+
 
 export default class Main extends React.Component {
   render() {
@@ -14,7 +14,7 @@ export default class Main extends React.Component {
       <Grid container direction="row-reverse" justify="space-evenly" >
       <MainRoutes/>
     </Grid>
-     <Footer/>
+    
      </div>
     );
   }

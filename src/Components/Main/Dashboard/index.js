@@ -19,21 +19,15 @@ import DotPlot from './DotPlot';
 import TableChart from './TableChart';
 import IconCard from './IconCard';
 import axios from 'axios';
-import AppBar from '@material-ui/core/AppBar';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import env from '../../../environment.json';
 
 export default class Dashboard extends React.Component {
-
-
 
   constructor(props) {
     super(props);
 
-
     this.getChart = this.getChart.bind(this);
-
-
-
 
     this.state = {
       dashboardData: []
@@ -43,7 +37,7 @@ export default class Dashboard extends React.Component {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8080/api/getDetails',
+      url: env.endPointUrl + 'getDetails',
       data: {
         UserId: localStorage.getItem('UserId'),
         UserGroup: localStorage.getItem('UserGroup')
@@ -245,9 +239,9 @@ export default class Dashboard extends React.Component {
             <div className="progress"> <LinearProgress color="secondary"/> </div>
         }
 
-        {this.state.dashboardData.map(item => {
+        {this.state.dashboardData.map((item,i) => {
 
-            return <Grid item xs={item.gridSize}>
+            return <Grid item xs={item.gridSize} key={i}>
                 <Card >
                   <CardContent>
                     <Typography color="textSecondary" gutterBottom> {item.title}</Typography>

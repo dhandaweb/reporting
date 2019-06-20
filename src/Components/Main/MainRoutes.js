@@ -7,12 +7,7 @@ import TalentList from './TalentList';
 import Users from './Users';
 import Option from './Option';
 import Grid from '@material-ui/core/Grid';
-import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
-
-
-import Button from '@material-ui/core/Button';
+import Footer from './Footer';
 
 
 
@@ -21,8 +16,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ListIcon from '@material-ui/icons/ViewList';
@@ -31,10 +25,15 @@ import SettingIcon from '@material-ui/icons/Settings';
 
 
 export default class VisualRoutes extends React.Component {
+ 
+  
+
   render() {
+    var h = window.innerHeight -64;
+
     return (
       <Router>
-        <Grid  style={{ padding: 0 }} container justify="space-evenly" >
+        <Grid  style={{ padding: 0, height:h }} container justify="space-evenly" >
           <Grid  xs={12} lg={2} md={2} sm={12} item className="sideBar" >
             <List
                   component="nav"
@@ -56,14 +55,14 @@ export default class VisualRoutes extends React.Component {
               <ListItemIcon>
                 <ListIcon />
               </ListItemIcon>
-              <ListItemText primary="Talent list" />
+              <ListItemText primary="Candidate list" />
             </ListItem>
           
             <ListItem button component={Link} to="/details">
               <ListItemIcon>
                 <AddIcon />
               </ListItemIcon>
-              <ListItemText primary="Add Talent" />
+              <ListItemText primary="Add candidate" />
             </ListItem>
           
           
@@ -81,7 +80,7 @@ export default class VisualRoutes extends React.Component {
               <ListItemText primary="Admin" />
             </ListItem>
           </List>
-           
+         
           </Grid>
 
           <Grid xs={12} lg={10} md={10} sm={12} style={{ background: "#f5f5f5" }} item className="mainContent">
@@ -92,6 +91,7 @@ export default class VisualRoutes extends React.Component {
               <Route exact path="/Option" component={Option} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/profile" component={Profile} />
+              <Footer/>
           </Grid>
         </Grid>
       </Router>

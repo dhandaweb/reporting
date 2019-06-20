@@ -7,14 +7,6 @@ import SignIn from './SignIn';
 
 import StatusBar from './StatusBar';
 
-const styles = {
-  subHeader: {
-    background: '#f3f3f3',
-    padding: '10px',
-  },
-
-};
-
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -25,11 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 
-
-
 export default class Routes extends React.Component {
-
-
 
   constructor(props) {
     super(props);
@@ -46,18 +34,16 @@ export default class Routes extends React.Component {
       <Router>
         <div>
           <StatusBar/>
-          <Route exact path="/" component={Main} />
           <Route exact path="/signin" component={SignIn} />
+          <PrivateRoute exact path="/" component={Main} />
           
           <PrivateRoute path='/dashboard' component={Main} />
           <PrivateRoute path='/details' component={Main} />
           <PrivateRoute path='/list' component={Main} />
+        
+          <PrivateRoute exact path="/users" component={Main} />
           <PrivateRoute path='/Option' component={Main} />
           <PrivateRoute path="/profile" component={Main} />
-          
-          {/* <Route exact path="/dashboard" component={Main} />
-          <Route exact path="/details" component={Main} /> */}
-        
         </div>
       </Router>
     )
