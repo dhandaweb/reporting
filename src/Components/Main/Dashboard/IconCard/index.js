@@ -26,12 +26,12 @@ constructor(props) {
     // this.state = {
     //     chartContainer:null
     //   };
-  this.getIcon = this.getIcon.bind(this);
+      this.getIcon = this.getIcon.bind(this);
       this.chartId =  'Table' + Math.floor(Math.random() * 1000000000);
       this.chartContainer = null;
 
       
-     
+     console.log("drawing icon");
 
     }
 

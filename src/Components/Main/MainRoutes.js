@@ -134,7 +134,7 @@ export class VisualRoutes extends React.Component {
                         </NavItem>
                        
 
-                        <NavItem eventKey="list" component={Link} to="/list">
+                        <NavItem eventKey="list">
                             <NavIcon>
                             <ListIcon style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
                             </NavIcon>
@@ -143,7 +143,7 @@ export class VisualRoutes extends React.Component {
                             </NavText>
                         </NavItem>
 
-                        <NavItem eventKey="details" component={Link} to="/details">
+                        <NavItem eventKey="details">
                             <NavIcon>
                             <AddIcon style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
                             </NavIcon>
@@ -152,7 +152,7 @@ export class VisualRoutes extends React.Component {
                             </NavText>
                         </NavItem>
 
-                        <NavItem eventKey="users" component={Link} to="/users">
+                        <NavItem eventKey="users">
                             <NavIcon>
                             <AccountCircle style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
                             </NavIcon>
@@ -161,7 +161,7 @@ export class VisualRoutes extends React.Component {
                             </NavText>
                         </NavItem>
 
-                        <NavItem eventKey="Option" component={Link} to="/Option">
+                        <NavItem eventKey="Option">
                             <NavIcon>
                             <SettingIcon style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
                             </NavIcon>

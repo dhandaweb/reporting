@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-
+import Filters from './Filters';
 import PieChart from './PieChart';
 import BarChart from './BarChart';
 import VerticalBar from './VerticalBar';
@@ -28,12 +28,15 @@ export default class Dashboard extends React.Component {
     super(props);
 
     this.getChart = this.getChart.bind(this);
+    this.setFilter = this.setFilter.bind(this);
+    this.getDashboardData = this.getDashboardData.bind(this);
 
     this.state = {
-      dashboardData: []
+      dashboardData: [], 
+      filterData:[]
     };
 
-
+    this.dashboardData =[];
 
     axios({
       method: 'post',
@@ -45,7 +48,9 @@ export default class Dashboard extends React.Component {
     })
       .then(response => {
         this.setState({ detailData: response.data });
+        this.dashboardData =response.data;
         this.getDashboardData(response.data);
+        this.getFilterData(response.data);
 
       })
       .catch(function (error) {
@@ -53,7 +58,7 @@ export default class Dashboard extends React.Component {
       });
 
 
-
+      this.updatedChart = React.createRef();
   }
 
 
@@ -89,7 +94,7 @@ export default class Dashboard extends React.Component {
 
   getDashboardData(data) {
     var dashboardData = [];
-    console.log(data);
+    this.setState({ dashboardData: dashboardData });
 
     dashboardData.push({
       title: "Total Revenue Amount",
@@ -189,6 +194,25 @@ export default class Dashboard extends React.Component {
     });
 
     this.setState({ dashboardData: dashboardData });
+   
+  }
+
+  getFilterData(data) {
+    var filterData = [];
+    
+    filterData.push({
+      title: "firstName",
+      filterKey:"firstName",
+      data: this.getGroupedData("firstName", data)
+    });
+
+    filterData.push({
+      title: "Job category",
+      filterKey:"jobCategory",
+      data: this.getGroupedData("jobCategory", data)
+    });
+
+    this.setState({ filterData: filterData });
 
   }
 
@@ -221,6 +245,25 @@ export default class Dashboard extends React.Component {
     });
   }
 
+  setFilter(){
+      var found= false;
+      
+      var updatedData = this.dashboardData.filter(item=>{
+        found = false;
+        this.state.filterData.forEach(filter => {
+          if(item[filter.filterKey]){
+             var vals = filter.data.filter(d=> d.isSelected).map(d=> d.key);
+             if(vals.indexOf(item[filter.filterKey]) > -1) found = true;
+          }
+        });
+
+        return !found;
+      });
+
+      this.getDashboardData(updatedData);
+
+  }
+
   render() {
     return (
       <div>
@@ -229,6 +272,10 @@ export default class Dashboard extends React.Component {
         <div className="subHeading">
             <DashboardIcon className="dashboard"/>
             <Typography className="title" variant="subtitle1" noWrap> Dashboard</Typography>
+
+            {this.state.filterData.map((item,i) => { return <Filters key={i} data={item} setFilter={this.setFilter}/>})}
+
+            
         </div>
 
         {this.state.dashboardData.length === 0 &&

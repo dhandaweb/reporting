@@ -69,13 +69,17 @@ componentDidMount() {
     window.addEventListener("resize", this.drawChart);
 }
 
+componentDidUpdate(){
+  this.drawChart();
+}
+
 render() {
    
     return (
       <div id={this.chartId}>
         <Table>
           <TableBody>
-            {this.rawData.map((row,i) => (
+            {this.props.data.map((row,i) => (
               <TableRow key={i}>
                 <TableCell component="th" scope="row">
                   {row.Group.formattedVal}

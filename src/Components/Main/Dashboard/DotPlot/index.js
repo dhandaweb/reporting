@@ -27,17 +27,19 @@ constructor(props) {
         { Measure: { value: 60000, formattedVal: "$50k" }, Dimension: { value: "Four", formattedVal: "Four" }, Group: { value: "Group2", formattedVal: "Group2" }},
       ];
       
-      this.rawData = this.props.data;
-      this.chartData = d3.nest()
-                .key(d=> d.Group.value)
-                .entries(this.rawData);
-
-      this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
+    
     }
 
 
 drawChart(){
 
+  this.rawData = this.props.data;
+  this.chartData = d3.nest()
+            .key(d=> d.Group.value)
+            .entries(this.rawData);
+
+  this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
+  
     var valData = this.rawData.map(d=>d.Measure.value);
 
     var chartId =  '#' + this.chartId;
@@ -122,7 +124,9 @@ var content = d.Dimension.value + ": " +  d.Measure.formattedVal
                        
                   
 }
-
+componentDidUpdate(){
+  this.drawChart();
+}
 componentDidMount() {
     this.drawChart();
     window.addEventListener("resize", this.drawChart);

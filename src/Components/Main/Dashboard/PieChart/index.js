@@ -18,16 +18,16 @@ export default class PieChart extends React.Component {
         this.chartId = 'pieChart' + Math.floor(Math.random() * 1000000000);
         this.chartContainer = null;
 
-        this.colorRange = Options.colorRange;
-        this.chartData = this.props.data;
-        this.colorPallete = d3.scaleOrdinal()
-            .range(this.colorRange);
+      
     }
 
 
     drawChart() {
 
-        console.log(this.chartData);
+        this.chartData = this.props.data;
+
+        this.colorPallete = d3.scaleOrdinal()
+                                .range(Options.colorRange);
 
         var chartId = '#' + this.chartId;
         d3.select(chartId).selectAll("svg").remove();
@@ -88,6 +88,11 @@ export default class PieChart extends React.Component {
 
 
     }
+
+    componentDidUpdate(){
+        this.drawChart();
+    }
+
     componentDidMount() {
         this.drawChart();
         window.addEventListener("resize", this.drawChart);
@@ -95,9 +100,9 @@ export default class PieChart extends React.Component {
 
     render() {
 
-        var legend = this.chartData.map((item,i)=>{
+        var legend =  this.props.data.map((item,i)=>{
             return  <div key={i} className="legendItem">
-            <div className="legendIcon" style={{background:this.colorRange[i]}}></div>
+            <div className="legendIcon" style={{background:Options.colorRange[i]}}></div>
             <div className="legendText"><Typography color="textSecondary" gutterBottom> {item.Dimension.value}</Typography></div>
         </div>
         });
