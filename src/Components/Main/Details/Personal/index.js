@@ -135,7 +135,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
         >
         <Grid container >
 
-          <Grid item lg={3} className="paddingH">
+          <Grid item lg={3} sm={12} className="paddingH">
           
               <Typography variant="h6"> Personal   </Typography>
             
@@ -197,7 +197,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
           
           </Grid>
         
-          <Grid item lg={3} className="paddingH">
+          <Grid item lg={3} sm={12} className="paddingH">
           
           <Typography variant="h6"> Address   </Typography>
             
@@ -266,7 +266,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
         
           </Grid>
 
-          <Grid item lg={3} className="paddingH">
+          <Grid item lg={3} sm={12} className="paddingH">
           
           <Typography variant="h6"> Current suitation   </Typography>
             
@@ -313,7 +313,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
       </Grid>
 
-          <Grid item lg={3} className="paddingH">
+          <Grid item lg={3} sm={12} className="paddingH">
           
           <Typography variant="h6"> Background   </Typography>
             

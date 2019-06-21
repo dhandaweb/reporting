@@ -111,7 +111,7 @@ export default class Recruitment extends React.Component {
     >
       <Grid container >
 
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
           <Typography variant="h5" component="h3" > Recruitment   </Typography>
           <TextValidator
             id="recruiter"
@@ -188,7 +188,7 @@ export default class Recruitment extends React.Component {
 
         </Grid>
 
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
           <Typography variant="h5" component="h3" > Team details   </Typography>
           <TextValidator
             id="accountDirector"
@@ -246,7 +246,7 @@ export default class Recruitment extends React.Component {
 
         </Grid>
 
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
 
           <Typography variant="h5" component="h3" >Commision details   </Typography>
 

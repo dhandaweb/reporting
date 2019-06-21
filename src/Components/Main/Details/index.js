@@ -289,7 +289,7 @@ export class Details extends React.Component {
             <AddIcon className="dashboard" />
             <Typography className="title" variant="subtitle1" noWrap> Add candidate</Typography>
           </div>
-          <div style={{ padding: 10 }}>
+          <div style={{ padding: 15, width:'100%' }}>
             <Stepper activeStep={this.state.activeStep} alternativeLabel >
               {this.steps.map(label => (
                 <Step key={label}>

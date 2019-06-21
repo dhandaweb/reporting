@@ -72,7 +72,7 @@ export default class Billing extends React.Component {
       onError={errors => console.log(errors)}
     >
      <Grid container >
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
         <Typography variant="h5" component="h3" > Invoice   </Typography>
         <TextValidator
             fullWidth 
@@ -124,7 +124,7 @@ export default class Billing extends React.Component {
 
         </Grid>
         
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
         <Typography variant="h5" component="h3" > Billing   </Typography>
         <TextValidator
               fullWidth 
@@ -176,7 +176,7 @@ export default class Billing extends React.Component {
             
         </Grid>
 
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
         <Typography variant="h5" component="h3" > Order   </Typography>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker margin="normal" fullWidth label="Order book date" 

@@ -109,7 +109,7 @@ getOption(i) {
     >
     <Grid container >
 
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
           
               <Typography variant="h5" component="h3" > Client details   </Typography>
 
@@ -186,7 +186,7 @@ getOption(i) {
 
           </Grid>
 
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
           
           <Typography variant="h5" component="h3" > Job Address   </Typography>
             
@@ -255,7 +255,7 @@ getOption(i) {
         
           </Grid>
         
-        <Grid item lg={4} className="paddingH">
+        <Grid item lg={4} sm={12} className="paddingH">
           
           <Typography variant="h5" component="h3" > Job dates   </Typography>
             

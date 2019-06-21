@@ -63,11 +63,10 @@ render() {
         <Table>
           <TableBody>
               <TableRow>
-                <TableCell>
+                <TableCell style={{padding:0}}>
                 {this.getIcon()}
                 </TableCell>
-                <TableCell>
-                  {/* <h3>{this.props.title}</h3> */}
+                <TableCell style={{padding:0}}>
                   <h2>{this.props.data.value}</h2>
                 </TableCell>
               </TableRow>

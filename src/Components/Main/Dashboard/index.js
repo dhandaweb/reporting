@@ -95,80 +95,77 @@ export default class Dashboard extends React.Component {
       title: "Total Revenue Amount",
       data: { icon: "money", value: d3.sum(data.map(d => d.revenueAmount)), color: "primary" },
       chart: "IconCard",
-      gridSize: 3
-    }
-    );
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
 
     dashboardData.push({
       title: "Net Revenue Amount",
       data: { icon: "money", value: d3.sum(data.map(d => d.netRevenue)), color: "secondary" },
       chart: "IconCard",
-      gridSize: 3
-    }
-    );
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
 
     dashboardData.push({
       title: "Total Billing Amount",
       data: { icon: "money", value: d3.sum(data.map(d => d.billingAmount)), color: "error" },
       chart: "IconCard",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
-
 
     dashboardData.push({
       title: "Commision Amount",
       data: { icon: "money", value: d3.sum(data.map(d => d.commissionAmount)), color: "error" },
       chart: "IconCard",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Top cities",
       data: this.getFormattedData(this.getGroupedData("city", data)),
       chart: "PieChart",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Top sources",
       data: this.getFormattedData(this.getGroupedData("source", data)),
       chart: "VerticalBar",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Top Job category",
       data: this.getFormattedData(this.getGroupedData("jobCategory", data)),
       chart: "VerticalBar",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Job Types",
       data: this.getFormattedData(this.getGroupedData("jobType", data)),
       chart: "AreaChart",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Job Types",
       data: this.getFormattedData(this.getGroupedData("jobType", data)),
       chart: "BarChart",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Job Types",
       data: this.getFormattedData(this.getGroupedData("jobCategory", data)),
       chart: "LineChart",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
     
     dashboardData.push({
       title: "Job Types",
       data: this.getFormattedData(this.getGroupedData("jobType", data)),
       chart: "AreaChart",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
@@ -181,14 +178,14 @@ export default class Dashboard extends React.Component {
         };
       }),
       chart: "DotPlot",
-      gridSize: 3
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Top candidates",
       data: this.getFormattedTableData(data),
       chart: "TableChart",
-      gridSize: 6
+      gridSize: {xl:6, lg:6, md:6, sm:12, xs:12}
     });
 
     this.setState({ dashboardData: dashboardData });
@@ -213,7 +210,6 @@ export default class Dashboard extends React.Component {
     });
   }
 
-
   getFormattedTableData(data) {
 
     return data.map(d => {
@@ -231,8 +227,8 @@ export default class Dashboard extends React.Component {
         <Grid container spacing={24} className="mainContent">
 
         <div className="subHeading">
-        <DashboardIcon className="dashboard"/>
-        <Typography className="title" variant="subtitle1" noWrap> Dashboard</Typography>
+            <DashboardIcon className="dashboard"/>
+            <Typography className="title" variant="subtitle1" noWrap> Dashboard</Typography>
         </div>
 
         {this.state.dashboardData.length === 0 &&
@@ -241,7 +237,7 @@ export default class Dashboard extends React.Component {
 
         {this.state.dashboardData.map((item,i) => {
 
-            return <Grid item xs={item.gridSize} key={i}>
+            return <Grid item xl ={item.gridSize.xl} lg={item.gridSize.lg} md={item.gridSize.md} sm={item.gridSize.sm} xs={item.gridSize.xs} key={i}>
                 <Card >
                   <CardContent>
                     <Typography color="textSecondary" gutterBottom> {item.title}</Typography>

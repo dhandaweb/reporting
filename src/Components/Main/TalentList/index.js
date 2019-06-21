@@ -13,7 +13,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
 
 import Chip from '@material-ui/core/Chip';
 import Moment from 'react-moment';
@@ -21,9 +20,14 @@ import Moment from 'react-moment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListIcon from '@material-ui/icons/ViewList';
 import Edit from '@material-ui/icons/Edit';
+import GroupWorkIcon from '@material-ui/icons/GroupWork';
 
 import env from '../../../environment.json';
 import Grid from '@material-ui/core/Grid';
+
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+
 
 export class TalentList extends React.Component {
 
@@ -95,9 +99,13 @@ export class TalentList extends React.Component {
 						<ListIcon className="dashboard" />
 						<Typography className="title" variant="subtitle1" noWrap> Candidate List</Typography>
 					</div>
+					{this.state.detailData.length === 0 &&
+           						 <div className="progress"> <LinearProgress color="secondary"/> </div>
+        			}
+
 					{this.state.detailData.map(detail => {
 						return <Card key={detail.ID} className="talentRecord" style={{ margin: 10, width: "100%" }}>
-							<CardHeader
+							<CardHeader style={{ paddingBottom: 0}}
 								avatar={
 									<Avatar>
 										{detail.firstName[0]}
@@ -118,82 +126,19 @@ export class TalentList extends React.Component {
 									Presented to {detail.hiringManager} on  {detail.jobType} basis for {detail.jobCategory} with joining date <Moment format={env.timeFormat}>{detail.jobOpenedDate}</Moment>  at  {detail.address}, {detail.city} {detail.state} {detail.country}
 								</Typography>
 								<Typography variant="body2" component="p">
-									to {detail.client} for role of {detail.jobTitle}
+									at {detail.client} for role of {detail.jobTitle}
 								</Typography>
 								<Typography variant="body2" component="p"> with commision amount : ${detail.commissionAmount}  {detail.offerStatus} on <Moment format={env.timeFormat}>{detail.commissionDate}</Moment>
 								</Typography>
-
-								<Typography color="textSecondary" gutterBottom>
-
-								</Typography>
-
-								<Typography className="card-title" color="textSecondary" gutterBottom>
-
-									{/* {detail.gender}<br />
-							        {detail.ethnicity}<br />
-							        {detail.citizenship}<br />
-							        {detail.workStatus}<br />
-							        {detail.primarySkill}<br />
-							        <br />
-							        {detail.currentEmployer}<br />
-							        {detail.salaryMin}<br />
-							        {detail.salaryMax}<br />
-							        {detail.address}<br />
-							        {detail.city}<br />
-							        {detail.state}<br />
-							        {detail.country}<br />
-							        
-							        {detail.client}<br />
-							        <br />
-							        {detail.jobTitle}<br />
-							       <br />
-							        <br />
-							       
-							        {detail.jobAddress}<br />
-							        {detail.jobCity}<br />
-							        {detail.jobState}<br />
-							        {detail.jobCountry}<br />
-							        
-							        <br />
-							        {detail.cvSubmissionDate}<br />
-							        {detail.offerStatus}<br />
-							        {detail.offerDate}<br />
-							        {detail.joiningDate}<br />
-							        
-
-							        {detail.recruiter}<br />
-							        {detail.cre}<br />
-							        {detail.accountManager}<br />
-							        {detail.accountDirector}<br />
-							        {detail.countryManager}<br />
-							        {detail.team}<br />
-							        {detail.geo}<br />
-
-							        {detail.commissionAmount}<br />
-							        {detail.commissionStatus}<br />
-							        {detail.commissionDate}<br />
-							        {detail.netRevenue}<br />
-
-							        {detail.pipelineType}<br />
-							        {detail.invoiceType}<br />
-							        {detail.invoiceNo}<br />
-							        {detail.billingAmount}<br />
-							        {detail.gst}<br />
-							        {detail.invoiceAmount}<br />
-							        {detail.orderBookAmount}<br />
-							        {detail.orderBookDate}<br />
-							        {detail.revenueRealizationDate}<br />
-							        {detail.revenueAmount}<br />
-							        {detail.financialYear}<br />
-							        {detail.month}<br /> */}
-								</Typography>
+								
+								<Typography className="card-title" color="textSecondary" gutterBottom></Typography>
 							</CardContent>
 							<CardActions>
 								<Chip label={detail.source} variant="outlined" />
 								<Chip label={detail.workStatus} color="primary" variant="outlined" />
 								<Chip label={detail.pipelineType} color="primary" variant="outlined" />
 								<Chip label={detail.recruiter} color="primary" variant="outlined" />
-								<Chip label={detail.team} color="primary" variant="outlined" />
+								<Chip  icon={<GroupWorkIcon />} label={detail.team} color="primary" variant="outlined" />
 							</CardActions>
 						</Card>
 

@@ -180,7 +180,7 @@ export default class Options extends React.Component {
   render() {
 
     var items = this.state.list.map((item,i) => {
-      return <Grid item xs={4} key={i}>
+      return <Grid item xl ={3} lg={3} md={3} sm={6} xs={12} key={i}>
         <Card >
           <CardContent>
             <Typography color="textSecondary" gutterBottom> {item.title}</Typography>
