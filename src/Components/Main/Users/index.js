@@ -23,7 +23,7 @@ export default class Users extends React.Component {
       method: 'post',
       url: env.endPointUrl + 'getuserList',
       data: {
-        usergroup: localStorage.getItem('UserGroup'),
+        GroupId: localStorage.getItem('UserGroup'),
       }
     })
       .then(response => {
@@ -41,32 +41,28 @@ export default class Users extends React.Component {
         <AccountCircle className="dashboard" />
         <Typography className="title" variant="subtitle1" noWrap> User list</Typography>
       </div>
+     { this.state.userlist.length > 0 &&
       <Paper style={{ margin: 10, width: "100%" }}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>User ID</TableCell>
-              <TableCell>First Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell>User Group</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Role</TableCell>
               <TableCell>User Name</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {this.state.userlist.map((row, i) => {
               return <TableRow key={i}>
-                <TableCell component="th" scope="row">
-                  {row.UserId}
-                </TableCell>
-                <TableCell >{row.FirstName}</TableCell>
-                <TableCell>{row.LastName}</TableCell>
-                <TableCell>{row.UserGroup}</TableCell>
+                <TableCell >{row.FirstName} {row.LastName}</TableCell>
+                <TableCell >{row.role}</TableCell>
                 <TableCell>{row.UserName}</TableCell>
               </TableRow>
             })}
           </TableBody>
         </Table>
-      </Paper></Grid>
+      </Paper>
+     }</Grid>
     );
   }
 };

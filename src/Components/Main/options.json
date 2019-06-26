@@ -67,7 +67,7 @@
 
       "jobCategoryList": [
         {"value": "All", "label": "All"},
-        {"value": "Consulting", "label": "consulting"},
+        {"value": "Consulting", "label": "Consulting"},
         {"value": "Technology", "label": "Technology"},
         {"value": "Sales", "label": "Sales"},
         {"value": "Pre Sales", "label": "Pre Sales"},

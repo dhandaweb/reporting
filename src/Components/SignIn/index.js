@@ -57,7 +57,7 @@ export class SignIn extends React.Component {
             if(response.data.length > 0){
                   localStorage.setItem('username', response.data[0].UserName);
                   localStorage.setItem('UserId', response.data[0].UserId);
-                  localStorage.setItem('UserGroup', response.data[0].UserGroup);
+                  localStorage.setItem('UserGroup', response.data[0].GroupId);
                   localStorage.setItem('sideBar', true);
                   this.props.history.push('/dashboard');
 

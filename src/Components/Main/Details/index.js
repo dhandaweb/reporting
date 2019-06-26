@@ -8,6 +8,7 @@ import Recruitment from './Recruitment';
 import JobDetails from './JobDetails';
 import Billing from './Billing';
 
+
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -19,6 +20,13 @@ import axios from 'axios';
 import env from '../../../environment.json';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+
 export class Details extends React.Component {
 
   constructor(props) {
@@ -36,6 +44,7 @@ export class Details extends React.Component {
     this.isEditing = false;
     this.state = {
       activeStep: 0,
+      recordAddedSucessfullly: false
     };
 
     this.steps = ['Personal details', 'Job & Client details', 'Recruitment details', "Billing details"];
@@ -110,6 +119,7 @@ export class Details extends React.Component {
       updatedDate: new Date(),
       UserId: localStorage.getItem('UserId'),
       UserGroup: localStorage.getItem('UserGroup')
+      
     }
 
     if (this.props.location !== undefined) {
@@ -237,6 +247,7 @@ export class Details extends React.Component {
         data: this.state.details
       })
         .then(response => {
+          this.setState({recordAddedSucessfullly:true})
           this.props.setSnackBar({ show: true, message: "New record added sucessfully." });
           this.handleReset();
           this.resetForm();
@@ -252,6 +263,7 @@ export class Details extends React.Component {
         data: this.state.details
       })
         .then(response => {
+          this.setState({recordAddedSucessfullly:true})
           this.props.setSnackBar({ show: true, message: "Record updated sucessfully." });
         })
         .catch(function (error) {
@@ -289,6 +301,22 @@ export class Details extends React.Component {
             <AddIcon className="dashboard" />
             <Typography className="title" variant="subtitle1" noWrap> Add candidate</Typography>
           </div>
+
+          {this.state.recordAddedSucessfullly && 
+            <div className="success"><Card>
+            <CardContent>
+              <Typography color="textSecondary" gutterBottom>
+              Record {this.isEditing ? "updated" : "added"} successfully.
+              </Typography>
+             
+            </CardContent>
+            <CardActions>
+              <Button size="small" variant="contained" color="primary" component={Link} to="/list" >Candidate list</Button>
+              <Button size="small" variant="contained" color="secondary" onClick={()=>{ this.resetForm(); this.setState({recordAddedSucessfullly:false})}} >Add Candidate</Button>
+            </CardActions>
+          </Card></div>
+          }
+          { !this.state.recordAddedSucessfullly &&
           <div style={{ padding: 15, width:'100%' }}>
             <Stepper activeStep={this.state.activeStep} alternativeLabel >
               {this.steps.map(label => (
@@ -302,6 +330,7 @@ export class Details extends React.Component {
               {this.getStepContent(this.state.activeStep)}
             </div>
           </div>
+          }
 
 
 
