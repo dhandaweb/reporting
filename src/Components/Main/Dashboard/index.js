@@ -201,9 +201,9 @@ export default class Dashboard extends React.Component {
     var filterData = [];
     
     filterData.push({
-      title: "firstName",
-      filterKey:"firstName",
-      data: this.getGroupedData("firstName", data)
+      title: "Top source",
+      filterKey:"source",
+      data: this.getGroupedData("source", data)
     });
 
     filterData.push({

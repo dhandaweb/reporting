@@ -15,6 +15,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
 import SettingIcon from '@material-ui/icons/Settings';
 
+import Progress from './../../Progress';
+
 export default class Options extends React.Component {
 
   constructor(props) {
@@ -32,41 +34,48 @@ export default class Options extends React.Component {
           title: "Ethnicity list",
           tableName: "ethnicityList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Citizenship list",
           tableName: "citizenshipList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Work status List",
           tableName: "workStatusList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Offer status list",
           tableName: "offerStatusList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Recruiters",
           tableName: "recruiterList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Cre list",
           tableName: "creList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Account managers",
           addText: "",
+          isLoading:true,
           tableName: "accountManagerList",
           options: []
         },
@@ -74,13 +83,15 @@ export default class Options extends React.Component {
           title: "Country managers",
           tableName: "countryManagerList",
           addText: "",
+          isLoading:true,
           options: []
         },
         {
           title: "Account directors",
           tableName: "accountDirectorList ",
           addText: "",
-          options: []
+          options: [],
+          isLoading:true,
         },
       ]
     };
@@ -92,6 +103,8 @@ export default class Options extends React.Component {
   getOptions(i) {
     
     if(this.state.list[i] !== undefined){
+      this.state.list[i].isLoading = true;
+
     axios({
       method: 'post',
       url: env.endPointUrl + 'getOption',
@@ -99,7 +112,7 @@ export default class Options extends React.Component {
     })
       .then(response => {
         this.state.list[i].options = response.data;
-        
+        this.state.list[i].isLoading = false;
         if(i < this.state.list.length-1) this.getOptions(i+1);
         else this.setState({ list: this.state.list });
 
@@ -111,6 +124,8 @@ export default class Options extends React.Component {
   }
 
   updateOption(item) {
+    item.isLoading = true;
+    this.setState({ list: this.state.list });
     axios({
       method: 'post',
       url: env.endPointUrl + 'getOption',
@@ -118,6 +133,7 @@ export default class Options extends React.Component {
     })
       .then(response => {
         item.options = response.data;
+        item.isLoading = false;
         this.setState({ list: this.state.list })
       })
       .catch(function (error) {
@@ -126,7 +142,8 @@ export default class Options extends React.Component {
   }
 
   handleSubmit(item) {
-
+    item.isLoading = true;
+    this.setState({ list: this.state.list });
     axios({
       method: 'post',
       url: env.endPointUrl + 'addOption',
@@ -163,6 +180,7 @@ export default class Options extends React.Component {
   }
 
   updateOp(item,d){
+    
     axios({
       method: 'post',
       url: env.endPointUrl + 'updateOption',
@@ -181,8 +199,9 @@ export default class Options extends React.Component {
 
     var items = this.state.list.map((item,i) => {
       return <Grid item xl ={3} lg={3} md={3} sm={6} xs={12} key={i}>
-        <Card >
+        <Card > <Progress isLoading={item.isLoading}></Progress>
           <CardContent>
+           
             <Typography color="textSecondary" gutterBottom> {item.title}</Typography>
 
             <ValidatorForm
@@ -204,7 +223,7 @@ export default class Options extends React.Component {
               </TextValidator>
 
             </ValidatorForm>
-            <List component="nav"> {
+            <List component="nav" style={{height:300, overflowY:'auto'}}> {
               item.options.length > 0 && 
               item.options.map(d => {
                 return <div key={d.id}>
@@ -256,7 +275,7 @@ export default class Options extends React.Component {
     return (<Grid container spacing={24} className="mainContent">
       <div className="subHeading">
           <SettingIcon className="dashboard"/>
-          <Typography className="title" variant="subtitle1" noWrap> Candidate List</Typography>
+          <Typography className="title" variant="subtitle1" noWrap> Options</Typography>
         </div>
       {items}
       </Grid>);
