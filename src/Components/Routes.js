@@ -10,7 +10,7 @@ import StatusBar from './StatusBar';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    (localStorage.getItem('username') !== null && localStorage.getItem('username') !== undefined)
+    (localStorage.getItem('userName') !== null && localStorage.getItem('userName') !== undefined)
       ? <Component {...props} />
       : <Redirect to='/signin' />
   )} />

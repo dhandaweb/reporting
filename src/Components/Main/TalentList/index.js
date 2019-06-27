@@ -45,8 +45,8 @@ export class TalentList extends React.Component {
 			method: 'post',
 			url: env.endPointUrl + 'getDetails',
 			data: {
-				UserId: localStorage.getItem('UserId'),
-				UserGroup: localStorage.getItem('UserGroup')
+				userId: localStorage.getItem('userId'),
+				userGroupId: localStorage.getItem('userGroupId')
 			}
 		})
 			.then(response => {
@@ -74,13 +74,13 @@ export class TalentList extends React.Component {
 			method: 'post',
 			url: env.endPointUrl + 'deleteDetails',
 			data: {
-				UserId: localStorage.getItem('UserId'),
-				UserGroup: localStorage.getItem('UserGroup'),
-				id: details.ID
+				userId: localStorage.getItem('userId'),
+				userGroup: localStorage.getItem('userGroupId'),
+				id: details.id
 			}
 		})
 			.then(response => {
-				this.state.detailData = this.state.detailData.filter(d => d.ID !== details.ID);
+				this.state.detailData = this.state.detailData.filter(d => d.id !== details.id);
 				this.setState({ detailData: this.state.detailData });
 				this.props.setSnackBar({ show: true, message: "Record deleted sucessfully." });
 			})
@@ -104,7 +104,7 @@ export class TalentList extends React.Component {
         			}
 
 					{this.state.detailData.map(detail => {
-						return <Card key={detail.ID} className="talentRecord" style={{ margin: 10, width: "100%" }}>
+						return <Card key={detail.id} className="talentRecord" style={{ margin: 10, width: "100%" }}>
 							<CardHeader style={{ paddingBottom: 0}}
 								avatar={
 									<Avatar>

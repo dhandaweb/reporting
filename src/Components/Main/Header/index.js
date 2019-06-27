@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Avatar from '@material-ui/core/Avatar';
 import MailIcon from '@material-ui/icons/Mail';
@@ -14,13 +14,14 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import logo from './img/logo.png';
 
 // import Routes from './Routes';
 const styles = {
   avatar: {
     margin: 10,
   },
- 
+
   search: {
     position: 'relative',
     flexGrow: 1,
@@ -29,23 +30,25 @@ const styles = {
 };
 
 export default class Header extends React.Component {
-  
-  
+
+
   constructor(props) {
     super(props);
-  
+
     this.signOut = this.signOut.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleMenu = this.handleMenu.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.toggle = this.toggle.bind(this);
 
     this.state = {
       anchorEl: false,
-      username:localStorage.getItem('username')
-      }
+      dropdownOpen: false,
+      username: localStorage.getItem('userFullName')
+    }
 
   }
-  
+
   handleChange = event => {
     this.setState({ auth: event.target.checked });
   };
@@ -55,66 +58,59 @@ export default class Header extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: false });
+    this.setState({ dropdownOpen: false });
   };
 
   signOut = () => {
     this.handleClose();
-    localStorage.removeItem('user');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userGroupId');
+    localStorage.removeItem('userFullName');
+
     localStorage.clear();
-    
+
   };
-  
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+
   render() {
-  
+
     return (
       <AppBar position="sticky">
         <Toolbar >
-        <Avatar className="RIcon">
-              R
-            </Avatar>
-      
+          
+          <img src={logo} style={{width:40}} alt="logo" className="logo" />
           <Typography style={{ padding: 6 }} component="h1" variant="title" color="inherit" noWrap>
-          Reporting
+            Traco Plug
           </Typography>
-         
-          <Chip 
-                aria-owns={this.state.anchorEl ? 'menu-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
+
+
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="headerSetting">
+            <DropdownToggle caret>
+              <Chip
+              className="avatar"
                 label={this.state.username}
-                color="primary" 
-                style={{ position: 'absolute', right: '10px' }}
+                color="primary"
                 avatar={
                   <Avatar>
                     <AccountCircle />
                   </Avatar>
                 }
-          />
-      
-          <Menu
-                  id="menu-appbar"
-                  anchorEl={this.state.anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={this.state.anchorEl}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.handleClose} component={Link} to="/profile">Profile</MenuItem>
-                  <MenuItem onClick={this.signOut} component={Link} to="/signIn">Sign out</MenuItem>
-                </Menu>
-      
-       
+              />
+            </DropdownToggle>
+            <DropdownMenu right>
+              <MenuItem onClick={this.handleClose} component={Link} to="/profile">Profile</MenuItem>
+              <MenuItem onClick={this.signOut} component={Link} to="/signIn">Sign out</MenuItem>
+            </DropdownMenu>
+          </Dropdown>
 
         </Toolbar>
-       
-         
+
+
       </AppBar>
     );
   }

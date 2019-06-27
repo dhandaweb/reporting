@@ -42,8 +42,8 @@ export default class Dashboard extends React.Component {
       method: 'post',
       url: env.endPointUrl + 'getDetails',
       data: {
-        UserId: localStorage.getItem('UserId'),
-        UserGroup: localStorage.getItem('UserGroup')
+        userId: localStorage.getItem('userId'),
+				userGroupId: localStorage.getItem('userGroupId')
       }
     })
       .then(response => {
@@ -56,9 +56,7 @@ export default class Dashboard extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-
-
-      this.updatedChart = React.createRef();
+    
   }
 
 

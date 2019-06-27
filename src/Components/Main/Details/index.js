@@ -117,8 +117,8 @@ export class Details extends React.Component {
 
       createdDate: new Date(),
       updatedDate: new Date(),
-      UserId: localStorage.getItem('UserId'),
-      UserGroup: localStorage.getItem('UserGroup')
+      userId: localStorage.getItem('userId'),
+      userGroupId: localStorage.getItem('userGroupId')
       
     }
 

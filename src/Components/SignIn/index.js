@@ -48,19 +48,19 @@ export class SignIn extends React.Component {
           method:'post',
           url: env.endPointUrl + 'finduser',
           data: {
-            username: this.state.email,
+            userName: this.state.email,
             password: this.state.password
           }
         })
         .then(response => {
-           
+          
             if(response.data.length > 0){
-                  localStorage.setItem('username', response.data[0].UserName);
-                  localStorage.setItem('UserId', response.data[0].UserId);
-                  localStorage.setItem('UserGroup', response.data[0].GroupId);
+                  localStorage.setItem('userName', response.data[0].userName);
+                  localStorage.setItem('userFullName', response.data[0].firstName + " " + response.data[0].lastName);
+                  localStorage.setItem('userId', response.data[0].id);
+                  localStorage.setItem('userGroupId', response.data[0].groupId);
                   localStorage.setItem('sideBar', true);
                   this.props.history.push('/dashboard');
-
             }
             else{
               this.setState({ showError:true });

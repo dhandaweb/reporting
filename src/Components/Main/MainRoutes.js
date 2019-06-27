@@ -51,72 +51,7 @@ export class VisualRoutes extends React.Component {
 
   render() {
     var h = window.innerHeight > 500 ? window.innerHeight -64 : window.innerHeight -70;
-
-    // return (
-    //   <Router>
-    //     <Grid  style={{ padding: 0, height:h }} container justify="space-evenly" >
-    //       <Grid  xs={12} lg={2} md={2} sm={12} item className="sideBar" >
-    //         <List
-    //               component="nav"
-    //               aria-labelledby="nested-list-subheader"
-    //               subheader={
-    //                 <ListSubheader component="div" id="nested-list-subheader">
-    //                   Navigation
-    //                 </ListSubheader>
-    //               }
-    //             >
-    //         <ListItem button component={Link} to="/dashboard">
-    //           <ListItemIcon>
-    //             <DashboardIcon />
-    //           </ListItemIcon>
-    //           <ListItemText primary="Dashboard" />
-    //         </ListItem>
-          
-    //         <ListItem button component={Link} to="/list">
-    //           <ListItemIcon>
-    //             <ListIcon />
-    //           </ListItemIcon>
-    //           <ListItemText primary="Candidate list" />
-    //         </ListItem>
-          
-    //         <ListItem button component={Link} to="/details">
-    //           <ListItemIcon>
-    //             <AddIcon />
-    //           </ListItemIcon>
-    //           <ListItemText primary="Add candidate" />
-    //         </ListItem>
-          
-          
-    //         <ListItem button component={Link} to="/users">
-    //           <ListItemIcon>
-    //             <AccountCircle />
-    //           </ListItemIcon>
-    //           <ListItemText primary="Users" />
-    //         </ListItem>
-
-    //         <ListItem button component={Link} to="/Option">
-    //           <ListItemIcon>
-    //             <SettingIcon />
-    //           </ListItemIcon>
-    //           <ListItemText primary="Admin" />
-    //         </ListItem>
-    //       </List>
-         
-    //       </Grid>
-
-    //       <Grid xs={12} lg={10} md={10} sm={12} style={{ background: "#f5f5f5" }} item className="mainContent">
-    //           <Route exact path="/" component={Dashboard} />
-    //           <Route exact path="/dashboard" component={Dashboard} />
-    //           <Route exact path="/details" component={Details} />
-    //           <Route exact path="/list" component={TalentList} />
-    //           <Route exact path="/Option" component={Option} />
-    //           <Route exact path="/users" component={Users} />
-    //           <Route exact path="/profile" component={Profile} />
-    //           <Footer/>
-    //       </Grid>
-    //     </Grid>
-    //   </Router>
-    // )
+   
     return (
       <Router>
           <div style={{ marginLeft: this.state.expanded === true ? 240 : 64, height:h, width:'100%' }} >
