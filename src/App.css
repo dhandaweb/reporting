@@ -57,7 +57,10 @@
   color:#7b7a7a!important;
   font-weight: normal;
 }
-
+.visual{
+  max-height: 390px;
+  overflow-y: auto;
+}
 
 
 .popover{
@@ -98,7 +101,6 @@
 .formFullWidth{
   width:100%
 }
-
 
 .subHeading{
   width:100%;

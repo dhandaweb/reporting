@@ -86,7 +86,7 @@ export default class VerticalBar extends React.Component {
   render() {
 
     return (
-      <div id={this.chartId}></div>
+      <div id={this.chartId} className="visual"></div>
     );
   }
 };

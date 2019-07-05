@@ -76,7 +76,7 @@ componentDidUpdate(){
 render() {
    
     return (
-      <div id={this.chartId}>
+      <div id={this.chartId}  className="visual">
         <Table>
           <TableBody>
             {this.props.data.map((row,i) => (
