@@ -20,15 +20,27 @@
 }
  
 .paddingT{
-  padding:40px 10px;
+  padding:10px 5px;
 }
-
+.rangeLabel{
+  color:rgba(0, 0, 0, 0.54)
+}
 .input-range__label{
   font-family: inherit!important;
 }
 
-
-
+.floatleft{
+  float:left
+}
+.floatRight{
+  float:right
+}
+.searchInput,.searchInput:focus,.searchInput:hover,.searchInput:active{
+  border: none;
+  border-bottom: 1px solid #b3b3b3;
+  box-shadow: none;
+  outline: none;
+}
 
 .axis .tick text{
   fill: rgba(0, 0, 0, 0.54);

@@ -64,13 +64,13 @@ export class Details extends React.Component {
       primarySkill: "",
       salaryMin: 20000,
       salaryMax: 60000,
-      workExpMin: 0,
-      workExpMax: 1,
+      workExpMin: 1,
+      workExpMax: 4,
 
       address: "",
-      city: "",
-      state: "",
-      country: "",
+      city: "Melbourne",
+      state: "Victoria",
+      country: "Australia",
 
       client: "",
       hiringManager: "",
@@ -80,9 +80,9 @@ export class Details extends React.Component {
 
 
       jobAddress: "",
-      jobCity: "",
-      jobState: "",
-      jobCountry: "",
+      jobCity: "Melbourne",
+      jobState: "Victoria",
+      jobCountry: "Australia",
 
       offerStatus: "",
       jobOpenedDate: new Date(),

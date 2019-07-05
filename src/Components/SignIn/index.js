@@ -53,7 +53,7 @@ export class SignIn extends React.Component {
           }
         })
         .then(response => {
-          
+          console.log(response);
             if(response.data.length > 0){
                   localStorage.setItem('userName', response.data[0].userName);
                   localStorage.setItem('userFullName', response.data[0].firstName + " " + response.data[0].lastName);
@@ -81,11 +81,11 @@ export class SignIn extends React.Component {
         <CardHeader
           avatar={
             <Avatar className="siginInHeadingIcon">
-              R
+              T
             </Avatar>
           }
 
-          title="Reporting"
+          title="Traco Plug"
           subheader="Please sign in to portal"
         />
         <ValidatorForm

@@ -14,6 +14,8 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import env from '../../../../environment.json';
 import options from './../../options';
+import * as d3 from "d3";
+import csc from 'country-state-city';
 
 export default class Personal extends React.Component {
 
@@ -26,14 +28,16 @@ this.handleSubmit = this.handleSubmit.bind(this);
     this.genderList = options.genderList;
    
     this.getOption = this.getOption.bind(this);
-
     this.sourceList = options.sourceList;
-   
-    this.cities = options.cities;
-    this.states = options.states;
-    this.countries = options.countries;
 
     this.state = {
+      maxSalary:180000,
+      maxWorkExp:15,
+      countriesRaw: csc.getAllCountries(),
+      countries: csc.getAllCountries().map(d=>d.name),
+      statesRaw: csc.getStatesOfCountry('13'),
+      states:csc.getStatesOfCountry('13').map(d=>d.name),
+      cities:csc.getCitiesOfState('273').map(d=>d.name),
       title: this.props.personalDetails.title,
       firstName:this.props.personalDetails.firstName,
       lastName:this.props.personalDetails.lastName,
@@ -68,6 +72,10 @@ this.handleSubmit = this.handleSubmit.bind(this);
     this.state.salaryRange = { min:this.state.salaryMin,  max:this.state.salaryMax }
 
     this.getOption(0);
+    this.format = d3.format(".2s");
+
+  
+
   }
 
 
@@ -134,10 +142,10 @@ this.handleSubmit = this.handleSubmit.bind(this);
           onError={errors => console.log(errors)}
         >
         <Grid container >
-
+      
           <Grid item lg={3} sm={12} className="paddingH">
           
-              <Typography variant="h6"> Personal   </Typography>
+             
             
               <TextValidator
               fullWidth 
@@ -197,78 +205,10 @@ this.handleSubmit = this.handleSubmit.bind(this);
           
           </Grid>
         
+         
           <Grid item lg={3} sm={12} className="paddingH">
           
-          <Typography variant="h6"> Address   </Typography>
-            
-          <TextValidator
-              fullWidth 
-              id="address"
-              label="Address"
-              value={this.state.address}
-              validators={['required']}
-              errorMessages={['Address is required']}
-              onChange={(e) => this.setState({ address: e.target.value })}
-              margin="normal">
-            </TextValidator>
-          
-          <TextValidator
-          fullWidth 
-          id="city"
-          select
-          label="City"
-          value={this.state.city}
-          validators={['required']}
-          errorMessages={['citizenship is required']}
-          onChange={(e) => this.setState({ city: e.target.value })}
-          margin="normal">
-                {this.cities.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-          </TextValidator>
-
-          <TextValidator
-          fullWidth 
-          id="state"
-          select
-          label="State"
-          value={this.state.state}
-          validators={['required']}
-          errorMessages={['State is required']}
-        
-          onChange={(e) => this.setState({ state: e.target.value })}
-          margin="normal">
-                {this.states.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-          </TextValidator>
-
-          <TextValidator
-          fullWidth 
-          id="country"
-          select
-          label="Country"
-          value={this.state.country}
-          validators={['required']}
-          errorMessages={['country is required']}
-          onChange={(e) => this.setState({ country: e.target.value })}
-          margin="normal">
-                {this.countries.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-          </TextValidator>
-        
-          </Grid>
-
-          <Grid item lg={3} sm={12} className="paddingH">
-          
-          <Typography variant="h6"> Current suitation   </Typography>
+         
             
           <TextValidator
               fullWidth
@@ -290,24 +230,35 @@ this.handleSubmit = this.handleSubmit.bind(this);
                 value={this.state.primarySkill}
               />
 
-            <div className="paddingT"><InputRange
-                maxValue={20}
+            <div className="paddingT">
+            <p className="rangeLabel">Work Experience </p>
+              <InputRange
+                maxValue={this.state.maxWorkExp}
                 step={1}
                 minValue={0}
                 formatLabel={value => `${value}yrs`}
                 value={this.state.workExperienceRange}
-                onChange={value => this.setState({ workExperienceRange: value })}
+                onChange={value => {
+                  if(value.max === this.state.maxWorkExp && this.state.maxWorkExp < 46) this.setState({ maxWorkExp: this.state.maxWorkExp + 5 });
+                  this.setState({ workExperienceRange: value })
+                }}
                 onChangeComplete={value => console.log(value)} />
               </div>
           
-        
-              <div className="paddingT"><InputRange
-                maxValue={120000}
-                step={500}
-                minValue={10000}
-                formatLabel={value => `$${value}`}
+              
+              <div className="paddingT">
+              <p className="rangeLabel">Salary range </p>
+                <InputRange
+                maxValue={this.state.maxSalary}
+                step={1000}
+                minValue={0}
+                formatLabel={value => `$${this.format(value)}`}
                 value={this.state.salaryRange}
-                onChange={value => this.setState({ salaryRange: value })}
+                onChange={value => {
+                
+                  if(value.max === this.state.maxSalary && this.state.maxSalary < 1000001) this.setState({ maxSalary: this.state.maxSalary + 50000 });
+                  this.setState({ salaryRange: value });
+                }}
                 onChangeComplete={value => console.log(value)} />
               </div>
 
@@ -315,7 +266,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
           <Grid item lg={3} sm={12} className="paddingH">
           
-          <Typography variant="h6"> Background   </Typography>
+       
             
           <TextValidator
           fullWidth 
@@ -360,7 +311,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
           fullWidth 
           id="workStatus"
           select
-          label="Work status"
+          label="Work authorisation"
           value={this.state.workStatus}
           validators={['required']}
           errorMessages={['Work status is required']}
@@ -395,6 +346,96 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
       </Grid>
           
+      <Grid item lg={3} sm={12} className="paddingH">
+          
+        
+            
+          <TextValidator
+              fullWidth 
+              id="candidateStatus"
+              label="Candidate Status"
+              value={this.state.address}
+              validators={['required']}
+              errorMessages={['Candidate Status is required']}
+              onChange={(e) => {
+                this.setState({ address: e.target.value })
+              }}
+              margin="normal">
+            </TextValidator>
+          
+
+          <TextValidator
+          fullWidth 
+          id="country"
+          select
+          label="Country"
+          value={this.state.country}
+          validators={['required']}
+          errorMessages={['Country is required']}
+          onChange={(e) => {
+            var statesRaw = csc.getStatesOfCountry(this.state.countriesRaw.filter(d=>d.name === e.target.value)[0].id);
+           
+            this.setState({
+               country:e.target.value,
+               states:statesRaw.map(d=>d.name),
+               statesRaw:statesRaw,
+               state:statesRaw.map(d=>d.name)[0]
+            });
+          }}
+          margin="normal">
+                {this.state.countries.map(option => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+
+          <TextValidator
+          fullWidth 
+          id="state"
+          select
+          label="State"
+          value={this.state.state}
+          validators={['required']}
+          errorMessages={['State is required']}
+          onChange={(e) => {
+            var citiesRaw = csc.getCitiesOfState(this.state.statesRaw.filter(d=>d.name === e.target.value)[0].id);
+            var cities = citiesRaw.map(d=>d.name);
+
+            this.setState({
+               state:e.target.value,
+               cities: cities,
+               city:cities[0]
+               })
+             }
+          }
+          margin="normal">
+                {this.state.states.map((option,i) => (
+                  <MenuItem key={i} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+
+          <TextValidator
+          fullWidth 
+          id="city"
+          select
+          label="City"
+          value={this.state.city}
+          validators={['required']}
+          errorMessages={['City is required']}
+          onChange={(e) => this.setState({ city: e.target.value })}
+          margin="normal">
+                {this.state.cities.map(option => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+          </TextValidator>
+        
+          </Grid>
+
           <Grid item lg={12} style={{textAlign:"center", padding:10}}>
                     <Divider style={{margin:10}}/>
                     <Button variant="contained" color="primary" type="submit"> Next</Button>
