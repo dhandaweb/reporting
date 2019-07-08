@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import Details from './Details';
 import Profile from './Profile';
 import TalentList from './TalentList';
+import Clients from './Clients';
 import Users from './Users';
 import Option from './Option';
 import Grid from '@material-ui/core/Grid';
@@ -22,6 +23,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ListIcon from '@material-ui/icons/ViewList';
 import AddIcon from '@material-ui/icons/Add';
 import SettingIcon from '@material-ui/icons/Settings';
+import PeopleIcon from '@material-ui/icons/People';
 
 
 
@@ -95,8 +97,15 @@ export class VisualRoutes extends React.Component {
                             Users
                             </NavText>
                         </NavItem>
-
-                        <NavItem eventKey="Option">
+                        <NavItem eventKey="clients">
+                            <NavIcon>
+                            <PeopleIcon style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
+                            </NavIcon>
+                            <NavText style={{ paddingRight: 32 }} title="Clients">
+                            Clients
+                            </NavText>
+                        </NavItem>
+                        <NavItem eventKey="admin">
                             <NavIcon>
                             <SettingIcon style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
                             </NavIcon>
@@ -114,14 +123,15 @@ export class VisualRoutes extends React.Component {
                   <Route exact path="/dashboard" component={Dashboard} />
                   <Route exact path="/details" component={Details} />
                   <Route exact path="/list" component={TalentList} />
-                  <Route exact path="/Option" component={Option} />
+                  <Route exact path="/admin" component={Option} />
                   <Route exact path="/users" component={Users} />
                   <Route exact path="/profile" component={Profile} />
+                  <Route exact path="/clients" component={Clients} />
                   <Footer/>
                 </div>
 
 
-
+                
          
               
         

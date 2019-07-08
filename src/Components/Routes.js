@@ -42,8 +42,10 @@ export default class Routes extends React.Component {
           <PrivateRoute path='/list' component={Main} />
         
           <PrivateRoute exact path="/users" component={Main} />
-          <PrivateRoute path='/Option' component={Main} />
+          <PrivateRoute path='/admin' component={Main} />
           <PrivateRoute path="/profile" component={Main} />
+          <PrivateRoute path="/clients" component={Main} />
+        
         </div>
       </Router>
     )

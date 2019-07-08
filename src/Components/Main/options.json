@@ -104,33 +104,5 @@
         {"value": "Order Book", "label": "order book"},
         {"value": "Revenue Realised", "label": "Revenue Realised"},
         {"value": "Revenue Leaked", "label": "Revenue Leaked"}
-      ], 
-
-      "cities": [
-        {"value": "Canberra", "label": "Canberra"},
-        {"value": "Sydney", "label": "Sydney"},
-        {"value": "Griffith", "label": "Griffith"},
-        {"value": "Alice Springs", "label": "Alice Springs"},
-        {"value": "Darwin", "label": "Darwin"},
-        {"value": "Adelaide", "label": "Adelaide"},
-        {"value": "Brisbane", "label": "Brisbane"},
-        {"value": "Gold Coast", "label": "Gold Coast"},
-        {"value": "Hobart", "label": "Hobart"},
-        {"value": "Melbourne", "label": "Melbourne"},
-        {"value": "Geelong", "label": "Geelong"},
-        {"value": "Perth", "label": "Perth"}
-      ], 
-      "countries": [
-        {"value": "Australia", "label": "Australia"}
-      ], 
-      "states": [
-        {"value": "Australian Capital Territory", "label": "Australian Capital Territory"},
-        {"value": "New South Wales", "label": "New South Wales"},
-        {"value": "Northern Territory", "label": "Northern Territory"},
-        {"value": "Queensland", "label": "Queensland"},
-        {"value": "South Australia", "label": "South Australia"},
-        {"value": "Tasmania", "label": "Tasmania"},
-        {"value": "Victoria", "label": "Victoria"},
-        {"value": "Western Australia", "label": "Western Australia"}
       ]
     }
