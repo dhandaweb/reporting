@@ -398,6 +398,7 @@ export class Clients extends React.Component {
      </Grid>
     );
   }
+
 };
 
 const mapStateToProps = state => {

@@ -20,6 +20,7 @@ export default class JobDetails extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBack = this.handleBack.bind(this);
+    this.updateHiringManagerList = this.updateHiringManagerList.bind(this);
 
     this.cities = options.cities;
     this.states = options.states;
@@ -27,8 +28,6 @@ export default class JobDetails extends React.Component {
 
     this.jobTypeList = options.jobTypeList;
     this.jobCategoryList = options.jobCategoryList;
-
-
 
 
     this.state = {
@@ -54,11 +53,13 @@ export default class JobDetails extends React.Component {
       offerDate: this.props.jobDetails.offerDate,
       joiningDate: this.props.jobDetails.joiningDate,
       offerStatusList: [{ id: 0, label: "list not loaded" }],
-      list: ["offerStatusList"]
+      list: ["offerStatusList"],
+      clientList:[{ id: 0, name: "list not loaded" }],
+      hiringManagerList:[{ id: 0, name: "Please select client first." }]
     };
 
-    this.getOption(0);
-
+    
+   
   }
 
   getOption(i) {
@@ -82,6 +83,27 @@ export default class JobDetails extends React.Component {
     }
   }
 
+  componentDidMount() {
+     this.getClientList();
+  }
+
+  getClientList() {
+    axios({
+      method: 'post',
+      url: env.endPointUrl + 'getClientList',
+      data: {
+        userGroupId: localStorage.getItem('userGroupId'),
+      }
+    })
+      .then(response => {
+        this.setState({ clientList: response.data });
+         this.getOption(0);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   handleSubmit = () => {
 
     this.props.jobDetails.client = this.state.client;
@@ -103,12 +125,29 @@ export default class JobDetails extends React.Component {
 
     this.props.nextHandle(2);
   }
+
   handleBack() {
     this.props.nextHandle(0);
   }
 
-  render() {
+  updateHiringManagerList(val){
+  
+        axios({
+              method: 'post',
+              url: env.endPointUrl + 'getHiringManagerList',
+              data: { client: this.state.clientList.filter(d=>d.name === val)[0].id }
+            })
+              .then(response => {
+                this.setState({ 
+                  client: val,
+                  hiringManagerList:response.data  });
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+  };
 
+  render() {
 
     return (
       <ValidatorForm
@@ -123,17 +162,26 @@ export default class JobDetails extends React.Component {
             <TextValidator
               fullWidth
               id="client"
+              select
               label="Client"
               margin="normal"
               name="client"
-              onChange={(e) => this.setState({ client: e.target.value })}
+              onChange={(e) => {
+                this.updateHiringManagerList(e.target.value);
+               }}
               value={this.state.client}
               validators={['required']}
               errorMessages={['Client is required']}
-            />
+               > {this.state.clientList.map(option => (
+                <MenuItem key={option.id} value={option.name}>
+                  {option.name}
+                </MenuItem>
+              ))}
+            </TextValidator>
 
             <TextValidator
               fullWidth
+              select
               id="hiringManager"
               label="Hiring Manager"
               margin="normal"
@@ -142,7 +190,12 @@ export default class JobDetails extends React.Component {
               value={this.state.hiringManager}
               validators={['required']}
               errorMessages={['Hiring manager is required']}
-            />
+             > {this.state.hiringManagerList.map(option => (
+                <MenuItem key={option.id} value={option.name}>
+                  {option.name}
+                </MenuItem>
+              ))}
+            </TextValidator>
 
             <TextValidator
               fullWidth
@@ -191,7 +244,7 @@ export default class JobDetails extends React.Component {
               margin="normal">
             </TextValidator> */}
 
-<TextValidator
+               <TextValidator
               fullWidth
               id="jobCategory"
               select

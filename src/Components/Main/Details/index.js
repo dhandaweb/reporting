@@ -40,7 +40,6 @@ export class Details extends React.Component {
     this.submitForm = this.submitForm.bind(this);
     this.resetForm = this.resetForm.bind(this);
     
-
     this.isEditing = false;
     this.state = {
       activeStep: 0,
