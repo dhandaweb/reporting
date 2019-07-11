@@ -1,16 +1,15 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
+
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import MenuItem from '@material-ui/core/MenuItem';
-import Typography from '@material-ui/core/Typography';
+
 import Grid from '@material-ui/core/Grid';
-import options from './../../options';
+import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import DateFnsUtils from '@date-io/date-fns';
+import axios from 'axios';
+import env from '../../../../environment.json';
 
 export default class Billing extends React.Component {
  
@@ -20,15 +19,6 @@ export default class Billing extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBack = this.handleBack.bind(this);
 
-    this.jobTypeList = options.jobTypeList;
-    this.jobCategoryList = options.jobCategoryList;
-
-    this.cities = options.cities;
-    this.states = options.states;
-    this.countries = options.countries;
-    this.pipelineTypeList = options.pipelineTypeList;
-    this.invoiceTypeList = options.invoiceTypeList;
-    
     this.state = {
       pipelineType:this.props.billingDetails.pipelineType,
       invoiceType:this.props.billingDetails.invoiceType,
@@ -40,8 +30,37 @@ export default class Billing extends React.Component {
       orderBookDate:this.props.billingDetails.orderBookDate,
       revenueRealizationDate:this.props.billingDetails.revenueRealizationDate, 
       revenueAmount:this.props.billingDetails.revenueAmount,
+      netRevenue: this.props.billingDetails.netRevenue,
+
+      invoiceTypeList:[{id:0,label:"list not loaded"}],
+      pipelineTypeList:[{id:0,label:"list not loaded"}],
+      list:["invoiceTypeList","pipelineTypeList"]
     };
+    
+    this.getOption(0);
   }
+
+  getOption(i) {
+
+    if (this.state.list[i] !== undefined) {
+      axios({
+        method: 'post',
+        url: env.endPointUrl + 'getOption',
+        data: { tableName: this.state.list[i] }
+      })
+        .then(response => {
+          var obj = {};
+          obj[this.state.list[i]] = response.data;
+          this.setState(obj);
+          if (i < this.state.list.length - 1) this.getOption(i + 1);
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  };
+
   handleSubmit = () => {
 
     this.props.billingDetails.pipelineType = this.state.pipelineType;
@@ -54,7 +73,7 @@ export default class Billing extends React.Component {
     this.props.billingDetails.orderBookDate = this.state.orderBookDate;
     this.props.billingDetails.revenueRealizationDate = this.state.revenueRealizationDate;
     this.props.billingDetails.revenueAmount = this.state.revenueAmount;
-   
+    this.props.billingDetails.netRevenue = this.state.netRevenue;
     this.props.submitForm();
 
   }
@@ -84,8 +103,8 @@ export default class Billing extends React.Component {
             errorMessages={['Pipeline type is required']}
             onChange={(e) => this.setState({ pipelineType: e.target.value })}
             margin="normal">
-                  {this.pipelineTypeList.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
+                  {this.state.pipelineTypeList.map(option => (
+                    <MenuItem key={option.id} value={option.label}>
                       {option.label}
                     </MenuItem>
                   ))}
@@ -102,8 +121,8 @@ export default class Billing extends React.Component {
             errorMessages={['Invoice type is required']}
             onChange={(e) => this.setState({ invoiceType: e.target.value })}
             margin="normal">
-                  {this.invoiceTypeList.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
+                  {this.state.invoiceTypeList.map(option => (
+                    <MenuItem key={option.id} value={option.label}>
                       {option.label}
                     </MenuItem>
                   ))}
@@ -130,48 +149,63 @@ export default class Billing extends React.Component {
               id="billingAmount"
               label="Billing amount"
               value={this.state.billingAmount}
-              validators={['required','isNumber']}
-              errorMessages={['Billing amount is required','Should be number']}
-              onChange={(e) => this.setState({ billingAmount: e.target.value })}
+              validators={['required','isFloat']}
+              errorMessages={['Billing amount is required','Invalid Amount']}
+              onChange={(e) => {
+               var n=0,b=0;
+                if(e.target.value.length > 0){
+                   n = parseFloat(e.target.value);
+                   b = parseFloat(e.target.value * .1);
+                }
+              
+                this.setState({ billingAmount: e.target.value,
+                  gst: b,
+                  invoiceAmount :n+ b,
+                  orderBookAmount:n+ b,
+                  revenueAmount:n+ b,
+                  netRevenue: (n+ b) - parseFloat(this.props.billingDetails.commissionAmount)
+                })
+              }}
               margin="normal">
             </TextValidator>
 
 
             <TextValidator
-              fullWidth 
+              fullWidth
+              disabled 
               id="gst"
               label="GST amount"
               value={this.state.gst}
-              validators={['required','isNumber']}
-              errorMessages={['GST is required','Should be number']}
-              onChange={(e) => this.setState({ gst: e.target.value })}
+              validators={['required','isFloat']}
+              errorMessages={['GST is required','Invalid Amount']}
+              // onChange={(e) => this.setState({ gst: e.target.value })}
               margin="normal">
             </TextValidator>
 
 
             <TextValidator
-              fullWidth 
+              fullWidth
+              disabled 
               id="invoiceAmount"
               label="Invoice amount"
               value={this.state.invoiceAmount}
-              validators={['required','isNumber']}
-              errorMessages={['Invoice amount is required','Should be number']}
-              onChange={(e) => this.setState({ invoiceAmount: e.target.value })}
+              validators={['required','isFloat']}
+              errorMessages={['Invoice amount is required','Invalid Amount']}
+              // onChange={(e) => this.setState({ invoiceAmount: e.target.value })}
               margin="normal">
             </TextValidator>
 
             <TextValidator
               fullWidth 
+              disabled
               id="revenueAmount"
               label="Revenue amount"
               value={this.state.revenueAmount}
-              validators={['required','isNumber']}
-              errorMessages={['Revenue amount is required','Should be number']}
-              onChange={(e) => this.setState({ revenueAmount: e.target.value })}
+              validators={['required','isFloat']}
+              errorMessages={['Revenue amount is required','Invalid Amount']}
+              // onChange={(e) => this.setState({ revenueAmount: e.target.value })}
               margin="normal">
             </TextValidator>
-            
-        
             
         </Grid>
 
@@ -180,18 +214,6 @@ export default class Billing extends React.Component {
             <DatePicker margin="normal" fullWidth label="Order book date" 
             onChange={(e) => this.setState({ orderBookDate: e })}
             value={this.state.orderBookDate} />
-
-            <TextValidator
-              fullWidth 
-              id="orderBookAmount"
-              label="Order book amount"
-              value={this.state.orderBookAmount}
-              validators={['required']}
-              errorMessages={['Order book amount is required']}
-              onChange={(e) => this.setState({ orderBookAmount: e.target.value })}
-              margin="normal">
-            </TextValidator>
-
             <DatePicker
             fullWidth 
               margin="normal"
@@ -200,7 +222,31 @@ export default class Billing extends React.Component {
                 onChange={(e) => this.setState({ revenueRealizationDate: e })}
                 />
           </MuiPickersUtilsProvider>
-            
+
+          <TextValidator
+              fullWidth 
+              disabled
+              id="orderBookAmount"
+              label="Order book amount"
+              value={this.state.orderBookAmount}
+              validators={['required','isFloat']}
+              errorMessages={['Revenue amount is required','Invalid Amount']}
+              // onChange={(e) => this.setState({ orderBookAmount: e.target.value })}
+              margin="normal">
+            </TextValidator>
+
+            <TextValidator
+                id="netRevenue"
+                fullWidth
+                disabled
+                label="Net revenue"
+                validators={['required','isFloat']}
+                errorMessages={['Net revenue is required','Invalid Amount']}
+                // onChange={(e) => this.setState({ netRevenue: e.target.value })}
+                value={this.state.netRevenue}
+                margin="normal" >
+          </TextValidator>
+
         </Grid>
 
         <Grid container spacing={24} >

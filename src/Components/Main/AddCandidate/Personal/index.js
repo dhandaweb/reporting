@@ -47,7 +47,7 @@ export default class Personal extends React.Component {
       citizenship:this.props.personalDetails.citizenship,
       workStatus:this.props.personalDetails.workStatus,
       source:this.props.personalDetails.source,
-
+      candidateStatus:this.props.personalDetails.candidateStatus,
       currentEmployer:this.props.personalDetails.currentEmployer,
       primarySkill:this.props.personalDetails.primarySkill,
       salaryMin:this.props.personalDetails.salaryMin,
@@ -64,7 +64,9 @@ export default class Personal extends React.Component {
       ethnicityList:[{id:0,label:"list not loaded"}],
       citizenshipList:[{id:0,label:"list not loaded"}],
       workStatusList:[{id:0,label:"list not loaded"}],
-      list:["ethnicityList","citizenshipList","workStatusList"]
+      candidateStatusList:[{id:0,label:"list not loaded"}],
+      sourceList: [{ id: 0, label: "list not loaded" }],
+      list:["ethnicityList","citizenshipList","workStatusList","candidateStatusList","sourceList"]
 
     };
 
@@ -113,6 +115,8 @@ export default class Personal extends React.Component {
     this.props.personalDetails.citizenship=this.state.citizenship;
     this.props.personalDetails.workStatus=this.state.workStatus;
     this.props.personalDetails.source=this.state.source;
+    this.props.personalDetails.candidateStatus=this.state.candidateStatus;
+    
 
     this.props.personalDetails.currentEmployer=this.state.currentEmployer;
     this.props.personalDetails.primarySkill=this.state.primarySkill;
@@ -330,8 +334,8 @@ export default class Personal extends React.Component {
           
           onChange={(e) => this.setState({ source: e.target.value })}
           margin="normal">
-                {this.sourceList.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
+                {this.state.sourceList.map(option => (
+                  <MenuItem key={option.id} value={option.label}>
                     {option.label}
                   </MenuItem>
                 ))}
@@ -343,18 +347,24 @@ export default class Personal extends React.Component {
             
             <TextValidator
                 fullWidth 
+                select
                 id="candidateStatus"
                 label="Candidate Status"
-                value={this.state.address}
+                value={this.state.candidateStatus}
                 validators={['required']}
                 errorMessages={['Candidate Status is required']}
                 onChange={(e) => {
-                  this.setState({ address: e.target.value })
+                  this.setState({ candidateStatus: e.target.value })
                 }}
                 margin="normal">
+                   {this.state.candidateStatusList.map(option => (
+                                    <MenuItem key={option.id} value={option.label}>
+                                    {option.label}
+                                  </MenuItem>
+                      ))}
               </TextValidator>
           
-
+              
                 <TextValidator
                 fullWidth 
                 id="country"
@@ -364,9 +374,8 @@ export default class Personal extends React.Component {
                 validators={['required']}
                 errorMessages={['Country is required']}
                 onChange={(e) => {
-                  console.log(this.state.countriesRaw.filter(d=>d.name === e.target.value)[0]);
-                  var statesRaw = csc.getStatesOfCountry(this.state.countriesRaw.filter(d=>d.name === e.target.value)[0].id);
                 
+                  var statesRaw = csc.getStatesOfCountry(this.state.countriesRaw.filter(d=>d.name === e.target.value)[0].id);
                               this.setState({
                                 country:e.target.value,
                                 states:statesRaw.map(d=>d.name),
@@ -395,7 +404,7 @@ export default class Personal extends React.Component {
                     var st = this.state.statesRaw.filter(d=>d.name === e.target.value)
                     var id = st[0].id;
                     
-                   console.log(id);
+
                     
                     var citiesRaw = csc.getCitiesOfState(id);
                     

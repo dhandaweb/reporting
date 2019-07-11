@@ -123,72 +123,88 @@ export default class Dashboard extends React.Component {
     });
 
     dashboardData.push({
-      title: "Top cities",
-      data: this.getFormattedData(this.getGroupedData("city", data)),
+      title: "Top Clients",
+      data: this.getFormattedDataCount(this.getGroupedData("client", data)),
+      chart: "VerticalBar",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Gender Diversity",
+      data: this.getFormattedDataCount(this.getGroupedData("gender", data)),
       chart: "PieChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
-      title: "Top sources",
-      data: this.getFormattedData(this.getGroupedData("source", data)),
+      title: "Ethnicity",
+      data: this.getFormattedDataCount(this.getGroupedData("ethnicity", data)),
       chart: "VerticalBar",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
       title: "Top Job category",
-      data: this.getFormattedData(this.getGroupedData("jobCategory", data)),
+      data: this.getFormattedDataCount(this.getGroupedData("jobCategory", data)),
       chart: "VerticalBar",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
-    dashboardData.push({
-      title: "Job Types",
-      data: this.getFormattedData(this.getGroupedData("jobType", data)),
-      chart: "AreaChart",
-      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
-    });
+   
 
     dashboardData.push({
       title: "Job Types",
-      data: this.getFormattedData(this.getGroupedData("jobType", data)),
+      data: this.getFormattedDataCount(this.getGroupedData("jobType", data)),
       chart: "BarChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
-      title: "Job Types",
-      data: this.getFormattedData(this.getGroupedData("jobCategory", data)),
-      chart: "LineChart",
+      title: "Top countries",
+      data: this.getFormattedDataCount(this.getGroupedData("country", data)),
+      chart: "PieChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
     
     dashboardData.push({
-      title: "Job Types",
-      data: this.getFormattedData(this.getGroupedData("jobType", data)),
-      chart: "AreaChart",
+      title: "Work Authorization",
+      data: this.getFormattedDataCount(this.getGroupedData("workStatus", data)),
+      chart: "BarChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
-      title: "City by Job category",
-      data: data.map(d => {
-        return {
-          Measure: { value: d.revenueAmount, formattedVal: d.revenueAmount},
-          Dimension: { value: d.city, formattedVal: d.city },
-          Group:{ value: d.jobCategory, formattedVal: d.jobCategory }
-        };
-      }),
-      chart: "DotPlot",
+      title: "Nationality",
+      data: this.getFormattedDataCount(this.getGroupedData("citizenship", data)),
+      chart: "BarChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
+
+    // dashboardData.push({
+    //   title: "City by Job category",
+    //   data: data.map(d => {
+    //     return {
+    //       Measure: { value: d.revenueAmount, formattedVal: d.revenueAmount},
+    //       Dimension: { value: d.city, formattedVal: d.city },
+    //       Group:{ value: d.jobCategory, formattedVal: d.jobCategory }
+    //     };
+    //   }),
+    //   chart: "DotPlot",
+    //   gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    // });
 
     dashboardData.push({
       title: "Top candidates",
       data: this.getFormattedTableData(data),
       chart: "TableChart",
-      gridSize: {xl:6, lg:6, md:6, sm:12, xs:12}
+      gridSize: {xl:6, lg:6, md:12, sm:12, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Cv Recruiters",
+      data: this.getFormattedDataCount(this.getGroupedData("recruiter", data)),
+      chart: "BarChart",
+      gridSize: {xl:6, lg:6, md:12, sm:12, xs:12}
     });
 
     this.setState({ dashboardData: dashboardData });
@@ -199,15 +215,33 @@ export default class Dashboard extends React.Component {
     var filterData = [];
     
     filterData.push({
-      title: "Top source",
-      filterKey:"source",
-      data: this.getGroupedData("source", data)
+      title: "Geo",
+      filterKey:"geo",
+      data: this.getGroupedData("geo", data)
     });
 
     filterData.push({
-      title: "Job category",
-      filterKey:"jobCategory",
-      data: this.getGroupedData("jobCategory", data)
+      title: "Team",
+      filterKey:"team",
+      data: this.getGroupedData("team", data)
+    });
+
+    filterData.push({
+      title: "Account Manager",
+      filterKey:"accountManager",
+      data: this.getGroupedData("accountManager", data)
+    });
+
+    filterData.push({
+      title: "Cv Recruiter",
+      filterKey:"recruiter",
+      data: this.getGroupedData("recruiter", data)
+    });
+
+    filterData.push({
+      title: "Client",
+      filterKey:"client",
+      data: this.getGroupedData("client", data)
     });
 
     this.setState({ filterData: filterData });
@@ -219,6 +253,17 @@ export default class Dashboard extends React.Component {
     return d3.nest()
       .key(d => d[groupBy])
       .entries(data);
+  }
+
+  getFormattedDataCount(data) {
+
+    return data.map(d => {
+      return {
+        Measure: { value: d.values.length, formattedVal: d.values.length },
+        Dimension: { value: d.key, formattedVal: d.key },
+        Group: { value: '', formattedVal: '' }
+      };
+    });
   }
 
   getFormattedData(data) {
@@ -270,10 +315,7 @@ export default class Dashboard extends React.Component {
         <div className="subHeading">
             <DashboardIcon className="dashboard"/>
             <Typography className="title" variant="subtitle1" noWrap> Dashboard</Typography>
-
             {this.state.filterData.map((item,i) => { return <Filters key={i} data={item} setFilter={this.setFilter}/>})}
-
-            
         </div>
 
         {this.state.dashboardData.length === 0 &&
@@ -283,12 +325,14 @@ export default class Dashboard extends React.Component {
         {this.state.dashboardData.map((item,i) => {
 
             return <Grid item xl ={item.gridSize.xl} lg={item.gridSize.lg} md={item.gridSize.md} sm={item.gridSize.sm} xs={item.gridSize.xs} key={i}>
-                <Card >
-                  <CardContent>
-                    <Typography color="textSecondary" gutterBottom> {item.title}</Typography>
-                    {this.getChart(item)}
-                  </CardContent>
-                </Card>
+               
+                  <Card >
+                    <CardContent>
+                      <Typography color="textSecondary" gutterBottom> {item.title}</Typography>
+                      {this.getChart(item)}
+                    </CardContent>
+                  </Card>
+               
              </Grid>
            })
           }

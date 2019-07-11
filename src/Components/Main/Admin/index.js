@@ -17,7 +17,7 @@ import SettingIcon from '@material-ui/icons/Settings';
 
 import Progress from './../../Progress';
 
-export default class Options extends React.Component {
+export default class Admin extends React.Component {
 
   constructor(props) {
     super(props);
@@ -59,6 +59,34 @@ export default class Options extends React.Component {
           options: []
         },
         {
+          title: "Candidate status list",
+          tableName: "candidateStatusList",
+          addText: "",
+          isLoading:true,
+          options: []
+        },
+        {
+          title: "Job type list",
+          tableName: "jobTypeList",
+          addText: "",
+          isLoading:true,
+          options: []
+        },
+        {
+          title: "Job category list",
+          tableName: "jobCategoryList",
+          addText: "",
+          isLoading:true,
+          options: []
+        },
+        {
+          title: "Candidate source list ",
+          tableName: "sourceList ",
+          addText: "",
+          isLoading:true,
+          options: []
+        },
+        {
           title: "Recruiters",
           tableName: "recruiterList",
           addText: "",
@@ -93,6 +121,36 @@ export default class Options extends React.Component {
           options: [],
           isLoading:true,
         },
+        {
+          title: "Team list",
+          tableName: "teamList ",
+          addText: "",
+          options: [],
+          isLoading:true,
+        },
+        {
+          title: "Geo list",
+          tableName: "geoList ",
+          addText: "",
+          options: [],
+          isLoading:true,
+        },
+        {
+          title: "Pipeline type list",
+          tableName: "pipelineTypeList ",
+          addText: "",
+          options: [],
+          isLoading:true,
+        },
+        {
+          title: "Invoice type list",
+          tableName: "invoiceTypeList ",
+          addText: "",
+          options: [],
+          isLoading:true,
+        },
+        
+        
       ]
     };
 

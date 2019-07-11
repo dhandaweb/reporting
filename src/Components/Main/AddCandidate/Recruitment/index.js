@@ -24,9 +24,6 @@ export default class Recruitment extends React.Component {
     this.handleBack = this.handleBack.bind(this);
     this.getOption = this.getOption.bind(this);
 
-    this.teamList = options.teamList;
-    this.geoList = options.geoList;
-
     this.state = {
 
       recruiter: this.props.recruitmentDetails.recruiter,
@@ -41,16 +38,16 @@ export default class Recruitment extends React.Component {
       commissionAmount: this.props.recruitmentDetails.commissionAmount,
       commissionStatus: this.props.recruitmentDetails.commissionStatus,
       commissionDate: this.props.recruitmentDetails.commissionDate,
-      netRevenue: this.props.recruitmentDetails.netRevenue,
-
+     
      
       recruiterList:[{id:0,label:"list not loaded"}],
       creList:[{id:0,label:"list not loaded"}],
       accountManagerList:[{id:0,label:"list not loaded"}],
       countryManagerList:[{id:0,label:"list not loaded"}],
       accountDirectorList:[{id:0,label:"list not loaded"}],
-
-      list:["recruiterList","creList","accountManagerList","countryManagerList","accountDirectorList"]
+      teamList:[{id:0,label:"list not loaded"}],
+      geoList:[{id:0,label:"list not loaded"}],
+      list:["recruiterList","creList","accountManagerList","countryManagerList","accountDirectorList","teamList","geoList"]
      
     };
 
@@ -91,7 +88,7 @@ export default class Recruitment extends React.Component {
     this.props.recruitmentDetails.commissionAmount = this.state.commissionAmount;
     this.props.recruitmentDetails.commissionStatus = this.state.commissionStatus;
     this.props.recruitmentDetails.commissionDate = this.state.commissionDate;
-    this.props.recruitmentDetails.netRevenue = this.state.netRevenue;
+    //this.props.recruitmentDetails.netRevenue = this.state.netRevenue;
 
 
     this.props.nextHandle(3);
@@ -218,8 +215,8 @@ export default class Recruitment extends React.Component {
             value={this.state.team}
             onChange={(e) => this.setState({ team: e.target.value })}
             >
-            {this.teamList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.teamList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -235,8 +232,8 @@ export default class Recruitment extends React.Component {
             value={this.state.geo}
             onChange={(e) => this.setState({ geo: e.target.value })}
             margin="normal" >
-            {this.geoList.map(option => (
-              <MenuItem key={option.value} value={option.value}>
+            {this.state.geoList.map(option => (
+              <MenuItem key={option.id} value={option.label}>
                 {option.label}
               </MenuItem>
             ))}
@@ -278,16 +275,7 @@ export default class Recruitment extends React.Component {
                />
           </MuiPickersUtilsProvider>
 
-          <TextValidator
-            id="netRevenue"
-            fullWidth
-            label="Net revenue"
-            validators={['required','isNumber']}
-            errorMessages={['Net revenue is required','Should be number']}
-            onChange={(e) => this.setState({ netRevenue: e.target.value })}
-            value={this.state.netRevenue}
-            margin="normal" >
-          </TextValidator>
+          
 
         </Grid>
 

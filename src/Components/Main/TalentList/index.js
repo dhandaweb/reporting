@@ -68,7 +68,7 @@ export class TalentList extends React.Component {
 	}
 
 	editDetails(details) {
-		this.props.history.push('/details', { details: details });
+		this.props.history.push('/addCandidate', { details: details });
 	}
 
 	deleteRecord(details) {

@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Link,Redirect } from "react-router-dom"
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Dashboard from './Dashboard';
-import Details from './Details';
+import AddCandidate from './AddCandidate';
 import Profile from './Profile';
 import TalentList from './TalentList';
 import Clients from './Clients';
 import Users from './Users';
-import Option from './Option';
+import Admin from './Admin';
 import Grid from '@material-ui/core/Grid';
 import Footer from './Footer';
 
@@ -80,7 +80,7 @@ export class VisualRoutes extends React.Component {
                             </NavText>
                         </NavItem>
 
-                        <NavItem eventKey="details">
+                        <NavItem eventKey="addCandidate">
                             <NavIcon>
                             <AddIcon style={{ fontSize: '1.75em', verticalAlign: 'middle' }}/>
                             </NavIcon>
@@ -121,9 +121,9 @@ export class VisualRoutes extends React.Component {
                 <div className="main" >
                    <Route exact path="/" component={Dashboard} />
                   <Route exact path="/dashboard" component={Dashboard} />
-                  <Route exact path="/details" component={Details} />
+                  <Route exact path="/addCandidate" component={AddCandidate} />
                   <Route exact path="/list" component={TalentList} />
-                  <Route exact path="/admin" component={Option} />
+                  <Route exact path="/admin" component={Admin} />
                   <Route exact path="/users" component={Users} />
                   <Route exact path="/profile" component={Profile} />
                   <Route exact path="/clients" component={Clients} />

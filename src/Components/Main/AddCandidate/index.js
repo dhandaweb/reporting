@@ -27,7 +27,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
-export class Details extends React.Component {
+export class AddCandidate extends React.Component {
 
   constructor(props) {
     super(props);
@@ -42,7 +42,7 @@ export class Details extends React.Component {
     
     this.isEditing = false;
     this.state = {
-      activeStep: 0,
+      activeStep:0,
       recordAddedSucessfullly: false
     };
 
@@ -58,6 +58,7 @@ export class Details extends React.Component {
       citizenship: "",
       workStatus: "",
       source: "",
+      candidateStatus:"",
 
       currentEmployer: "",
       primarySkill: "",
@@ -142,6 +143,7 @@ export class Details extends React.Component {
       citizenship: "",
       workStatus: "",
       source: "",
+      candidateStatus:"",
 
       currentEmployer: "",
       primarySkill: "",
@@ -252,7 +254,7 @@ export class Details extends React.Component {
           this.resetForm();
         })
         .catch(function (error) {
-          console.log(error);
+          this.props.setSnackBar({ show: true, message: "Oops ! Something went wrong." });
         });
     }
     else {
@@ -266,7 +268,7 @@ export class Details extends React.Component {
           this.props.setSnackBar({ show: true, message: "Record updated sucessfully." });
         })
         .catch(function (error) {
-          console.log(error);
+          this.props.setSnackBar({ show: true, message: "Oops ! Something went wrong." });
         });
 
     }
@@ -353,4 +355,4 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default connect(mapStateToProps, mapDispatchToProps)(AddCandidate);

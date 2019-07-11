@@ -48,10 +48,11 @@ drawChart(){
 
     var dimension = d3.select(chartId).node().getBoundingClientRect();
 
+    var h = Math.min(dimension.width,450);
     var margin = {top: 10, right: 10, bottom: 20, left: 30};
     var width = dimension.width - margin.right - margin.left;
-    var height = dimension.width - margin.top - margin.bottom;
-
+    var height =  h- margin.top - margin.bottom;
+ 
     var xScale = d3.scaleBand()
                 .rangeRound([0, width])
                 .domain(this.rawData.map(d=>d.Dimension.value))
@@ -69,7 +70,7 @@ drawChart(){
     this.chartContainer = d3.select(chartId)
                             .append("svg")
                             .attr("width", dimension.width)
-                            .attr("height", dimension.width);
+                            .attr("height",h);
 
     var yAxis = d3.axisLeft(yScale)
                   .tickSize(-width)

@@ -53,7 +53,9 @@ export default class JobDetails extends React.Component {
       offerDate: this.props.jobDetails.offerDate,
       joiningDate: this.props.jobDetails.joiningDate,
       offerStatusList: [{ id: 0, label: "list not loaded" }],
-      list: ["offerStatusList"],
+      jobCategoryList: [{ id: 0, label: "list not loaded" }],
+      jobTypeList: [{ id: 0, label: "list not loaded" }],
+      list: ["offerStatusList","jobCategoryList","jobTypeList"],
       clientList:[{ id: 0, name: "list not loaded" }],
       hiringManagerList:[{ id: 0, name: "Please select client first." }]
     };
@@ -75,6 +77,9 @@ export default class JobDetails extends React.Component {
           obj[this.state.list[i]] = response.data;
           this.setState(obj);
           if (i < this.state.list.length - 1) this.getOption(i + 1);
+          if (i == this.state.list.length - 1){
+            if(this.props.jobDetails.client.length > 0) this.updateHiringManagerList(this.props.jobDetails.client);
+          } 
 
         })
         .catch(function (error) {
@@ -97,7 +102,8 @@ export default class JobDetails extends React.Component {
     })
       .then(response => {
         this.setState({ clientList: response.data });
-         this.getOption(0);
+        
+        this.getOption(0);
       })
       .catch(function (error) {
         console.log(error);
@@ -219,8 +225,8 @@ export default class JobDetails extends React.Component {
               errorMessages={['Job type is required']}
               onChange={(e) => this.setState({ jobType: e.target.value })}
               margin="normal">
-              {this.jobTypeList.map(option => (
-                <MenuItem key={option.value} value={option.value}>
+              {this.state.jobTypeList.map(option => (
+                <MenuItem key={option.id} value={option.label}>
                   {option.label}
                 </MenuItem>
               ))}
@@ -254,8 +260,8 @@ export default class JobDetails extends React.Component {
               errorMessages={['Job category is required']}
               onChange={(e) => this.setState({ jobCategory: e.target.value })}
               margin="normal">
-              {this.jobCategoryList.map(option => (
-                <MenuItem key={option.value} value={option.value}>
+              {this.state.jobCategoryList.map(option => (
+                <MenuItem key={option.id} value={option.label}>
                   {option.label}
                 </MenuItem>
               ))}
