@@ -292,7 +292,7 @@ export class Clients extends React.Component {
               
               <TextValidator
                 id="clientName"
-                label="Client name"
+                label="Client description"
                 margin="normal"
                 onChange={(e) => this.setState({ clientDescription: e.target.value })}
                 name="clientDescription"

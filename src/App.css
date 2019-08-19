@@ -131,7 +131,9 @@
 }
 
 .legend{
-  border-top:1px soild #b3b3b3;
+  position: absolute;
+ 
+  margin-top: -20px;
 }
 
 .legend .legendItem{
@@ -146,7 +148,11 @@
 }
 .legend .legendItem .legendText{
   float: left;
-  margin-top:3px;
+  margin-top:5px;
+  font-size: 10px;
+}
+.legend .legendItem .legendText p {
+  font-size: 12px;
 }
 
 .main{
@@ -189,7 +195,7 @@
   background: #fff!important;
   color:rgba(0, 0, 0, 0.87) !important;
   border: 1px solid #cecece !important;
-  padding: 2px 5px !important;
+  padding: 2px 15px !important;
   border-radius: 0!important;
   box-shadow: none!important;
 }
@@ -268,3 +274,32 @@ margin-left:10px;
   background:transparent!important;
   border-color:transparent!important;
 }
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL .sidenav---sidenav-subnav---1EN61 > .sidenav---sidenav-subnavitem---1cD47 > .sidenav---navitem---9uL5T {
+  position: relative;
+  display: block;
+  line-height: 50px;
+  height: 50px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL .sidenav---sidenav-subnav---1EN61 > .sidenav---sidenav-subnavitem---1cD47 > .sidenav---navitem---9uL5T .sidenav---navicon---3gCRo {
+  display: block;
+  float: left;
+  width: 64px;
+  height: 50px;
+  margin-right: -6px;
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  line-height: 50px;
+  text-align: center;
+}
+

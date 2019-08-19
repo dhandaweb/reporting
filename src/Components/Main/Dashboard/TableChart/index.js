@@ -19,9 +19,9 @@ export default class TableChart extends React.Component {
  
 constructor(props) {
     super(props);
-    // this.state = {
-    //     chartContainer:null
-    //   };
+    this.state = {
+        height:20
+      };
     this.drawChart = this.drawChart.bind(this);
       this.chartId =  'Table' + Math.floor(Math.random() * 1000000000);
       this.chartContainer = null;
@@ -46,27 +46,20 @@ constructor(props) {
 
 drawChart(){
 
-    var data = [10, 20, 100];
-
     var chartId =  '#' + this.chartId;
 
     d3.select(chartId).selectAll(".tableR").remove();
 
-    var dimension = d3.select(chartId).node().getBoundingClientRect();
-
-    var width = dimension.width ,
-        height = dimension.width -40;
     
-    
-   
-
-    var svg = this.chartContainer =  d3.select(chartId).append("div")
-       .attr("class",".tableR")
+ 
 }
 
 componentDidMount() {
     this.drawChart();
     window.addEventListener("resize", this.drawChart);
+    var dimension = d3.select('#' + this.chartId).node().getBoundingClientRect();
+
+    this.setState({ height: dimension.width - 40 });
 }
 
 componentDidUpdate(){
@@ -76,7 +69,7 @@ componentDidUpdate(){
 render() {
    
     return (
-      <div id={this.chartId}  className="visual">
+      <div id={this.chartId} style={{"height":this.state.height/2}} className="visual">
         <Table>
           <TableBody>
             {this.props.data.map((row,i) => (

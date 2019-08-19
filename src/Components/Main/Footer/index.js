@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
       <AppBar position="static" color="default" style={{boxShadow:"none",background:"#fff"}}>
         <Toolbar>
           <Typography variant="body1" align="center" color="inherit" >
-          Copyright © REPORTING 2019 
+          Copyright © Digital Recruiter Pty Ltd
           </Typography>
         </Toolbar>
       </AppBar>

@@ -1,4 +1,4 @@
 {
     "timeFormat":"DD/MM/YYYY",
-    "endPointUrl":"http://localhost:8080/api/"
+    "endPointUrl":"https://tracoplug.azurewebsites.net/api/"
 }

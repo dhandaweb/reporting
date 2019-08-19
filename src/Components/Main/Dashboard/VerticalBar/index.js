@@ -1,6 +1,6 @@
 import React from 'react';
 import * as d3 from "d3";
-
+import Options from './../chartOptions';
 export default class VerticalBar extends React.Component {
 
 
@@ -25,8 +25,7 @@ export default class VerticalBar extends React.Component {
 
   drawChart() {
     this.chartData = this.props.data;
-    this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
-    var data = [10, 20, 100];
+    this.colorPallete = d3.scaleOrdinal().range(Options.colorRange);
 
     var chartId = '#' + this.chartId;
 
@@ -35,12 +34,15 @@ export default class VerticalBar extends React.Component {
     var dimension = d3.select(chartId).node().getBoundingClientRect();
 
     var width = dimension.width - 40,
-      height = dimension.width - 40;
+      height = dimension.width;
 
     this.chartContainer = d3.select(chartId)
-      .append("table")
+      .append("div")
       .attr("class", "verticalBar")
-      .attr("style", "width:100%")
+      .attr("style", "height:"+ height +"px")
+      .append("table")
+     
+      .attr("style", "width:100%;")
       .append("tbody");
 
     var row = this.chartContainer.selectAll(".bar")
@@ -69,8 +71,9 @@ export default class VerticalBar extends React.Component {
     row.append("div")
       .attr("style", "margin-bottom:5px;")
       .style("background-color", (d) => this.colorPallete(d.Dimension.value))
-      .style("width", d => xScale(d.Measure.value) + "px")
-      .style("height", "18px");
+      .style("height", "25px")
+      .style("width", "0px")
+      .style("width", d => xScale(d.Measure.value) + "px");
 
   }
 

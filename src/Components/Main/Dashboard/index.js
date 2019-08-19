@@ -17,6 +17,8 @@ import LineChart from './LineChart';
 import AreaChart from './AreaChart';
 import DotPlot from './DotPlot';
 import TableChart from './TableChart';
+import Bubble from './Bubble';
+
 import IconCard from './IconCard';
 import axios from 'axios';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -49,6 +51,7 @@ export default class Dashboard extends React.Component {
       .then(response => {
         this.setState({ detailData: response.data });
         this.dashboardData =response.data;
+        console.log(this.dashboardData);
         this.getDashboardData(response.data);
         this.getFilterData(response.data);
 
@@ -87,6 +90,9 @@ export default class Dashboard extends React.Component {
       case "DotPlot":
           return <DotPlot data={item.data} />
           break;
+      case "Bubble":
+        return <Bubble data={item.data} />
+        break;
     }
   }
 
@@ -124,8 +130,30 @@ export default class Dashboard extends React.Component {
 
     dashboardData.push({
       title: "Top Clients",
-      data: this.getFormattedDataCount(this.getGroupedData("client", data)),
+      data: this.getFormattedDataCount(this.getGroupedData("client", data)).sort((a,b)=> b.Measure.value - a.Measure.value),
       chart: "VerticalBar",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Top Recuiters",
+      data: this.getFormattedDataCount(this.getGroupedData("recruiter", data)),
+      chart: "BarChart",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+
+    dashboardData.push({
+      title: "Job Locations",
+      data: this.getFormattedDataCount(this.getGroupedData("jobCity", data)),
+      chart: "Bubble",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Sources",
+      data: this.getFormattedDataCount(this.getGroupedData("source", data)),
+      chart: "PieChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
@@ -133,6 +161,13 @@ export default class Dashboard extends React.Component {
       title: "Gender Diversity",
       data: this.getFormattedDataCount(this.getGroupedData("gender", data)),
       chart: "PieChart",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Candidate Status",
+      data: this.getFormattedDataCount(this.getGroupedData("candidateStatus", data)),
+      chart: "VerticalBar",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
@@ -149,9 +184,7 @@ export default class Dashboard extends React.Component {
       chart: "VerticalBar",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
-
    
-
     dashboardData.push({
       title: "Job Types",
       data: this.getFormattedDataCount(this.getGroupedData("jobType", data)),
@@ -160,9 +193,9 @@ export default class Dashboard extends React.Component {
     });
 
     dashboardData.push({
-      title: "Top countries",
+      title: "Countries",
       data: this.getFormattedDataCount(this.getGroupedData("country", data)),
-      chart: "PieChart",
+      chart: "Bubble",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
     
@@ -193,20 +226,37 @@ export default class Dashboard extends React.Component {
     //   gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     // });
 
+    // dashboardData.push({
+    //   title: "Bubble",
+    //   data: this.getFormattedDataCount(this.getGroupedData("country", data)),
+    //   chart: "Bubble",
+    //   gridSize: {xl:6, lg:6, md:12, sm:12, xs:12}
+    // });
+
+    
+
+
+    dashboardData.push({
+      title: "Geo Location",
+      data: this.getFormattedDataCount(this.getGroupedData("geo", data)),
+      chart: "LineChart",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Top Skills",
+      data: this.getFormattedDataCount(this.getGroupedData("primarySkill", data)),
+      chart: "VerticalBar",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    
     dashboardData.push({
       title: "Top candidates",
       data: this.getFormattedTableData(data),
       chart: "TableChart",
       gridSize: {xl:6, lg:6, md:12, sm:12, xs:12}
     });
-
-    dashboardData.push({
-      title: "Cv Recruiters",
-      data: this.getFormattedDataCount(this.getGroupedData("recruiter", data)),
-      chart: "BarChart",
-      gridSize: {xl:6, lg:6, md:12, sm:12, xs:12}
-    });
-
     this.setState({ dashboardData: dashboardData });
    
   }
@@ -227,13 +277,13 @@ export default class Dashboard extends React.Component {
     });
 
     filterData.push({
-      title: "Account Manager",
+      title: "Account manager",
       filterKey:"accountManager",
       data: this.getGroupedData("accountManager", data)
     });
 
     filterData.push({
-      title: "Cv Recruiter",
+      title: "CV recruiter",
       filterKey:"recruiter",
       data: this.getGroupedData("recruiter", data)
     });
