@@ -18,6 +18,7 @@ import AreaChart from './AreaChart';
 import DotPlot from './DotPlot';
 import TableChart from './TableChart';
 import Bubble from './Bubble';
+import TreeMap from './TreeMap';
 
 import IconCard from './IconCard';
 import axios from 'axios';
@@ -96,6 +97,9 @@ export default class Dashboard extends React.Component {
       case "Bubble":
         return <Bubble data={item.data} />
         break;
+        case "TreeMap":
+          return <TreeMap data={item.data} />
+          break;
     }
   }
 
@@ -130,7 +134,6 @@ export default class Dashboard extends React.Component {
       chart: "IconCard",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
-   
 
     dashboardData.push({
       title: "Top Clients",
@@ -236,13 +239,17 @@ export default class Dashboard extends React.Component {
     //   gridSize: {xl:6, lg:6, md:12, sm:12, xs:12}
     // });
 
-    
-
+    // dashboardData.push({
+    //   title: "Geo Location",
+    //   data: this.getFormattedDataCount(this.getGroupedData("geo", data)),
+    //   chart: "LineChart",
+    //   gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    // });
 
     dashboardData.push({
       title: "Geo Location",
-      data: this.getFormattedDataCount(this.getGroupedData("geo", data)),
-      chart: "LineChart",
+      data: this.getFormattedDataCount(this.getGroupedData("geo", data)).sort((a,b)=> b.Measure.value - a.Measure.value),
+      chart: "TreeMap",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
