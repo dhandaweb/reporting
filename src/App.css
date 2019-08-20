@@ -6,6 +6,11 @@
 .signInCon .siginInHeadingIcon{
   background-color: #f44336;
 }
+.dashboardLoading{
+  padding-left: calc(50% - 20px);
+  margin: calc(25% - 10px) 0;
+  text-align: center;
+}
 
 .RIcon{
   background-color: #f44336!important;
@@ -58,8 +63,7 @@
   font-weight: normal;
 }
 .visual{
-  max-height: 390px;
-  overflow-y: auto;
+  max-height: 400px;
 }
 
 

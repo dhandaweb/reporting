@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, withRouter } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect, withRouter } from "react-router-dom";
 
 
 import Main from './Main';

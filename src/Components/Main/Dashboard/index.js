@@ -35,7 +35,8 @@ export default class Dashboard extends React.Component {
 
     this.state = {
       dashboardData: [], 
-      filterData:[]
+      filterData:[], 
+      isLoading:true
     };
 
     this.dashboardData =[];
@@ -49,9 +50,9 @@ export default class Dashboard extends React.Component {
       }
     })
       .then(response => {
-        this.setState({ detailData: response.data });
+        this.setState({ detailData: response.data, isLoading:false });
         this.dashboardData =response.data;
-        console.log(this.dashboardData);
+       
         this.getDashboardData(response.data);
         this.getFilterData(response.data);
 
@@ -141,7 +142,6 @@ export default class Dashboard extends React.Component {
       chart: "BarChart",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
-
 
     dashboardData.push({
       title: "Job Locations",
@@ -362,15 +362,21 @@ export default class Dashboard extends React.Component {
       <div>
         <Grid container spacing={24} className="mainContent">
 
+        
+
         <div className="subHeading">
             <DashboardIcon className="dashboard"/>
             <Typography className="title" variant="subtitle1" noWrap> Dashboard</Typography>
             {this.state.filterData.map((item,i) => { return <Filters key={i} data={item} setFilter={this.setFilter}/>})}
         </div>
 
-        {this.state.dashboardData.length === 0 &&
-            <div className="progress"> <LinearProgress color="secondary"/> </div>
+        {this.state.isLoading &&
+            <div className="dashboardLoading"> 
+              <CircularProgress color="secondary"/> 
+              <Typography style={{"marginTop":20}} className="title" variant="subtitle1" noWrap>Getting dashboard items..</Typography>
+            </div>
         }
+
 
         {this.state.dashboardData.map((item,i) => {
 

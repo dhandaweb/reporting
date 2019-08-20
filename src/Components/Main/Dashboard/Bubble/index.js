@@ -51,12 +51,14 @@ drawChart(){
       .sum(d=> d.value)
       .sort(function(a, b) { return b.value - a.value; });
 
-    var svg = this.chartContainer =  d3.select(chartId).append("svg")
+    
+   this.chartContainer =  d3.select(chartId)
+   .append("svg")
         .attr("width", width)
         .attr("height", height);
 
   bubble(root);
-  var node = svg.selectAll(".node")
+  var node =  this.chartContainer.selectAll(".node")
       .data(root.children)
     .enter().append("g")
       .attr("class", "node")

@@ -1,6 +1,10 @@
 import React from 'react';
 import * as d3 from "d3";
 import Options from './../chartOptions';
+import $ from 'jquery';
+
+
+
 export default class VerticalBar extends React.Component {
 
 
@@ -39,7 +43,7 @@ export default class VerticalBar extends React.Component {
     this.chartContainer = d3.select(chartId)
       .append("div")
       .attr("class", "verticalBar")
-      .attr("style", "height:"+ height +"px")
+      .attr("style", "height:"+ height +"px;")
       .append("table")
      
       .attr("style", "width:100%;")
@@ -68,12 +72,31 @@ export default class VerticalBar extends React.Component {
       .domain([0, d3.max(domain)])
       .range([0, width]);
 
-    row.append("div")
+    var bars = row.append("div")
       .attr("style", "margin-bottom:5px;")
       .style("background-color", (d) => this.colorPallete(d.Dimension.value))
       .style("height", "25px")
       .style("width", "0px")
       .style("width", d => xScale(d.Measure.value) + "px");
+
+      bars.on("mouseenter", function(d){
+
+        var content = d.Dimension.value + ": " + d.Measure.formattedVal
+  
+        $(this).popover({
+          placement: 'top',
+          content: content,
+          title: d.Dimension.value,
+          trigger: "hover",
+          container: 'body'
+        });
+  
+        $(this).popover('show');
+
+      })
+        .on("mouseleave", function(d){
+          $(this).popover('hide');
+        })
 
   }
 

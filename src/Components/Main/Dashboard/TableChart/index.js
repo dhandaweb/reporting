@@ -69,7 +69,7 @@ componentDidUpdate(){
 render() {
    
     return (
-      <div id={this.chartId} style={{"height":this.state.height/2}} className="visual">
+      <div id={this.chartId} style={{"height":this.state.height/2,"overflowY":"auto"}} className="visual">
         <Table>
           <TableBody>
             {this.props.data.map((row,i) => (

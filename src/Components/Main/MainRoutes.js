@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link,Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Link,Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Dashboard from './Dashboard';

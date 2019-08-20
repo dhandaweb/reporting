@@ -14,8 +14,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import logo from './img/logo.png';
-
+// import logo from './img/logo.png';
+import tracologo from './img/traco-logo.png';
 // import Routes from './Routes';
 const styles = {
   avatar: {
@@ -82,12 +82,12 @@ export default class Header extends React.Component {
     return (
       <AppBar position="sticky">
         <Toolbar >
-          
+{/*           
           <img src={logo} style={{width:40}} alt="logo" className="logo" />
           <Typography style={{ padding: 6 }} component="h1" variant="title" color="inherit" noWrap>
             Traco Plug
-          </Typography>
-
+          </Typography> */}
+ <img src={tracologo} style={{height:35}} alt="logo" className="logo" />
 
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="headerSetting">
             <DropdownToggle caret>
