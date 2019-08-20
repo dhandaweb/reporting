@@ -41,6 +41,8 @@ export default class Dashboard extends React.Component {
 
     this.dashboardData =[];
 
+    this.format  = d3.format('~s');
+
     axios({
       method: 'post',
       url: env.endPointUrl + 'getDetails',
@@ -102,32 +104,33 @@ export default class Dashboard extends React.Component {
     this.setState({ dashboardData: dashboardData });
 
     dashboardData.push({
-      title: "Total Revenue Amount",
-      data: { icon: "money", value: d3.sum(data.map(d => d.revenueAmount)), color: "primary" },
-      chart: "IconCard",
-      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
-    });
-
-    dashboardData.push({
-      title: "Net Revenue Amount",
-      data: { icon: "money", value: d3.sum(data.map(d => d.netRevenue)), color: "secondary" },
-      chart: "IconCard",
-      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
-    });
-
-    dashboardData.push({
-      title: "Total Billing Amount",
+      title: "Billing",
       data: { icon: "money", value: d3.sum(data.map(d => d.billingAmount)), color: "error" },
       chart: "IconCard",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
 
     dashboardData.push({
-      title: "Commision Amount",
+      title: "Order Book",
+      data: { icon: "money", value: d3.sum(data.map(d => d.revenueAmount)), color: "primary" },
+      chart: "IconCard",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+
+    dashboardData.push({
+      title: "Commissions",
       data: { icon: "money", value: d3.sum(data.map(d => d.commissionAmount)), color: "error" },
       chart: "IconCard",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
     });
+
+    dashboardData.push({
+      title: "Net Revenue",
+      data: { icon: "money", value: d3.sum(data.map(d => d.netRevenue)), color: "secondary" },
+      chart: "IconCard",
+      gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
+    });
+   
 
     dashboardData.push({
       title: "Top Clients",

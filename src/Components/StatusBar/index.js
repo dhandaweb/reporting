@@ -16,7 +16,7 @@ export class StatusBar extends React.Component {
     }
 
     this.handleErrorClose = this.handleErrorClose.bind(this);
-    console.log(this.props.snackBar.show);
+  
   }
 
   handleErrorClose(){

@@ -30,8 +30,6 @@ constructor(props) {
       this.chartId =  'Table' + Math.floor(Math.random() * 1000000000);
       this.chartContainer = null;
 
-      
-     console.log("drawing icon");
 
     }
 

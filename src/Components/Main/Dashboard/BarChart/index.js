@@ -1,6 +1,7 @@
 import React from 'react';
 import * as d3 from "d3";
 import $ from 'jquery';
+import Options from './../chartOptions';
 
 export default class BarChart extends React.Component {
 
@@ -34,7 +35,7 @@ export default class BarChart extends React.Component {
 
   drawChart() {
 
-    this.colorPallete = d3.scaleOrdinal().range(["#01B8AA", "#374649", "#FD625E", "#F2C80F", "#5F6B6D", "#8AD4EB"]);
+    this.colorPallete = d3.scaleOrdinal().range(Options.colorRange);
     var chartId = '#' + this.chartId;
     this.rawData = this.props.data;
 
@@ -98,13 +99,14 @@ export default class BarChart extends React.Component {
       .data(this.chartData)
       .enter()
       .append("g")
-      .style("fill", (d) => this.colorPallete(d.key))
+      // .style("fill", (d) => this.colorPallete(d.key))
       .attr("transform", function (d, i) { return "translate(" + xScale1(d.key) + ",0)"; })
 
     var bars = barsG.selectAll(".bars")
       .data(d => d.values)
       .enter()
       .append("rect")
+       .style("fill", (d) => this.colorPallete(d.Dimension.value))
       .attr("width", xScale1.bandwidth())
       .attr("height", d => height - yScale(d.Measure.value))
       .attr("x", d => xScale(d.Dimension.value))

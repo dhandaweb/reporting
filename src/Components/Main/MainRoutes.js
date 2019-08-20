@@ -50,7 +50,6 @@ export class VisualRoutes extends React.Component {
   }
 
   onSelect = (selected) => {
-    console.log(selected);
     this.props.history.push('/'+ selected);
   };
 
