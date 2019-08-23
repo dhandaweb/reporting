@@ -42,7 +42,7 @@ export default class VerticalBar extends React.Component {
 
     this.chartContainer = d3.select(chartId)
       .append("div")
-      .attr("class", "verticalBar")
+      .attr("class", "verticalBar scrollbar")
       .attr("style", "height:"+ height +"px;")
       .append("table")
      

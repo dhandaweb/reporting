@@ -63,6 +63,8 @@ export default class PieChart extends React.Component {
             .append("g")
             .attr("class", "arc");
 
+        g.attr("transform", "translate(0," + (-20) + ")");
+
         var path = g.append("path")
                     .attr("d", arc)
                     .style("fill", (d) => this.colorPallete(d.data.Dimension.value))
@@ -101,7 +103,7 @@ export default class PieChart extends React.Component {
     render() {
 
         var legend =  this.props.data.map((item,i)=>{
-            return  <div key={i} className="legendItem">
+            return  <div key={i} className="legendItem" style={{marginTop:this.props.data.length > 3 ? -20: 0}}>
             <div className="legendIcon" style={{background:Options.colorRange[i]}}></div>
             <div className="legendText"><Typography color="textSecondary" gutterBottom> {item.Dimension.value}</Typography></div>
         </div>

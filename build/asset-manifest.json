@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.2290fea1.chunk.css",
-    "main.js": "/static/js/main.4ded19de.chunk.js",
-    "main.js.map": "/static/js/main.4ded19de.chunk.js.map",
+    "main.css": "/static/css/main.13cbc647.chunk.css",
+    "main.js": "/static/js/main.3d0cb12d.chunk.js",
+    "main.js.map": "/static/js/main.3d0cb12d.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/css/2.63b19d7a.chunk.css": "/static/css/2.63b19d7a.chunk.css",
     "static/js/2.fb8ee12d.chunk.js": "/static/js/2.fb8ee12d.chunk.js",
     "static/js/2.fb8ee12d.chunk.js.map": "/static/js/2.fb8ee12d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.3481e8d00174bbdc831aa23ec03d9050.js": "/precache-manifest.3481e8d00174bbdc831aa23ec03d9050.js",
+    "precache-manifest.1f88a8300b87c41773986d5fea30509d.js": "/precache-manifest.1f88a8300b87c41773986d5fea30509d.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.63b19d7a.chunk.css.map": "/static/css/2.63b19d7a.chunk.css.map",
-    "static/css/main.2290fea1.chunk.css.map": "/static/css/main.2290fea1.chunk.css.map",
+    "static/css/main.13cbc647.chunk.css.map": "/static/css/main.13cbc647.chunk.css.map",
     "static/media/traco-logo.png": "/static/media/traco-logo.4b82d757.png"
   }
 }

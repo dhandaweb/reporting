@@ -247,7 +247,7 @@ export default class Dashboard extends React.Component {
     // });
 
     dashboardData.push({
-      title: "Geo Location",
+      title: "Top Geo's",
       data: this.getFormattedDataCount(this.getGroupedData("geo", data)).sort((a,b)=> b.Measure.value - a.Measure.value),
       chart: "TreeMap",
       gridSize: {xl:3, lg:3, md:3, sm:6, xs:12}
