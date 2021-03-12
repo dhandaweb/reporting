@@ -14,7 +14,7 @@
     "date-fns": "next",
     "html2canvas": "^1.0.0-rc.1",
     "jquery": "^3.4.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "material-ui-pickers": "latest",
     "moment": "^2.24.0",
     "prop-types": "latest",
